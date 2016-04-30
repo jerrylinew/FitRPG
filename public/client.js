@@ -3,6 +3,10 @@
  */
 
 var code;
+var userId;
+var userName;
+var userGender;
+var userAge;
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -19,14 +23,27 @@ $(document).ready(function() {
     code = getParameterByName("code");
     console.log(code);
 
+    $.get("http://fitrpg.herokuapp.com/getdata" + "?code=" + code + "#_=_", function(data) {
+        console.log(data);
+        userId = data.userID;
+        userName = data.name;
+        userGender = data.gender;
+        $('#greetingDisplay').html("Hi " + userName);
+        $('#greetingDisplay').css('font-size', '300px');
+    });
+
+
+
 
     var refreshInterval = 0.1; //in minutes
 
     setInterval(function() {
-        $.get("http://fitrpg.herokuapp.com/getdata" + "?code=" + code + "#_=_", function(data) {
+        $.get("http://fitrpg.herokuapp.com/refreshdata" + "?code=" + code + "#_=_", function(data) {
             console.log(data);
-            $('#stepDisplay').html(data);
-            $('#stepDisplay').css('font-size', '300px');
+            userId = data.user_id;
+            userName = data.username;
+            $('#greetingDisplay').html("Hi " + userName);
+            $('#greetingDisplay').css('font-size', '300px');
         });
     }, 1000 * 60 * refreshInterval);
 
