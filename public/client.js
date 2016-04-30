@@ -36,13 +36,12 @@ $(document).ready(function() {
 
 
     var refreshInterval = 1; //in minutes
-    $.get("http://fitrpg.herokuapp.com/refreshdata" + "?userID=" + userID + "#_=_", function(data) {
-
+    $.get("http://fitrpg.herokuapp.com/refreshdata", {user_id: userID}).done(function(data) {
         $('#stepDisplay').html(data["daySteps"]);
         $('#stepDisplay').css('font-size', '300px');
     });
     setInterval(function() {
-        $.get("http://fitrpg.herokuapp.com/refreshdata" + "?userID=" + userID + "#_=_", function(data) {
+        $.get("http://fitrpg.herokuapp.com/refreshdata", {user_id: userID}).done(function(data) {
 
             $('#stepDisplay').html(data["daySteps"]);
             $('#stepDisplay').css('font-size', '300px');
