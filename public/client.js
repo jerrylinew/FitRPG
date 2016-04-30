@@ -20,6 +20,11 @@ $(document).ready(function() {
     console.log(code);
     $.get("http://fitrpg.herokuapp.com/getdata" + "?code=" + code + "#_=_", function(data) {
         console.log(data);
+        $('#stepDisplay').html(data);
+        $('#stepDisplay').css('font-size', '60px');
+
     });
+
+
 });
 
