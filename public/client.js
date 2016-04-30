@@ -6,7 +6,7 @@ var code;
 var userID;
 var userName;
 var userGender;
-var userAge;
+var userCoins;
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -22,8 +22,9 @@ $(document).ready(function() {
 
     code = getParameterByName("code");
     console.log(code);
-    var $stepDisplay = $('#stepDisplay');
-    var $greetingDisplay = $('#greetingDisplay');
+    var stepDisplay = $('#stepDisplay');
+    var greetingDisplay = $('#greetingDisplay');
+    var coinsDisplay = $('#coinsDisplay');
 
     $.get("/getdata", {code: code}).done(function(data) {
         console.log("getting data");
@@ -31,33 +32,44 @@ $(document).ready(function() {
         userID = data.userID;
         userName = data.name;
         userGender = data.gender;
-        $greetingDisplay.html("Hi " + userName);
-        $greetingDisplay.css('font-size', '150px');
+        greetingDisplay.html("Hi " + userName);
+        greetingDisplay.css('font-size', '150px');
 
         var refreshInterval = 0.10; //in minutes
         console.log("getting steps");
 
         $.get("/refreshdata", {userID: userID}).done(function(data) {
-            $stepDisplay.html(data["daySteps"]);
-            $stepDisplay.css('font-size', '300px');
+            userCoins = data["daySteps"];
+
+            stepDisplay.html(data["daySteps"]);
+            stepDisplay.css('font-size', '300px');
+            coinsDisplay.html(userCoins); //to change
+            coinsDisplay.css('font-size', '300px');
         });
 
         setInterval(getCallback(userID), 1000 * 60 * refreshInterval);
     });
+});
 
-
-
-
+$('#purchase').on("click", function() {
+    userCoins -= 100;
+    coinsDisplay.html(userCoins);
 });
 
 function getCallback(local_userID) {
     return function(){
         $.get("/refreshdata", {userID: local_userID}).done(function (data) {
-            var $stepDisplay = $('#stepDisplay');
-            var $greetingDisplay = $('#greetingDisplay');
+            userCoins = data["daySteps"];
 
-            $stepDisplay.html(data["daySteps"]);
-            $stepDisplay.css('font-size', '300px');
+            var stepDisplay = $('#stepDisplay');
+            var greetingDisplay = $('#greetingDisplay');
+            var coinsDisplay = $('#coinsDisplay');
+
+            stepDisplay.html(data["daySteps"]);
+            stepDisplay.css('font-size', '300px');
+            coinsDisplay.html(userCoins); //to change
+            coinsDisplay.css('font-size', '300px');
         });
     }
 }
+
