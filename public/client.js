@@ -11,6 +11,7 @@ var userCoins;
 var stepDisplay = $('#stepDisplay');
 var greetingDisplay = $('#greetingDisplay');
 var coinsDisplay = $('#coinsDisplay');
+var shopDisplay = $('#shopContainer');
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -50,7 +51,40 @@ $(document).ready(function() {
 
         setInterval(getCallback(userID), 1000 * 60 * refreshInterval);
     });
+
+
+    //getShop callback
+    var shopData = [
+        {
+            name: "Sword",
+            price: "30",
+            details: "Atk +3",
+            image: "/img/sword.jpg"
+        },
+        {
+            name: "Armor",
+            price: "50",
+            details: "Def +5",
+            image: "/img/Armor.jpg"
+        }
+    ]
+
 });
+
+
+function displayShop(shopData) {
+
+    for (var i = 0, len = shopData.length; i < len; i++) {
+        var shopObject = shopData[i];
+        var shopObjectDiv = $('<div class="shopObject"></div>');
+
+        for (var key in shopObject) {
+            shopObjectDiv.append(key + ": " + shopObject[key] + "<br>");
+            shopObjectDiv.attr(key, shopObject[key]);
+        }
+    }
+
+}
 
 
 
