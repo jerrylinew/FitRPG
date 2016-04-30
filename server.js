@@ -43,7 +43,7 @@ app.get('/getdata', function(req, res){
 });
 
 app.get('/refreshdata', function(req, res){
-    var user_ID = req.body.user_id;
+    var user_ID = req.param("userID");
     console.log();
 
     var data = {};
