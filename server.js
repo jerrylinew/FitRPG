@@ -9,6 +9,7 @@ var url = require('url');
 var FitbitApiClient = require("fitbit-node");
 var redirectURL = "http://fitrpg.herokuapp.com/";
 var apiClient = new FitbitApiClient("227LR8", "0c5043e5c97351930aa2a3431cb79266");
+app.use(express.static('public'));
 
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/public/index.html');
