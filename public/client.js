@@ -33,7 +33,9 @@ $(document).ready(function() {
         userGender = data.gender;
         $greetingDisplay.html("Hi " + userName);
         $greetingDisplay.css('font-size', '150px');
-    }).done(function(){
+    });
+
+    setTimeout(function(){
         var refreshInterval = 1; //in minutes
         console.log("getting steps");
         $.get("http://fitrpg.herokuapp.com/refreshdata" + "?userID=" + userID + "#_=_", function(data) {
@@ -46,9 +48,8 @@ $(document).ready(function() {
                 $stepDisplay.css('font-size', '300px');
             });
         }, 1000 * 60 * refreshInterval);
-    });
 
-
+    }, 5000);
 
 
 });
