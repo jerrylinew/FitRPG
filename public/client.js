@@ -35,7 +35,7 @@ $(document).ready(function() {
 
 
 
-    var refreshInterval = 0.1; //in minutes
+    var refreshInterval = 1; //in minutes
 
     setInterval(function() {
         $.get("http://fitrpg.herokuapp.com/refreshdata" + "?userID=" + userID + "#_=_", function(data) {
