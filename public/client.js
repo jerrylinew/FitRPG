@@ -3,7 +3,7 @@
  */
 
 var code;
-var userId;
+var userID;
 var userName;
 var userGender;
 var userAge;
@@ -25,7 +25,7 @@ $(document).ready(function() {
 
     $.get("http://fitrpg.herokuapp.com/getdata" + "?code=" + code + "#_=_", function(data) {
         console.log(data);
-        userId = data.userID;
+        userID = data.userID;
         userName = data.name;
         userGender = data.gender;
         $('#greetingDisplay').html("Hi " + userName);
@@ -38,12 +38,10 @@ $(document).ready(function() {
     var refreshInterval = 0.1; //in minutes
 
     setInterval(function() {
-        $.get("http://fitrpg.herokuapp.com/refreshdata" + "?code=" + code + "#_=_", function(data) {
-            console.log(data);
-            userId = data.user_id;
-            userName = data.username;
-            $('#greetingDisplay').html("Hi " + userName);
-            $('#greetingDisplay').css('font-size', '300px');
+        $.get("http://fitrpg.herokuapp.com/refreshdata" + "?userID=" + userID + "#_=_", function(data) {
+
+            $('#stepDisplay').html(data);
+            $('#stepsDisplay').css('font-size', '300px');
         });
     }, 1000 * 60 * refreshInterval);
 
