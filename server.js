@@ -17,6 +17,10 @@ app.get('/', function(req, res){
     var promise = apiClient.getAccessToken(code, redirectURL);
     console.log(code);
     console.log(promise);
+
+    promise.then(function(data){
+        console.log(data);
+    });
 });
 
 app.get('/setup', function(req, res){
