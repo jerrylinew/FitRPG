@@ -24,7 +24,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/getdata', function(req, res){
-    var code = req.params.code;
+    var code = req.query.code;
     console.log(code);
     var user = {};
 
@@ -47,7 +47,7 @@ app.get('/getdata', function(req, res){
 });
 
 app.get('/refreshdata', function(req, res){
-    var user_ID = req.params.userID;
+    var user_ID = req.query.userID;
     console.log("refreshing");
     console.log(user_ID);
     console.log(users[user_ID]);
