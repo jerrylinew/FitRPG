@@ -22,14 +22,18 @@ app.get('/', function(req, res){
 app.get('/getdata', function(req, res){
     var code = req.param("code");
     console.log(code);
+    var user = {};
 
     apiClient.getAccessToken(code, redirectURL).then(function(result){
         console.log(result);
+        user["userID"] = result.user_id;
 
         apiClient.get("/profile.json", result.access_token).then(function (results) {
-            var user = results[0];
+            user["name"] = results.fullName;
+            user["gender"] = results.gender;
             console.log(user);
-            res.json(results[0]);
+            users[result.user_id] = user;
+            res.json(user);
         });
     }).catch(function (error){
         console.log(error);
