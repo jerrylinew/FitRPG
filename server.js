@@ -45,6 +45,8 @@ app.get('/getdata', function(req, res){
 app.get('/refreshdata', function(req, res){
     var user_ID = req.param("userID");
     console.log("refreshing");
+    console.log(user_ID);
+    console.log(users[user_ID]);
 
     var data = {};
 
