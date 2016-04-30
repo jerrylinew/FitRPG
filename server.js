@@ -26,7 +26,7 @@ app.get('/getdata', function(req, res){
 
         apiClient.get("/activities/date/2016-04-20.json", result.access_token).then(function (results) {
             console.log(results[0].summary.steps);
-            res.sendStatus(200);
+            res.json(results);
         });
     }).catch(function (error){
         console.log("error promise");
