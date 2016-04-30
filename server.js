@@ -16,20 +16,20 @@ app.get('/', function(req, res){
 
     var code = req.param("code");
     console.log(code);
-    //var options = {
-    //    Authorization: 'Basic ' + new Buffer("Hello World").toString('base64');
-    //    path: 'https://api.fitbit.com/oauth2/token';
-    //    method: 'POST'
-    //};
-
-
-    apiClient.getAccessToken(code, redirectURL).then(function(data){
-        console.log(data);
-    }).catch(function (error){
-        console.log("error promise");
-    });
-    console.log(code);
-    console.log(promise);
+    ////var options = {
+    ////    Authorization: 'Basic ' + new Buffer("Hello World").toString('base64');
+    ////    path: 'https://api.fitbit.com/oauth2/token';
+    ////    method: 'POST'
+    ////};
+    //
+    //
+    //apiClient.getAccessToken(code, redirectURL).then(function(data){
+    //    console.log(data);
+    //}).catch(function (error){
+    //    console.log("error promise");
+    //});
+    //console.log(code);
+    //console.log(promise);
 });
 
 app.get('/setup', function(req, res){
