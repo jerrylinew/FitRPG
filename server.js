@@ -15,7 +15,7 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/public/index.html');
 
     var code = req.param("code");
-
+    console.log(code);
     //var options = {
     //    Authorization: 'Basic ' + new Buffer("Hello World").toString('base64');
     //    path: 'https://api.fitbit.com/oauth2/token';
