@@ -21,7 +21,7 @@ app.get('/', function(req, res){
     apiClient.getAccessToken(code, redirectURL).then(function(result){
         console.log(result);
 
-        apiClient.get("/activities/date/2016-04-20.json", result.access_token).then(function (results) {
+        apiClient.get("/activities/steps/date/2016-04-20.json", result.access_token).then(function (results) {
             console.log(results[0]);
         });
     }).catch(function (error){
