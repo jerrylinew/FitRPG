@@ -16,6 +16,21 @@ app.use(express.static('public'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+var shopData = {
+    Sword: {
+        name: "Sword",
+        price: "30",
+        details: "Atk +3",
+        image: "/img/sword.jpg"
+    },
+    Armor: {
+        name: "Armor",
+        price: "50",
+        details: "Def +5",
+        image: "/img/Armor.jpg"
+    }
+};
+
 var users = {};
 
 app.get('/', function(req, res){
@@ -67,6 +82,22 @@ app.get('/refreshdata', function(req, res){
         users[user_ID]["dailyAwarded"] += data["coins"];
         res.json(data);
     });
+});
+
+app.get('/purchase', function(req, res){
+    var purchasedItem = req.query.item;
+    var userID = req.query.userID;
+    var data = {};
+
+    if(users[userID]["coins"] >= shopData[purchasedItem]["price"]) {
+        users[userID]["coins"] -= shopData[purchasedItem]["price"];
+        data["status"] = true;
+    }
+    else
+        data["status"] = false;
+
+    data["coinsLeft"] = users[userID]["coins"];
+    res.send(data);
 });
 
 app.get('/dashboard', function(req, res){
