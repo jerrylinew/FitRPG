@@ -78,7 +78,7 @@ app.get('/refreshdata', function(req, res){
 
     apiClient.get("/activities/date/today.json", users[user_ID].accessToken).then(function (results) {
         data["daySteps"] = results[0].summary.steps;
-        data["coins"] += data["daySteps"] - currentUser["dailyAwarded"];
+        data["coins"] = currentUser["coins"] + data["daySteps"] - currentUser["dailyAwarded"];
 
         users[user_ID]["dailyAwarded"] = data["daySteps"];
         users[user_ID]["coins"] = data["coins"];
