@@ -32,24 +32,17 @@ $(document).ready(function() {
         $('#greetingDisplay').css('font-size', '150px');
     });
 
-
-
-
     var refreshInterval = 1; //in minutes
-    $.get("http://fitrpg.herokuapp.com/refreshdata" + "?userID=" + userID + "#_=_", function(data) {
-
+    $.get("http://fitrpg.herokuapp.com/refreshdata", {user_id: userID}).done(function(data) {
         $('#stepDisplay').html(data["daySteps"]);
         $('#stepDisplay').css('font-size', '300px');
     });
     setInterval(function() {
-        $.get("http://fitrpg.herokuapp.com/refreshdata" + "?userID=" + userID + "#_=_", function(data) {
-
+        $.get("http://fitrpg.herokuapp.com/refreshdata", {user_id: userID}).done(function(data) {
             $('#stepDisplay').html(data["daySteps"]);
             $('#stepDisplay').css('font-size', '300px');
         });
     }, 1000 * 60 * refreshInterval);
-
-
 
 });
 
