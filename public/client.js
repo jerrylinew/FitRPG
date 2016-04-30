@@ -113,6 +113,10 @@ function displayShop(shopData) {
     });
 }
 
+
+
+
+
 function getCallback(local_userID) {
     return function(){
         $.get("/refreshdata", {userID: local_userID}).done(function (data) {
