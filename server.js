@@ -27,10 +27,11 @@ app.get('/getdata', function(req, res){
     apiClient.getAccessToken(code, redirectURL).then(function(result){
         console.log(result);
         user["userID"] = result.user_id;
+        user["refreshToken"] = result.refresh_token;
 
         apiClient.get("/profile.json", result.access_token).then(function (results) {
-            user["name"] = results[0].fullName;
-            user["gender"] = results[0].gender;
+            user["name"] = results[0].user.fullName;
+            user["gender"] = results[0].user.gender;
             console.log(user);
             users[result.user_id] = user;
             res.json(user);
@@ -41,7 +42,12 @@ app.get('/getdata', function(req, res){
 });
 
 app.get('/refreshdata', function(req, res){
-
+    var user_ID = req.param("userID");
+    console.log();
+    console.log(user_ID);
+    apiClient.refreshAccesstoken(users[user_ID].refreshToken).then(function(result){
+        console.log(result);
+    });
 });
 
 app.get('/dashboard', function(req, res){
