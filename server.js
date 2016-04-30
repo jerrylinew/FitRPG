@@ -12,7 +12,7 @@ var apiClient = new FitbitApiClient("227LR8", "0c5043e5c97351930aa2a3431cb79266"
 //app.use(express.static('public'));
 
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + '/public/home.html');
 
     var code = req.param("code");
     console.log(code);
@@ -27,7 +27,7 @@ app.get('/', function(req, res){
         console.log(result);
         apiClient.get("/profile.json", result.access_token).then(function (results) {
             res.send(results[0]);
-
+            console.log(results);
         });
     }).catch(function (error){
         console.log("error promise");
@@ -35,7 +35,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/setup', function(req, res){
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + '/public/home.html');
 
     var authURL = apiClient.getAuthorizeUrl("activity heartrate sleep profile weight", redirectURL);
     res.redirect(authURL);
