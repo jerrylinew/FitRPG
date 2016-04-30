@@ -10,7 +10,7 @@ export class Header extends React.Component {
          *var Button = ReactBootstrap.Button;*/
         return (
             <div>
-                <Navbar bsStyle="inverse" justified fluid>
+                <Navbar bsStyle="default" justified fluid>
                     <Navbar.Header>
                         <Navbar.Brand>
                             <a>FitRPG</a>

@@ -20684,7 +20684,7 @@
 	                null,
 	                _react2.default.createElement(
 	                    _reactBootstrap.Navbar,
-	                    { bsStyle: 'inverse', justified: true, fluid: true },
+	                    { bsStyle: 'default', justified: true, fluid: true },
 	                    _react2.default.createElement(
 	                        _reactBootstrap.Navbar.Header,
 	                        null,
