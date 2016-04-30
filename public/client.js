@@ -29,7 +29,7 @@ $(document).ready(function() {
         userName = data.name;
         userGender = data.gender;
         $('#greetingDisplay').html("Hi " + userName);
-        $('#greetingDisplay').css('font-size', '300px');
+        $('#greetingDisplay').css('font-size', '150px');
     });
 
 
