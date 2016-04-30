@@ -8,32 +8,54 @@ var app = express();
 var port = process.env.PORT || 8080;
 var url = require('url');
 var FitbitApiClient = require("fitbit-node");
-var redirectURL = "http://fitrpg.herokuapp.com/";
+var redirectURL = "http://fitrpg.herokuapp.com/dashboard";
 var apiClient = new FitbitApiClient("227LR8", "0c5043e5c97351930aa2a3431cb79266");
 app.use(express.static('public'));
 
-app.get('/', function(req, res){
-    res.sendFile(__dirname + '/public/home.html');
+var users = {};
 
+app.get('/', function(req, res){
+    var authURL = apiClient.getAuthorizeUrl("activity heartrate sleep profile weight", redirectURL);
+    res.redirect(authURL);
+});
+
+app.get('/getdata', function(req, res){
     var code = req.param("code");
     console.log(code);
+    var user = {};
 
     apiClient.getAccessToken(code, redirectURL).then(function(result){
         console.log(result);
+        user["userID"] = result.user_id;
+        user["accessToken"] = result.access_token;
+        user["refreshToken"] = result.refresh_token;
 
-        apiClient.get("/activities/steps/date/2016-04-20.json", result.access_token).then(function (results) {
-            console.log(results[0]);
+        apiClient.get("/profile.json", result.access_token).then(function (results) {
+            user["name"] = results[0].user.fullName;
+            user["gender"] = results[0].user.gender;
+            console.log(user);
+            users[result.user_id] = user;
+            res.json(user);
         });
     }).catch(function (error){
-        console.log("error promise");
+        console.log(error);
     });
 });
 
-app.get('/setup', function(req, res){
-    res.sendFile(__dirname + '/public/home.html');
+app.get('/refreshdata', function(req, res){
+    var user_ID = req.param("userID");
+    console.log();
 
-    var authURL = apiClient.getAuthorizeUrl("activity heartrate sleep profile weight", redirectURL);
-    res.redirect(authURL);
+    var data = {};
+
+    apiClient.get("/activities/date/today.json", users[user_ID].accessToken).then(function (results) {
+        data["daySteps"] = results[0].summary.steps;
+        res.json(data);
+    });
+});
+
+app.get('/dashboard', function(req, res){
+    res.sendFile(__dirname + '/public/home.html');
 });
 
 app.listen(port, function(){
