@@ -41,7 +41,7 @@ $(document).ready(function() {
         $.get("http://fitrpg.herokuapp.com/refreshdata" + "?userID=" + userID + "#_=_", function(data) {
 
             $('#stepDisplay').html(data["daySteps"]);
-            $('#stepsDisplay').css('font-size', '300px');
+            $('#stepDisplay').css('font-size', '300px');
         });
     }, 1000 * 60 * refreshInterval);
 
