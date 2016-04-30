@@ -106,6 +106,7 @@ function displayShop(shopData) {
 
 $('.purchaseButton').on("click", function() {
     var objectPrice = this.data('name');
+    console.log(objectPrice);
     userCoins -= objectPrice;
     coinsDisplay.html(userCoins);
 });
