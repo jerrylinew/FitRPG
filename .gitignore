@@ -2,3 +2,4 @@
 public/node_modules/
 *.swp
 public/build/bundle.js.map
+public/build/bundle.js

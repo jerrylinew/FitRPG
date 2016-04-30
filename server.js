@@ -10,7 +10,11 @@ var url = require('url');
 var FitbitApiClient = require("fitbit-node");
 var redirectURL = "http://fitrpg.herokuapp.com/dashboard";
 var apiClient = new FitbitApiClient("227LR8", "0c5043e5c97351930aa2a3431cb79266");
+var bodyParser = require('body-parser');
 app.use(express.static('public'));
+
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 var users = {};
 
@@ -20,7 +24,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/getdata', function(req, res){
-    var code = req.param("code");
+    var code = req.query.code;
     console.log(code);
     var user = {};
 
@@ -43,8 +47,10 @@ app.get('/getdata', function(req, res){
 });
 
 app.get('/refreshdata', function(req, res){
-    var user_ID = req.param("userID");
-    console.log();
+    var user_ID = req.query.userID;
+    console.log("refreshing");
+    console.log(user_ID);
+    console.log(users[user_ID]);
 
     var data = {};
 
