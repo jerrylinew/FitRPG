@@ -1,0 +1,26 @@
+{
+  "name": "fit-rpg",
+  "description": "Gamify exercise and health living with the FitBit API and an RPG game.",
+  "main": "client.js",
+  "authors": [
+    "Zhouheng Sun",
+    "Xinyu Yang"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "fitbit",
+    "fitness",
+    "health",
+    "gamification"
+  ],
+  "homepage": "https://github.com/jerrylinew/FitRPG",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
