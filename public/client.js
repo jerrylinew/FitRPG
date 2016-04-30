@@ -34,14 +34,14 @@ $(document).ready(function() {
         $greetingDisplay.html("Hi " + userName);
         $greetingDisplay.css('font-size', '150px');
 
-        var refreshInterval = 1; //in minutes
+        var refreshInterval = 0.10; //in minutes
         console.log("getting steps");
-        /*
+
         $.get("/refreshdata", {userID: userID}).done(function(data) {
             $stepDisplay.html(data["daySteps"]);
             $stepDisplay.css('font-size', '300px');
         });
-        */
+
         setInterval(getCallback(userID), 1000 * 60 * refreshInterval);
     });
 
@@ -53,6 +53,9 @@ $(document).ready(function() {
 function getCallback(local_userID) {
     return function(){
         $.get("/refreshdata", {userID: local_userID}).done(function (data) {
+            var $stepDisplay = $('#stepDisplay');
+            var $greetingDisplay = $('#greetingDisplay');
+
             $stepDisplay.html(data["daySteps"]);
             $stepDisplay.css('font-size', '300px');
         });
