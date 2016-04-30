@@ -80,6 +80,7 @@ app.get('/refreshdata', function(req, res){
         data["daySteps"] = results[0].summary.steps;
         data["coins"] = currentUser["coins"] + data["daySteps"] - currentUser["dailyAwarded"];
         users[user_ID]["dailyAwarded"] += data["coins"];
+        users[user_ID]["coins"] = data["coins"];
         res.json(data);
     });
 });
