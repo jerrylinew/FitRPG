@@ -33,12 +33,17 @@ app.get('/getdata', function(req, res){
         user["userID"] = result.user_id;
         user["accessToken"] = result.access_token;
         user["refreshToken"] = result.refresh_token;
+        user["coins"] = 0;
+        user["HP"] = 100;
+        user["dailyAwarded"] = 0;
 
         apiClient.get("/profile.json", result.access_token).then(function (results) {
             user["name"] = results[0].user.fullName;
             user["gender"] = results[0].user.gender;
             console.log(user);
-            users[result.user_id] = user;
+            if(users[result.user_id] == undefined)
+                users[result.user_id] = user;
+            user = users[result.user_id];
             res.json(user);
         });
     }).catch(function (error){
@@ -48,14 +53,18 @@ app.get('/getdata', function(req, res){
 
 app.get('/refreshdata', function(req, res){
     var user_ID = req.query.userID;
+    var currentUser = users[user_ID];
+
     console.log("refreshing");
     console.log(user_ID);
-    console.log(users[user_ID]);
+    console.log(currentUser);
 
     var data = {};
 
     apiClient.get("/activities/date/today.json", users[user_ID].accessToken).then(function (results) {
         data["daySteps"] = results[0].summary.steps;
+        data["coins"] = currentUser["coins"] + data["daySteps"] - currentUser["dailyAwarded"];
+        users[user_ID]["dailyAwarded"] += data["newCoins"];
         res.json(data);
     });
 });

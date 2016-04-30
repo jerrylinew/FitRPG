@@ -41,9 +41,10 @@ $(document).ready(function() {
         console.log("getting steps");
 
         $.get("/refreshdata", {userID: userID}).done(function(data) {
-            userCoins = data["daySteps"];
+            userCoins = data["coins"];
+            var daySteps = data["daySteps"];
 
-            stepDisplay.html(data["daySteps"]);
+            stepDisplay.html(daySteps);
             stepDisplay.css('font-size', '300px');
             coinsDisplay.html(userCoins); //to change
             coinsDisplay.css('font-size', '300px');
