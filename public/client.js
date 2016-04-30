@@ -36,11 +36,12 @@ $(document).ready(function() {
 
         var refreshInterval = 1; //in minutes
         console.log("getting steps");
+        /*
         $.get("/refreshdata", {userID: userID}).done(function(data) {
             $stepDisplay.html(data["daySteps"]);
             $stepDisplay.css('font-size', '300px');
         });
-
+        */
         setInterval(getCallback(userID), 1000 * 60 * refreshInterval);
     });
 
