@@ -47,6 +47,8 @@ app.get('/refreshdata', function(req, res){
     console.log(user_ID);
     apiClient.refreshAccesstoken(users[user_ID].refreshToken).then(function(result){
         console.log(result);
+    }).catch(function (error){
+        console.log(error);
     });
 });
 
