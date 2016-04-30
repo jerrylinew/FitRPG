@@ -15,9 +15,14 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node server.js",
     "test": "echo 'write the tests!'",
     "dev": "webpack -d --watch",
     "build": "webpack -p"
+<<<<<<< HEAD
+
+=======
+>>>>>>> 889c51fcc9afd8436bb2c24eef40c0aab67349db
   },
   "repository": {
     "type": "git",
