@@ -27,6 +27,7 @@ app.get('/getdata', function(req, res){
     apiClient.getAccessToken(code, redirectURL).then(function(result){
         console.log(result);
         user["userID"] = result.user_id;
+        user["accessToken"] = result.access_token;
         user["refreshToken"] = result.refresh_token;
 
         apiClient.get("/profile.json", result.access_token).then(function (results) {
@@ -44,11 +45,12 @@ app.get('/getdata', function(req, res){
 app.get('/refreshdata', function(req, res){
     var user_ID = req.param("userID");
     console.log();
-    console.log(user_ID);
-    apiClient.refreshAccesstoken(users[user_ID].refreshToken).then(function(result){
-        console.log(result);
-    }).catch(function (error){
-        console.log(error);
+
+    var data = {};
+
+    apiClient.get("/activities/date/today.json", users[user_ID].accessToken).then(function (results) {
+        data["daySteps"] = results[0].summary.steps;
+        res.json(data);
     });
 });
 
