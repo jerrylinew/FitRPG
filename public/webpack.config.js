@@ -5,7 +5,7 @@ var BUILD_DIR = path.resolve(__dirname, 'build');
 var APP_DIR = path.resolve(__dirname, 'app');
 
 var config = {
-    entry: APP_DIR + '/index.jsx', 
+    entry: APP_DIR + '/index.jsx' ,
     /* entry specifies the entry file using which the bundling process starts. 
      * similar to the class that contains the main method */
     output: {
@@ -18,10 +18,10 @@ var config = {
             {
                 test: /\.jsx?/,
                 include: APP_DIR,
-                loader: 'babel'
+                loaders: ['babel']
             }
         ]
-    }
+    },
 };
 
 module.exports = config;

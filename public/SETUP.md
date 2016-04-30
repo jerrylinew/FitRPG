@@ -2,7 +2,9 @@
 
 To setup, install the following npm packages:
 ```
-$ npm i react react-dom babel-loader babel-preset-es2015 babel-preset-react webpack -S
+$ npm i react react-dom babel-loader babel-preset-es2015 babel-preset-react webpack react-bootstrap -S
+npm install webpack-dev-server -g
+npm install --save-dev react-hot-loader
 ```
 
 If you use Syntastic, here's a workaround to suppress the errors wherever XML nodes show up.
