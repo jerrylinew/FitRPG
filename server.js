@@ -26,7 +26,6 @@ app.get('/getdata', function(req, res){
 
         apiClient.get("/activities/date/2016-04-20.json", result.access_token).then(function (results) {
             console.log(results[0].summary.steps);
-            res.json(results);
         });
     }).catch(function (error){
         console.log(error);
