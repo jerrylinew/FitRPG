@@ -35,13 +35,13 @@ $(document).ready(function() {
 
 
 
-    var refreshInterval = 0.1; //in minutes
+    var refreshInterval = 1; //in minutes
 
     setInterval(function() {
         $.get("http://fitrpg.herokuapp.com/refreshdata" + "?userID=" + userID + "#_=_", function(data) {
 
             $('#stepDisplay').html(data["daySteps"]);
-            $('#stepsDisplay').css('font-size', '300px');
+            $('#stepDisplay').css('font-size', '300px');
         });
     }, 1000 * 60 * refreshInterval);
 
