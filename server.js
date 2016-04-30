@@ -23,13 +23,13 @@ app.get('/', function(req, res){
     ////};
     //
     //
-    //apiClient.getAccessToken(code, redirectURL).then(function(data){
-    //    console.log(data);
-    //}).catch(function (error){
-    //    console.log("error promise");
-    //});
-    //console.log(code);
-    //console.log(promise);
+    apiClient.getAccessToken(code, redirectURL).then(function(data){
+        console.log(data);
+    }).catch(function (error){
+        console.log("error promise");
+    });
+    console.log(code);
+    console.log(promise);
 });
 
 app.get('/setup', function(req, res){
