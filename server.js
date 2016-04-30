@@ -29,7 +29,7 @@ app.get('/getdata', function(req, res){
             res.json(results);
         });
     }).catch(function (error){
-        console.log("error promise");
+        console.log(error);
     });
 });
 
