@@ -10,21 +10,33 @@ export class Header extends React.Component {
          *var Button = ReactBootstrap.Button;*/
         return (
             <div>
-                <Navbar>
+                <Navbar bsStyle="inverse" justified fluid>
                     <Navbar.Header>
                         <Navbar.Brand>
                             <a>FitRPG</a>
                         </Navbar.Brand>
                     </Navbar.Header>
-                    <Nav justified>
-                        <NavItem>name{/* {this.props.name} */}</NavItem>
-                        <NavItem>coins{/* {this.props.coins} */}</NavItem>
-                        <NavItem>atk{/* {this.props.attack} */}</NavItem>
-                        <NavItem>def{/* {this.props.defense} */}</NavItem>
-                        <NavItem href="">Help</NavItem>
-                        <NavItem href="">Logout</NavItem>
-                    </Nav>
+                    <Navbar.Collapse>
+                        <Nav pullRight>
+                            <NavItem>Help</NavItem>
+                            <NavItem>Logout</NavItem>
+                        </Nav>
+                    </Navbar.Collapse>
                 </Navbar>
+                <Nav bsStyle="tabs" justified style={{background:"black"}}>
+                    <NavItem>
+                        name {/* {this.props.name} */}
+                    </NavItem>
+                    <NavItem>
+                        coins {/* {this.props.coins} */}
+                    </NavItem>
+                    <NavItem>
+                        atk {/* {this.props.attack} */}
+                    </NavItem>
+                    <NavItem>
+                        def {/* {this.props.defense} */}
+                    </NavItem>
+                </Nav>
             </div>
         );
     }
