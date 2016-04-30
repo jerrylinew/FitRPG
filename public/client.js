@@ -8,6 +8,10 @@ var userName;
 var userGender;
 var userCoins;
 
+var stepDisplay = $('#stepDisplay');
+var greetingDisplay = $('#greetingDisplay');
+var coinsDisplay = $('#coinsDisplay');
+
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -22,9 +26,6 @@ $(document).ready(function() {
 
     code = getParameterByName("code");
     console.log(code);
-    var stepDisplay = $('#stepDisplay');
-    var greetingDisplay = $('#greetingDisplay');
-    var coinsDisplay = $('#coinsDisplay');
 
     $.get("/getdata", {code: code}).done(function(data) {
         console.log("getting data");
@@ -60,10 +61,6 @@ function getCallback(local_userID) {
     return function(){
         $.get("/refreshdata", {userID: local_userID}).done(function (data) {
             userCoins = data["daySteps"];
-
-            var stepDisplay = $('#stepDisplay');
-            var greetingDisplay = $('#greetingDisplay');
-            var coinsDisplay = $('#coinsDisplay');
 
             stepDisplay.html(data["daySteps"]);
             stepDisplay.css('font-size', '300px');
