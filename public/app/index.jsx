@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Button } from 'react-bootstrap';
 import { Header } from './header.jsx';
 import { ProgressBar } from './progress_bar.jsx';
+import { Playground } from './playground.jsx'
 
 
 class App extends React.Component {
@@ -30,6 +31,7 @@ class App extends React.Component {
         exp: [this.state.exp[0] + damage * 100, this.state.exp[1]]
       });
     }
+
     render () {
         var hpPercentage = this.state.hp[0] / this.state.hp[1];
         var expPercentage = this.state.exp[0] / this.state.exp[1];
@@ -38,6 +40,7 @@ class App extends React.Component {
             <div>
                 {/* <p> Hello React! </p> */}
                 <Header/>
+                <Playground/>
                 <Button onClick={this.attack.bind(this)}> Click Me To Attack </Button>
                 <ProgressBar color={this.styles.hpColor} progress={hpPercentage}/>
                 <ProgressBar color={this.styles.expColor} progress={expPercentage}/>
