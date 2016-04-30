@@ -1,0 +1,16 @@
+/* Sidebat */
+
+
+/* Progress bar */
+
+.progress{
+  height: 10px;
+  border-radius: 3px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.progressWrap{
+  height: 10px;
+  border-radius: 3px;
+}
