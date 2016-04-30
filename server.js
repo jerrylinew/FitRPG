@@ -20,7 +20,7 @@ app.get('/', function(req, res){
 
     apiClient.getAccessToken(code, redirectURL).then(function(result){
         console.log(result);
-        apiClient.get("/profile.json", result.access_token).then(function (results) {
+        apiClient.get("/profile.json", result.access_token, results.user_id).then(function (results) {
             console.log(results[0]);
         });
     }).catch(function (error){
