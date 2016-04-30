@@ -3,6 +3,7 @@
  */
 
 var express = require('express');
+var http = require('http');
 var app = express();
 var port = process.env.PORT || 8080;
 var url = require('url');
@@ -20,9 +21,9 @@ app.get('/', function(req, res){
     apiClient.getAccessToken(code, redirectURL).then(function(result){
         console.log(result);
         apiClient.get("/profile.json", result.access_token).then(function (results) {
-            console.log("hello world");
-            res.send(results[0]);
-            console.log(results);
+            http.request(results, function(response){
+                console.log(response);
+            });
         });
     }).catch(function (error){
         console.log("error promise");
