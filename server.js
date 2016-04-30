@@ -23,7 +23,7 @@ app.get('/', function(req, res){
         apiClient.get("/profile.json", result.access_token).then(function (results) {
             console.log(results[0]);
         });
-        apiClient.get("/activities/tracker/steps/date/2016-04-29/2016-04-29/1min/time/00:00/23:59.json", result.access_token).then(function (results) {
+        apiClient.get("/activities/date/2016-04-20.json", result.access_token).then(function (results) {
             console.log(results[0]);
         });
     }).catch(function (error){
