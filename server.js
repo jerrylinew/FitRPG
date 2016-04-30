@@ -12,6 +12,8 @@ var redirectURL = "http://fitrpg.herokuapp.com/dashboard";
 var apiClient = new FitbitApiClient("227LR8", "0c5043e5c97351930aa2a3431cb79266");
 app.use(express.static('public'));
 
+var users = {};
+
 app.get('/', function(req, res){
     var authURL = apiClient.getAuthorizeUrl("activity heartrate sleep profile weight", redirectURL);
     res.redirect(authURL);
@@ -24,13 +26,18 @@ app.get('/getdata', function(req, res){
     apiClient.getAccessToken(code, redirectURL).then(function(result){
         console.log(result);
 
-        apiClient.get("/activities/date/2016-04-20.json", result.access_token).then(function (results) {
-            console.log(results[0].summary.steps);
-            res.json(results[0].summary.steps);
+        apiClient.get("/profile.json", result.access_token).then(function (results) {
+            var user = results[0];
+            console.log(user);
+            res.json(results[0]);
         });
     }).catch(function (error){
         console.log(error);
     });
+});
+
+app.get('/refreshdata', function(req, res){
+
 });
 
 app.get('/dashboard', function(req, res){
