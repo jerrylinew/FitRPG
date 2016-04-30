@@ -78,18 +78,32 @@ function displayShop(shopData) {
     for (var i = 0, len = shopData.length; i < len; i++) {
         var shopObject = shopData[i];
         var shopObjectDiv = $('<div class="shopObject"></div>');
+        var purchaseButton = $('<button class="purchaseButton">Buy</button>');
+
+        var keyDict = {   // key to display, and show/hide boolean
+            name: {k: "", toDisplay: true, size: "20px"},
+            price: {k: "Price: ", toDisplay: true, size: "14px"},
+            details: {k: "Details: ", toDisplay: true, size: "14px"},
+            image: {k: "", toDisplay: false, size: "20px"}
+        };
 
         for (var key in shopObject) {
-            shopObjectDiv.append(key + ": " + shopObject[key] + "<br>");
+            if (keyDict[key]["toDisplay"]) {
+                shopObjectDiv.append(keyDict[key]["k"] + shopObject[key] + "<br>");
+            }
             shopObjectDiv.attr(key, shopObject[key]);
+            purchaseButton.attr(key, shopObject[key]);
         }
-    }
 
+        shopDisplay.append(shopObjectDiv);
+        shopDisplay.append(purchaseButton);
+        shopDisplay.append("<br><br>");
+    }
 }
 
 
 
-$('#purchase').on("click", function() {
+$('.purchaseButton').on("click", function() {
     userCoins -= 100;
     coinsDisplay.html(userCoins);
 });
