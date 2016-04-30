@@ -21,7 +21,7 @@ app.get('/', function(req, res){
     apiClient.getAccessToken(code, redirectURL).then(function(result){
         console.log(result);
         apiClient.get("/profile.json", result.access_token).then(function (results) {
-            //console.log(results[0]);
+            console.log(results);
         });
     }).catch(function (error){
         console.log("error promise");
