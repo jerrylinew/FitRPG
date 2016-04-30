@@ -67,8 +67,9 @@ $(document).ready(function() {
             details: "Def +5",
             image: "/img/Armor.jpg"
         }
-    ]
+    ];
 
+    displayShop(shopData);
 });
 
 
