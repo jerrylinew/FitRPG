@@ -100,16 +100,16 @@ function displayShop(shopData) {
         shopDisplay.append(purchaseButton);
         shopDisplay.append("<br><br>");
     }
+    $('.purchaseButton').on("click", function() {
+        var objectPrice = $(this).attr('price');
+        userCoins -= objectPrice;
+        coinsDisplay.html(userCoins);
+    });
 }
 
 
 
-$('.purchaseButton').on("click", function() {
-    var objectPrice = this.data('price');
-    console.log(objectPrice);
-    userCoins -= objectPrice;
-    coinsDisplay.html(userCoins);
-});
+
 
 function getCallback(local_userID) {
     return function(){
