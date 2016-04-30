@@ -101,15 +101,17 @@ function displayShop(shopData) {
         shopDisplay.append("<br><br>");
     }
     $('.purchaseButton').on("click", function() {
-        var objectPrice = $(this).attr('price');
-        userCoins -= objectPrice;
-        coinsDisplay.html(userCoins);
+        var item = $(this).attr('name');
+
+        $.get("/purchase", {userID: userID, item: item}).done(function (data) {
+            if (!(data.status)) {
+                //alert user that purchase successful
+            }
+            userCoins = data.coinsLeft;
+            coinsDisplay.html(userCoins);
+        });
     });
 }
-
-
-
-
 
 function getCallback(local_userID) {
     return function(){
