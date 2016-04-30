@@ -25,7 +25,7 @@ $(document).ready(function() {
     var $stepDisplay = $('#stepDisplay');
     var $greetingDisplay = $('#greetingDisplay');
 
-    $.get("http://fitrpg.herokuapp.com/getdata" + "?code=" + code + "#_=_", function(data) {
+    $.get("/getdata", {code: code}).done(function(data) {
         console.log("getting data");
         console.log(data);
         userID = data.userID;
@@ -33,24 +33,23 @@ $(document).ready(function() {
         userGender = data.gender;
         $greetingDisplay.html("Hi " + userName);
         $greetingDisplay.css('font-size', '150px');
-    });
 
-    setTimeout(function(){
         var refreshInterval = 1; //in minutes
         console.log("getting steps");
-        $.get("http://fitrpg.herokuapp.com/refreshdata" + "?userID=" + userID + "#_=_", function(data) {
+        $.get("/refreshdata", {userID: userID}).done(function(data) {
             $stepDisplay.html(data["daySteps"]);
             $stepDisplay.css('font-size', '300px');
         });
 
         setInterval(function() {
-            $.get("http://fitrpg.herokuapp.com/refreshdata" + "?userID=" + userID + "#_=_", function(data) {
+            $.get("/refreshdata", {userID: userID}).done(function(data) {
                 $stepDisplay.html(data["daySteps"]);
                 $stepDisplay.css('font-size', '300px');
             });
         }, 1000 * 60 * refreshInterval);
+    });
 
-    }, 5000);
+
 
 
 });
