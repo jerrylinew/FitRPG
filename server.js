@@ -23,8 +23,9 @@ app.get('/', function(req, res){
         apiClient.get("/profile.json", result.access_token).then(function (results) {
             console.log(results[0]);
         });
-        apiClient.get("/activities/steps/date/2016-04-20/1d/1min.json", result.access_token).then(function (results) {
-            console.log(results);
+        apiClient.get("/activities/steps/date/2016-04-20/1d/15min.json", result.access_token).then(function (results) {
+            console.log(results[0][0]);
+            console.log(results[0].activities-log-steps-intraday);
         });
     }).catch(function (error){
         console.log("error promise");
