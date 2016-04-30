@@ -23,7 +23,7 @@ app.get('/', function(req, res){
     ////};
     //
     //
-    apiClient.getAccessToken(code, redirectURL).then(function(data){
+    apiClient.getAccessToken(code, redirectURL).then(function(result){
         apiClient.get("/profile.json", result.access_token).then(function (results) {
             res.send(results[0]);
         });
