@@ -1,0 +1,12 @@
+{
+  "name": "FitRPG",
+  "version": "0.0.1",
+  "description": "FitRPG - Gameify your fitness!",
+  "main": "server.js",
+  "author": "Jerry Li",
+  "dependencies": {
+    "express": "^4.13.4",
+    "fitbit-node": "^2.0.0",
+    "socket.io": "^1.4.5"
+  }
+}
