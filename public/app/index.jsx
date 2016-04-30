@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Button, ButtonToolbar } from 'react-bootstrap';
+import { Button, ButtonToolbar, Navbar, Nav, NavItem } from 'react-bootstrap';
 
 
 class Header extends React.Component {
@@ -9,14 +9,21 @@ class Header extends React.Component {
          *var Button = ReactBootstrap.Button;*/
         return (
             <div>
-                <ButtonToolbar>
-                    <Button>Name</Button>
-                    <Button>Coins</Button>
-                    <Button>ATK</Button>
-                    <Button>DEF</Button>
-                    <Button>Help</Button>
-                    <Button>Logout</Button>
-                </ButtonToolbar>
+                <Navbar>
+                    <Navbar.Header>
+                        <Navbar.Brand>
+                            <a>FitRPG</a>
+                        </Navbar.Brand>
+                    </Navbar.Header>
+                    <Nav>
+                        <NavItem>Name</NavItem>
+                        <NavItem>Coins</NavItem>
+                        <NavItem>ATK</NavItem>
+                        <NavItem>DEF</NavItem>
+                        <NavItem>Help</NavItem>
+                        <NavItem>Logout</NavItem>
+                    </Nav>
+                </Navbar>
             </div>
         );
     }
@@ -26,7 +33,7 @@ class App extends React.Component {
     render () {
         return (
             <div>
-                <p> Hello React! </p>
+                {/* <p> Hello React! </p> */}
                 <Header/>
             </div>
         );

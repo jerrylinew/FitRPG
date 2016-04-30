@@ -85,37 +85,54 @@
 	                'div',
 	                null,
 	                _react2.default.createElement(
-	                    _reactBootstrap.ButtonToolbar,
+	                    _reactBootstrap.Navbar,
 	                    null,
 	                    _react2.default.createElement(
-	                        _reactBootstrap.Button,
+	                        _reactBootstrap.Navbar.Header,
 	                        null,
-	                        'Name'
+	                        _react2.default.createElement(
+	                            _reactBootstrap.Navbar.Brand,
+	                            null,
+	                            _react2.default.createElement(
+	                                'a',
+	                                null,
+	                                'FitRPG'
+	                            )
+	                        )
 	                    ),
 	                    _react2.default.createElement(
-	                        _reactBootstrap.Button,
+	                        _reactBootstrap.Nav,
 	                        null,
-	                        'Coins'
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Button,
-	                        null,
-	                        'ATK'
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Button,
-	                        null,
-	                        'DEF'
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Button,
-	                        null,
-	                        'Help'
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Button,
-	                        null,
-	                        'Logout'
+	                        _react2.default.createElement(
+	                            _reactBootstrap.NavItem,
+	                            null,
+	                            'Name'
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.NavItem,
+	                            null,
+	                            'Coins'
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.NavItem,
+	                            null,
+	                            'ATK'
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.NavItem,
+	                            null,
+	                            'DEF'
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.NavItem,
+	                            null,
+	                            'Help'
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.NavItem,
+	                            null,
+	                            'Logout'
+	                        )
 	                    )
 	                )
 	            );
@@ -140,11 +157,6 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    ' Hello React! '
-	                ),
 	                _react2.default.createElement(Header, null)
 	            );
 	        }
@@ -18588,7 +18600,7 @@
 	      case topLevelTypes.topVolumeChange:
 	      case topLevelTypes.topWaiting:
 	        // HTML Events
-	        // @see http://www.w3.org/TR/html5/home.html#events-0
+	        // @see http://www.w3.org/TR/html5/index.html#events-0
 	        EventConstructor = SyntheticEvent;
 	        break;
 	      case topLevelTypes.topKeyPress:
