@@ -36,7 +36,7 @@ $(document).ready(function() {
         greetingDisplay.html("Hi " + userName);
         greetingDisplay.css('font-size', '150px');
 
-        var refreshInterval = 0.10; //in minutes
+        var refreshInterval = 1; //in minutes
         console.log("getting steps");
 
         $.get("/refreshdata", {userID: userID}).done(function(data) {
@@ -51,6 +51,8 @@ $(document).ready(function() {
         setInterval(getCallback(userID), 1000 * 60 * refreshInterval);
     });
 });
+
+
 
 $('#purchase').on("click", function() {
     userCoins -= 100;
