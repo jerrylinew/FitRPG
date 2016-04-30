@@ -18,7 +18,7 @@ $(document).ready(function() {
 
     code = getParameterByName("code");
     console.log(code);
-    $.get("https://crossorigin.me/http://fitrpg.herokuapp.com/getdata" + "?code=" + code + "#_=_", function(data) {
+    $.get("http://fitrpg.herokuapp.com/getdata" + "?code=" + code + "#_=_", function(data) {
         console.log(data);
     });
 });
