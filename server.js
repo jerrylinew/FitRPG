@@ -14,13 +14,21 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/public/index.html');
 
     var code = req.param("code");
-    var promise = apiClient.getAccessToken(code, redirectURL);
+
+    //var options = {
+    //    Authorization: 'Basic ' + new Buffer("Hello World").toString('base64');
+    //    path: 'https://api.fitbit.com/oauth2/token';
+    //    method: 'POST'
+    //};
+
+
+    apiClient.getAccessToken(code, redirectURL).then(function(data){
+        console.log(data);
+    }).catch(function (error){
+        console.log("error promise");
+    });
     console.log(code);
     console.log(promise);
-
-    promise.then(function(data){
-        console.log(data);
-    });
 });
 
 app.get('/setup', function(req, res){
