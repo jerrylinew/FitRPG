@@ -29,8 +29,8 @@ app.get('/getdata', function(req, res){
         user["userID"] = result.user_id;
 
         apiClient.get("/profile.json", result.access_token).then(function (results) {
-            user["name"] = results.fullName;
-            user["gender"] = results.gender;
+            user["name"] = results[0].fullName;
+            user["gender"] = results[0].gender;
             console.log(user);
             users[result.user_id] = user;
             res.json(user);
