@@ -22,7 +22,7 @@ app.get('/', function(req, res){
         console.log(result);
 
         apiClient.get("/activities/date/2016-04-20.json", result.access_token).then(function (results) {
-            console.log(results);
+            console.log(results[0]);
         });
     }).catch(function (error){
         console.log("error promise");
