@@ -108,6 +108,7 @@ function displayShop(shopData) {
                 //alert user that purchase successful
             }
             userCoins = data.coinsLeft;
+            console.log(data.coinsLeft);
             coinsDisplay.html(userCoins);
         });
     });
