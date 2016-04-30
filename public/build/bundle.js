@@ -40702,10 +40702,6 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	/*class Name extends React.Component {
-	 *
-	 *}*/
-	
 	var Header = exports.Header = function (_React$Component) {
 	    _inherits(Header, _React$Component);
 	
@@ -40718,14 +40714,12 @@
 	    _createClass(Header, [{
 	        key: 'render',
 	        value: function render() {
-	            /*var ButtonToolBar = ReactBootstrap.ButtonToolBar;
-	             *var Button = ReactBootstrap.Button;*/
 	            return _react2.default.createElement(
 	                'div',
 	                null,
 	                _react2.default.createElement(
 	                    _reactBootstrap.Navbar,
-	                    null,
+	                    { bsStyle: 'inverse', justified: true, fluid: true },
 	                    _react2.default.createElement(
 	                        _reactBootstrap.Navbar.Header,
 	                        null,
@@ -40740,38 +40734,46 @@
 	                        )
 	                    ),
 	                    _react2.default.createElement(
-	                        _reactBootstrap.Nav,
+	                        _reactBootstrap.Navbar.Collapse,
 	                        null,
 	                        _react2.default.createElement(
-	                            _reactBootstrap.NavItem,
-	                            null,
-	                            'Name'
-	                        ),
-	                        _react2.default.createElement(
-	                            _reactBootstrap.NavItem,
-	                            null,
-	                            'Coins'
-	                        ),
-	                        _react2.default.createElement(
-	                            _reactBootstrap.NavItem,
-	                            null,
-	                            'ATK'
-	                        ),
-	                        _react2.default.createElement(
-	                            _reactBootstrap.NavItem,
-	                            null,
-	                            'DEF'
-	                        ),
-	                        _react2.default.createElement(
-	                            _reactBootstrap.NavItem,
-	                            null,
-	                            'Help'
-	                        ),
-	                        _react2.default.createElement(
-	                            _reactBootstrap.NavItem,
-	                            null,
-	                            'Logout'
+	                            _reactBootstrap.Nav,
+	                            { pullRight: true },
+	                            _react2.default.createElement(
+	                                _reactBootstrap.NavItem,
+	                                null,
+	                                'Help'
+	                            ),
+	                            _react2.default.createElement(
+	                                _reactBootstrap.NavItem,
+	                                null,
+	                                'Logout'
+	                            )
 	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.Nav,
+	                    { bsStyle: 'tabs', justified: true, style: { background: "black" } },
+	                    _react2.default.createElement(
+	                        _reactBootstrap.NavItem,
+	                        null,
+	                        'name '
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.NavItem,
+	                        null,
+	                        'coins '
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.NavItem,
+	                        null,
+	                        'atk '
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.NavItem,
+	                        null,
+	                        'def '
 	                    )
 	                )
 	            );
