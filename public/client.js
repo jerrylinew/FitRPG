@@ -41,12 +41,7 @@ $(document).ready(function() {
             $stepDisplay.css('font-size', '300px');
         });
 
-        setInterval(function() {
-            $.get("/refreshdata", {userID: userID}).done(function(data) {
-                $stepDisplay.html(data["daySteps"]);
-                $stepDisplay.css('font-size', '300px');
-            });
-        }, 1000 * 60 * refreshInterval);
+        setInterval(getCallback(userID), 1000 * 60 * refreshInterval);
     });
 
 
@@ -54,3 +49,11 @@ $(document).ready(function() {
 
 });
 
+function getCallback(local_userID) {
+    return function(){
+        $.get("/refreshdata", {userID: local_userID}).done(function (data) {
+            $stepDisplay.html(data["daySteps"]);
+            $stepDisplay.css('font-size', '300px');
+        });
+    }
+}
