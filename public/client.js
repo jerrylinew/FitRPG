@@ -152,7 +152,8 @@ $(document).ready(function() {
                         $('#startBattle').fadeIn(1000);
                     });
 
-                    $('.progress:last').find('.progressWrap').css("width", String(data.exp) + '%');
+                    console.log(data.exp);
+                    $('.statsbar-wrapper:last-child div:last-child').css("width", String(data.exp) + '%');
                     if(data.levelUp){
                         swal({
                             title: "Level up!",
