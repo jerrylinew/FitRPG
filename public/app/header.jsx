@@ -62,7 +62,7 @@ class StatsBar extends React.Component{
             progress={hpPerc}></ProgressBar>
           </div>
           <div id="HPDisplay" className="statsbar-last-elem">
-            70/100
+            100/100
           </div>
         </div>
 
@@ -73,7 +73,7 @@ class StatsBar extends React.Component{
             progress={expPerc}></ProgressBar>
           </div>
           <div id="EXPDisplay" className="statsbar-last-elem">
-            5000/8000
+            0/100
           </div>
         </div>
 
