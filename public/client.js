@@ -67,10 +67,11 @@ $(document).ready(function() {
             displayStats(data);
         });
 
-        $.get("/getSteps", {userID: userID}).done(function(data){
-            displaySteps(data);
-        });
-
+        //$.get("/getSteps", {userID: userID}).done(function(data){
+        //    displaySteps(data);
+        //});
+        //testing
+        displaySteps(8012);
         $.get("/getSleep", {userID: userID}).done(function(data){
             displaySleep(data);
         });
