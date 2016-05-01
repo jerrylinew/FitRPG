@@ -110,6 +110,8 @@ $(document).ready(function() {
             adjustHPBar();
             $.get('/getMonsterInfo', {userID: userID}, function(data){
                 monsterData = data.monsterData;
+                var imageFile = data.image;
+                $('#enemyImage').attr('src', "images/" + imageFile);
                 maxMonsterHP = monsterData['HP'];
                 adjustHPBar(1);
             });
