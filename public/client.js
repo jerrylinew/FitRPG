@@ -153,7 +153,7 @@ function displayShop(shopData) {
         shopObjectDetail.css("font-size", "16px");
         shopObjectDetail.css("border", "2px solid #C0C0C0");
         shopObjectDetail.css("border-top", "none");
-        shopObjectDetail.css("line-heignt", "35px");
+        shopObjectDetail.css("line-height", "35px");
         shopObjectDetail.html(shopObject["stat"] + ": +" + shopObject["effect"]);
 
         shopDisplay.append(shopObjectDiv);
