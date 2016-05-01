@@ -2,7 +2,7 @@
 
 
 /* Progress bar */
-.body{
+body{
   font-family: lato, verdana, sans-serif;
 }
 .progress{
@@ -133,7 +133,6 @@
 /* Game CSS */
 
 #game{
-  border: 1px solid black;
   height: 500px;
 }
 

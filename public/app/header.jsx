@@ -20,11 +20,11 @@ class InfoBar extends React.Component {
               <Glyphicon glyph="cog" className="infobar-icon "/>
             </span>
             <span className="infobar-coin-box">
-              <span className="infobar-username">
+              <span id="nameDisplay" className="infobar-username">
                 {this.props.username }
               </span>
               <img src="./assets/gold.png" style={{verticalAlign:"text-top", height: "16px"}}/>
-              <span className="infobar-coin-count">
+              <span id="coinsDisplay" className="infobar-coin-count">
                 {this.props.coins}
               </span>
             </span>
@@ -55,18 +55,15 @@ class StatsBar extends React.Component{
         expPerc = exp[0] / exp[1];
     return (
       <div className="statsbar-wrapper">
-
-
-        <ProgressBar color={this.styles.hpColor}
+        <ProgressBar color={this.styles.hpColor} id="hpBar"
           progress={hpPerc}></ProgressBar>
-
-        <ProgressBar color={this.styles.expColor}
+        <ProgressBar color={this.styles.expColor} id="expBar"
           progress={expPerc}></ProgressBar>
       </div>
     );
   }
-
 }
+
 class Stats extends React.Component {
   constructor(props){
     super(props);
@@ -76,11 +73,11 @@ class Stats extends React.Component {
       <Row className="statsRow">
         <Col sm={2} xs={6}>
           <img src="./assets/off.png" style={{verticalAlign:"text-top", height: "40px"}}/>
-          <span className="offdefSpan">{this.props.data.offense} </span>
+          <span id="atkDisplay" className="offdefSpan">{this.props.data.offense} </span>
         </Col>
         <Col sm={2} xs={6}>
           <img src="./assets/def.png" style={{verticalAlign:"text-top", height: "40px"}}/>
-          <span className="offdefSpan">{this.props.data.defense} </span>
+          <span id="defDisplay" className="offdefSpan">{this.props.data.defense} </span>
 
         </Col>
         <Col sm={8} xs={12}>

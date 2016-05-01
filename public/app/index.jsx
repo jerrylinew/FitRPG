@@ -52,7 +52,7 @@ class App extends React.Component {
         return (
             <div>
                 <Header data={this.props.data} mutable={this.state}/>
-                <Button onClick={this.attack.bind(this)} />
+                {/* <Button onClick={this.attack.bind(this)} /> */}
                 <Playground/>
             </div>
         );

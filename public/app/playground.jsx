@@ -1,8 +1,7 @@
 "use strict";
 
 import React from 'react';
-import { Grid, Row, Col, Table, ListGroup, ListGroupItem, Jumbotron } from 'react-bootstrap';
-import { PieTooltip } from 'react-d3-tooltip';
+import { Grid, Row, Col, Table, ListGroup, ListGroupItem, Panel } from 'react-bootstrap';
 import { PieChart } from 'react-d3-basic';
 
 
@@ -37,55 +36,49 @@ var getVal = function(d) {
   return d.val;
 };
 
+class Game extends React.Component{
+  render(){
+    return (
+      <div className="row">
+        <div className="col-md-12 col-xs-12" id="game">
+          <img id="enemyImage" src="images/enemy.gif" alt="enemy"/>
+          <img id="userImage" src="images/warrior.gif" alt="warrior"/>
+          <button id="attackBtn" type="button" className="btn btn-primary btn-large">Attack!</button>
+        </div>
+      </div>
+    );
+  }
+}
+
+class ShopItem extends React.Component {
+  render () {
+    return (
+      <div id="shopContainer"></div>
+    );
+  }
+}
 
 export class Playground extends React.Component {
   render () {
     return (
-      <Grid>
-          <Row>
-              <Col md={3}>
-                  <Table striped bordered condensed hover>
-                      <tbody>
-                          <tr>
-                              <th>Step</th>
-                              <th>1000 steps</th>
-                              <th>10000 steps</th>
-                          </tr>
-                          <tr>
-                              <th>Sleep</th>
-                              <th>7 hours of sound sleep</th>
-                              <th>2 hours of unsound sleep</th>
-                          </tr>
-                      </tbody>
-                  </Table>
+      <Grid style={{"width":"97%", marginLeft:"20px", marginRight:"20px"}}>
+        <Row style={{"height":"20px"}}></Row>
+        <Row>
+          <Col style={{textAlign:"center"}} md={3}>
+            <PieChart width={250} height={250} innerRadius={20} title="Step" data={stepData} chartSeries={stepChartSeries} name={getKey} value={getVal} />
+            <PieChart width={250} height={250} innerRadius={20} title="Sleep" data={sleepData} chartSeries={sleepChartSeries} name={getKey} value={getVal} />
+          </Col>
 
-                  <PieChart width={300} height={300} innerRadius={30} title="Step" data={stepData} chartSeries={stepChartSeries} name={getKey} value={getVal} />
-                  <PieChart width={300} height={300} innerRadius={30} title="Sleep" data={sleepData} chartSeries={sleepChartSeries} name={getKey} value={getVal} />
-              </Col>
+          <Col md={6}>
+            <Game/>
+          </Col>
 
-              <Col md={6}>
-                  <Jumbotron style={{"textAlign":"center"}}>
-                      <p>dummy</p>
-                  </Jumbotron>
-              </Col>
+          <Col md={3}>
+            <Panel>Shop</Panel>
+            <ShopItem/>
 
-              <Col md={3}>
-                  <Jumbotron style={{"textAlign":"center"}}>
-                      <p>Shop</p>
-                  </Jumbotron>
-                  <ListGroup>
-                      <ListGroupItem>
-                          Item 1
-                      </ListGroupItem>
-                      <ListGroupItem>
-                          Item 2
-                      </ListGroupItem>
-                      <ListGroupItem>
-                          Item 3
-                      </ListGroupItem>
-                  </ListGroup>
-              </Col>
-          </Row>
+          </Col>
+        </Row>
       </Grid>
     );
   }

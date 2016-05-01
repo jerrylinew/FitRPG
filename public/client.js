@@ -7,14 +7,15 @@ var userID;
 var userName;
 var userGender;
 var userCoins;
+var userHP;
 
-var stepDisplay = $('#stepDisplay');
-var greetingDisplay = $('#greetingDisplay');
+var nameDisplay = $('#nameDisplay');
 var coinsDisplay = $('#coinsDisplay');
 var shopDisplay = $('#shopContainer');
 var gameDisplay = $('#game');
-var inventoryDisplay = $('#inventoryContainer');
-var statsDisplay = $('#statsContainer');
+var atkDisplay = $('#atkDisplay');
+var defDisplay = $('#defDisplay');
+
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -37,8 +38,9 @@ $(document).ready(function() {
         userID = data.userID;
         userName = data.name;
         userGender = data.gender;
-        greetingDisplay.html("Hi " + userName);
-        greetingDisplay.css('font-size', '150px');
+        nameDisplay.html(userName);
+        userHP = data.stats.HP;
+        $('#hpBar').css("width", str(userHP) + '%');
 
         var refreshInterval = 1; //in minutes
         console.log("getting steps");
@@ -47,10 +49,7 @@ $(document).ready(function() {
             userCoins = data["coins"];
             var daySteps = data["daySteps"];
 
-            stepDisplay.html(daySteps);
-            stepDisplay.css('font-size', '300px');
             coinsDisplay.html(userCoins); //to change
-            coinsDisplay.css('font-size', '300px');
         });
 
         setInterval(getCallback(userID), 1000 * 60 * refreshInterval);
@@ -70,6 +69,13 @@ $(document).ready(function() {
         $('#bulletImage').animate({
             left: '-=460'
         }, 1000, function(){
+            $.get("/attacked", {userID: userID}).done(function(data){
+                var hpLeft = data.HP;
+                var isDead = data.isDead;
+                $('#hpBar').css("width", str(hpLeft) + '%');
+                console.log(hpLeft);
+                console.log(isDead);
+            });
             var bulletImage = $('#bulletImage');
             bulletImage.fadeOut(250, function(){
                 bulletImage.css({"left": "50"});
@@ -104,28 +110,30 @@ function displayShop(shopData) {
         shopObjectDiv.css("width", "280px");
         shopObjectDiv.css("height", "40px");
 
-        var shopObjectDetails = $('<div class="shopObjectDetails"></div>');
-        shopObjectDetails.css("background", "url(" + shopObject["image"] + ") no-repeat");
-        shopObjectDetails.css("background-size", "contain");
-        shopObjectDetails.css("background-position", "90% 50%");
-        shopObjectDetails.css("width", "200px");
-        shopObjectDetails.css("height", "40px");
-        shopObjectDetails.css("float", "left");
-        shopObjectDetails.css("line-height", "40px");
-        shopObjectDetails.css("text-align", "center");
-        shopObjectDetails.css("font-size", "18px");
-        shopObjectDetails.css("border", "1px solid #6C6C6C");
-        shopObjectDetails.css("border-left", "none");
-        shopObjectDetails.css("background-color", "lightskyblue");
+        var shopObjectName = $('<div class="shopObjectName"></div>');
+        shopObjectName.css("background", "url(" + shopObject["image"] + ") no-repeat");
+        shopObjectName.css("background-size", "contain");
+        shopObjectName.css("background-position", "90% 50%");
+        shopObjectName.css("width", "200px");
+        shopObjectName.css("height", "40px");
+        shopObjectName.css("float", "left");
+        shopObjectName.css("line-height", "40px");
+        shopObjectName.css("text-align", "center");
+        shopObjectName.css("font-size", "18px");
+        shopObjectName.css("border", "1px solid #6C6C6C");
+        shopObjectName.css("border-left", "none");
+        shopObjectName.css("background-color", "lightskyblue");
 
         var objectText = $('<div>' + shopObject["name"] + '</div>');
         objectText.css("width", "150px");
         objectText.css("text-align", "center");
-        shopObjectDetails.append(objectText);
+        shopObjectName.append(objectText);
+
 
         var purchaseButton = $('<button class="purchaseButton"></button>');
         purchaseButton.css("background", "url(images/coin.png) no-repeat");
-        purchaseButton.css("background-size", "contain");
+        purchaseButton.css("background-size", "40%");
+        purchaseButton.css("background-position", "5% 50%");
         purchaseButton.css("width", "80px");
         purchaseButton.css("height", "40px");
         purchaseButton.css("float", "left");
@@ -133,27 +141,32 @@ function displayShop(shopData) {
         purchaseButton.css("font-size", "16px");
         purchaseButton.html(shopObject["price"]);
 
-        //var keyDict = {   // key to display, and show/hide boolean
-        //    name: {k: "", toDisplay: true, size: "20px"},
-        //    price: {k: "Price: ", toDisplay: true, size: "14px"},
-        //    stat: {k: "Stat: ", toDisplay: true, size: "14px"},
-        //    effect: {k: "Effect: +", toDisplay: true, size: "14px"},
-        //    image: {k: "", toDisplay: false, size: "20px"}
-        //};
-
         for (var key in shopObject) {
             shopObjectDiv.attr(key, shopObject[key]);
-            shopObjectDetails.attr(key, shopObject[key]);
+            shopObjectName.attr(key, shopObject[key]);
             purchaseButton.attr(key, shopObject[key]);
         }
 
-
         shopObjectDiv.append(purchaseButton);
-        shopObjectDiv.append(shopObjectDetails);
+        shopObjectDiv.append(shopObjectName);
+
+        var shopObjectDetail = $('<div class="shopObjectDetail"></div>');
+        shopObjectDetail.css("width", "280px");
+        shopObjectDetail.css("height", "35px");
+        shopObjectDetail.css("text-align", "center");
+        shopObjectDetail.css("font-size", "16px");
+        shopObjectDetail.css("border", "2px solid #C0C0C0");
+        shopObjectDetail.css("border-top", "none");
+        shopObjectDetail.css("line-height", "35px");
+        shopObjectDetail.html(shopObject["stat"] + ": +" + shopObject["effect"]);
 
         shopDisplay.append(shopObjectDiv);
-        shopDisplay.append("<br><br>");
+        shopDisplay.append(shopObjectDetail);
+        shopDisplay.append("<br>");
     }
+
+    shopDisplay.css()
+
     $('.purchaseButton').on("click", function() {
         var item = $(this).attr('name');
 
@@ -173,27 +186,10 @@ function displayShop(shopData) {
 }
 
 function displayStats(statsData) {
-    statsDisplay.html("");
     console.log(statsData);
 
-    var statsObject = statsData;
-    var statsObjectDiv = $('<div class="statsObject"></div>');
-
-    var keyDict = {   // key to display, and show/hide boolean
-        HP: {k: "HP: ", toDisplay: true, size: "20px"},
-        Atk: {k: "Atk: ", toDisplay: true, size: "14px"},
-        Def: {k: "Def: ", toDisplay: true, size: "14px"}
-    };
-
-    for (var key in statsObject) {
-        if (keyDict[key]["toDisplay"]) {
-            statsObjectDiv.append(keyDict[key]["k"] + statsObject[key] + "<br>");
-        }
-        statsObjectDiv.attr(key, statsObject[key]);
-    }
-
-    statsDisplay.append(statsObjectDiv);
-    statsDisplay.append("<br>");
+    atkDisplay.html(statsData["Atk"]);
+    defDisplay.html(statsData["Def"]);
 }
 
 function getCallback(local_userID) {
@@ -202,10 +198,7 @@ function getCallback(local_userID) {
             userCoins = data["coins"];
             var daySteps = data["daySteps"];
 
-            stepDisplay.html(data["daySteps"]);
-            stepDisplay.css('font-size', '300px');
             coinsDisplay.html(userCoins); //to change
-            coinsDisplay.css('font-size', '300px');
         });
     }
 }

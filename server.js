@@ -16,11 +16,20 @@ app.use(express.static('public'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+var monsterData = [
+    {
+        name: "Destructor",
+        health: "50",
+        attack: "5",
+        experience: "70"
+    }
+];
+
 var shopData = {
     Sword: {
-        name: "Sword",
+        name: "Dagger",
         price: "300",
-        image: "images/Sword.png",
+        image: "images/Dagger.png",
         stat: "Atk",
         effect: 3
     },
@@ -65,11 +74,12 @@ app.get('/getdata', function(req, res){
         user["accessToken"] = result.access_token;
         user["refreshToken"] = result.refresh_token;
         user["coins"] = 0;
+        user["currentLevel"] = 0;
         user["stats"] = {
             HP: 100,
             Atk: 5,
             Def: 5
-        }
+        };
         user["dailyAwarded"] = 0;
 
         apiClient.get("/profile.json", result.access_token).then(function (results) {
@@ -125,7 +135,7 @@ app.get('/purchase', function(req, res){
         users[userID]["coins"] -= shopData[purchasedItem]["price"];
 
         var stat = shopData[purchasedItem]["stat"];
-        var effect = shopData[purchasedItem]["effect"]
+        var effect = shopData[purchasedItem]["effect"];
         users[userID]["stats"][stat] += effect;
 
         data["status"] = true;
@@ -139,6 +149,23 @@ app.get('/purchase', function(req, res){
 
 app.get('/dashboard', function(req, res){
     res.sendFile(__dirname + '/public/home.html');
+});
+
+app.get('/attacked', function(req, res){
+    var userID = req.query.userID;
+    var data = {};
+
+    users[userID]["stats"]["HP"] -= monsterData[users[userID]["currentLevel"]]["attack"];
+
+    if(users[userID]["stats"]["HP"] <= 0){
+        users[userID]["stats"]["HP"] = 0;
+        data["isDead"] = true;
+    }
+    else
+        data["isDead"] = false;
+
+    data["HP"] = users[userID]["stats"]["HP"];
+    res.send(data);
 });
 
 app.listen(port, function(){
