@@ -108,7 +108,7 @@ $(document).ready(function() {
             $.get('/getMonsterInfo', {userID: userID}, function(data){
                 monsterData = data.monsterData;
                 maxMonsterHP = monsterData['HP'];
-                $('.progressWrap:first').css("width", "100" + '%');
+                adjustHPBar(1);
             });
         });
 
