@@ -20,14 +20,16 @@ var shopData = {
     Sword: {
         name: "Sword",
         price: "30",
-        details: "Atk +3",
-        image: "/img/sword.jpg"
+        image: "/img/sword.jpg",
+        stat: "Atk",
+        effect: "+3"
     },
     Armor: {
         name: "Armor",
-        price: "50",
-        details: "Def +5",
-        image: "/img/Armor.jpg"
+        price: "45",
+        image: "/img/Armor.jpg",
+        stat: "Def",
+        effect: "+5"
     }
 };
 
@@ -95,7 +97,7 @@ app.get('/setupShop', function(req, res) {
    res.send(shopData);
 });
 
-app.get('/setupStats', function(req, res) {
+app.get('/getStats', function(req, res) {
     var userID = req.query.userID;
     res.send(users[userID]["stats"]);
 });
@@ -107,6 +109,11 @@ app.get('/purchase', function(req, res){
 
     if(users[userID]["coins"] >= shopData[purchasedItem]["price"]) {
         users[userID]["coins"] -= shopData[purchasedItem]["price"];
+
+        var stat = shopData[purchasedItem]["stat"];
+        var effect = shopData[purchasedItem]["effect"]
+        users[userID]["stats"][stat] += effect;
+
         data["status"] = true;
     }
     else

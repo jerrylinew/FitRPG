@@ -59,7 +59,7 @@ $(document).ready(function() {
             displayShop(data);
         });
 
-        $.get("/setupStats", {userID: userID}).done(function(data){
+        $.get("/getStats", {userID: userID}).done(function(data){
             displayStats(data);
         });
     });
@@ -76,7 +76,8 @@ function displayShop(shopData) {
         var keyDict = {   // key to display, and show/hide boolean
             name: {k: "", toDisplay: true, size: "20px"},
             price: {k: "Price: ", toDisplay: true, size: "14px"},
-            details: {k: "Details: ", toDisplay: true, size: "14px"},
+            stat: {k: "Stat: ", toDisplay: true, size: "14px"},
+            effect: {k: "Effect: ", toDisplay: true, size: "14px"},
             image: {k: "", toDisplay: false, size: "20px"}
         };
 
@@ -102,6 +103,10 @@ function displayShop(shopData) {
             userCoins = data.coinsLeft;
             console.log(data.coinsLeft);
             coinsDisplay.html(userCoins);
+
+            $.get("/getStats", {userID: userID}).done(function(data){
+                displayStats(data);
+            });
         });
     });
 }
