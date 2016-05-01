@@ -112,7 +112,9 @@ app.get('/getdata', function(req, res){
 
 app.get('/getMonsterInfo', function(req, res) {
     var userID = req.query.userID;
-    return users[userID]["monsterData"];
+    var data = {};
+    data['monsterData'] = users[userID]["monsterData"];
+    res.send(data);
 });
 
 
