@@ -44,7 +44,7 @@ $(document).ready(function() {
         nameDisplay.html(userName);
         userHP = data.stats.HP;
         console.log(userHP);
-        $('#hpBar').css("width", String(userHP) + '%');
+        $('.progressWrap:first').css("width", String(userHP) + '%');
 
         var refreshInterval = 1; //in minutes
         console.log("getting steps");
@@ -88,7 +88,7 @@ $(document).ready(function() {
                 var isDead = data.isDead;
                 if(hpLeft == undefined)
                     return;
-                $('#hpBar').css("width", String(hpLeft) + '%');
+                $('.progressWrap:first').css("width", String(hpLeft) + '%');
                 console.log(hpLeft);
                 console.log(isDead);
             });
