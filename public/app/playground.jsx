@@ -55,17 +55,17 @@ export class Playground extends React.Component {
     return (
       <Grid>
         <Row style={{"height":"20px"}}></Row>
-        <Row>
-          <Col md={3}>
+        <Row style={{"width":"97%", marginLeft:"20px", marginRight:"20px"}}>
+          <Col style={{textAlign:"center"}} md={3}>
             <PieChart width={250} height={250} innerRadius={20} title="Step" data={stepData} chartSeries={stepChartSeries} name={getKey} value={getVal} />
             <PieChart width={250} height={250} innerRadius={20} title="Sleep" data={sleepData} chartSeries={sleepChartSeries} name={getKey} value={getVal} />
           </Col>
 
-          <Col md={7}>
+          <Col md={6}>
             <Game/>
           </Col>
 
-          <Col md={2}>
+          <Col md={3}>
             <Panel>Shop</Panel>
             <ListGroup>
               <ListGroupItem>
