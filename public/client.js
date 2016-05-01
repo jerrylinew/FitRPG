@@ -40,6 +40,7 @@ $(document).ready(function() {
         userGender = data.gender;
         nameDisplay.html(userName);
         userHP = data.stats.HP;
+        console.log(userHP);
         $('#hpBar').css("width", String(userHP) + '%');
 
         var refreshInterval = 1; //in minutes
