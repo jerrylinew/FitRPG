@@ -153,7 +153,7 @@ $(document).ready(function() {
                     });
 
                     console.log(data.exp);
-                    $('.statsbar-wrapper:last-child div:last-child').css("width", String(data.exp) + '%');
+                    $('.statsbar-wrapper:last div:last').css("width", String(data.exp) + '%');
                     if(data.levelUp){
                         swal({
                             title: "Level up!",
