@@ -113,7 +113,7 @@ app.get('/getdata', function(req, res){
 app.get('/getMonsterInfo', function(req, res) {
     var userID = req.query.userID;
     var data = {};
-    data['monsterData'] = users[userID]["monsterData"];
+    data['monsterData'] = users[userID]["monsterStats"];
     res.send(data);
 });
 
@@ -214,7 +214,7 @@ app.get('/attacked', function(req, res){
     res.send(data);
 });
 
-app.get('/getInfo')
+app.get('/getInfo');
 
 app.get('/attackMonster', function(req, res){
     var userID = req.query.userID;
