@@ -9,20 +9,21 @@ var port = process.env.PORT || 8080;
 var url = require('url');
 var FitbitApiClient = require("fitbit-node");
 var redirectURL = "http://fitrpg2.herokuapp.com/dashboard";
-var apiClient = new FitbitApiClient("227LR8", "0c5043e5c97351930aa2a3431cb79266");
+var apiClient = new FitbitApiClient("227LQ8", "423b0bc800fe693e1f425a80f363e65a");
 var bodyParser = require('body-parser');
 app.use(express.static('public'));
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-var monsterData = [
-    {
-        name: "Destructor",
-        health: "50",
-        attack: "5",
-        experience: "70"
-    }
+var monsterImages = [
+    "enemy.gif",
+    "light.png",
+    "earth.png",
+    "fire.png",
+    "shadow.png",
+    "water.png",
+    "grass.png"
 ];
 
 var shopData = {
@@ -114,6 +115,7 @@ app.get('/getMonsterInfo', function(req, res) {
     var userID = req.query.userID;
     var data = {};
     data['monsterData'] = users[userID]["monsterStats"];
+    data['image'] = monsterImages[users[userID]["monsterStats"]["Level"]];
     res.send(data);
 });
 
@@ -201,6 +203,7 @@ app.get('/attacked', function(req, res){
 
     if(users[userID]["stats"]["HP"] <= 0){
         users[userID]["stats"]["HP"] = 0;
+        users[userID]["monsterData"]["HP"]
         data["isDead"] = true;
         users[userID]["coins"] = Math.round(users[userID]["coins"] * 0.8);
         data["coinsLeft"] = users[userID]["coins"];
@@ -250,7 +253,7 @@ app.get('/attackMonster', function(req, res){
     else
         data["monsterDead"] = false;
 
-    res.send(data);
+    res.json(data);
 });
 
 function nextLevel(userID){

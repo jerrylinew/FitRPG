@@ -100,6 +100,7 @@ $(document).ready(function() {
 
     $("#startBattle").on('click', function(e){
         e.preventDefault();
+        $('#enemyImage').hide();
 
         $(this).fadeOut('1000', function(){
             console.log("fading in");
@@ -110,6 +111,9 @@ $(document).ready(function() {
             adjustHPBar();
             $.get('/getMonsterInfo', {userID: userID}, function(data){
                 monsterData = data.monsterData;
+                var imageFile = data.image;
+                $('#enemyImage').attr('src', "images/" + imageFile);
+                $('#enemyImage').show();
                 maxMonsterHP = monsterData['HP'];
                 adjustHPBar(1);
             });
@@ -185,7 +189,6 @@ $(document).ready(function() {
                     console.log(data.exp);
                     $('.progressWrap:eq(1)').css("width", String(data.exp) + '%');
                     $("#EXPDisplay").html(String(data.exp) + "/" + String(100));
-
                     if(data.levelUp){
                         swal({
                             title: "Level up!",
