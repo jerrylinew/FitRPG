@@ -169,7 +169,8 @@ app.get('/attacked', function(req, res){
         res.send(data);
         return;
     }
-
+    console.log(users);
+    console.log(userID);
     users[userID]["stats"]["HP"] -= monsterData[users[userID]["currentLevel"]]["attack"];
 
     if(users[userID]["stats"]["HP"] <= 0){
