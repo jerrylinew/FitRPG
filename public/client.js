@@ -104,8 +104,10 @@ function displayShop(shopData) {
         shopObjectDiv.css("width", "280px");
         shopObjectDiv.css("height", "40px");
 
-        var shopObjectDetails = $('<div class="shopObjectDetails"></div>');
-        shopObjectDetails.attr("title", shopObject["stat"] + ": +" + shopObject["effect"]);
+        var shopObjectDetails = $('<a class=".popoverBtn" href="#"></a>');
+        shopObjectDetails.attr("data-content", shopObject["stat"] + ": " + shopObject["effect"]);
+        shopObjectDetails.attr("rel", "popover");
+        shopObjectDetails.attr("data-placement", "top");
         shopObjectDetails.css("background", "url(" + shopObject["image"] + ") no-repeat");
         shopObjectDetails.css("background-size", "contain");
         shopObjectDetails.css("background-position", "90% 50%");
@@ -171,6 +173,7 @@ function displayShop(shopData) {
             });
         });
     });
+    $('.popoverBtn').popover({trigger: "hover"});
 }
 
 function displayStats(statsData) {
