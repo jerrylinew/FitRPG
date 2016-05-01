@@ -105,6 +105,7 @@ function displayShop(shopData) {
         shopObjectDiv.css("height", "40px");
 
         var shopObjectDetails = $('<div class="shopObjectDetails"></div>');
+        shopObjectDetails.attr("title", shopObject["stat"] + ": +" + shopObject["effect"]);
         shopObjectDetails.css("background", "url(" + shopObject["image"] + ") no-repeat");
         shopObjectDetails.css("background-size", "contain");
         shopObjectDetails.css("background-position", "90% 50%");
@@ -152,7 +153,7 @@ function displayShop(shopData) {
         shopObjectDiv.append(shopObjectDetails);
 
         shopDisplay.append(shopObjectDiv);
-        shopDisplay.append("<br><br>");
+        shopDisplay.append("<br>");
     }
     $('.purchaseButton').on("click", function() {
         var item = $(this).attr('name');
