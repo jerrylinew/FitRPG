@@ -15,7 +15,8 @@ var shopDisplay = $('#shopContainer');
 var gameDisplay = $('#game');
 var atkDisplay = $('#atkDisplay');
 var defDisplay = $('#defDisplay');
-
+var stepsDisplay = $('#stepState');
+var sleepDisplay = $('#sleepState');
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -24,6 +25,8 @@ function getParameterByName(name, url) {
         results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return '';
+    console.log(name);
+    console.log(results);
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
@@ -40,7 +43,8 @@ $(document).ready(function() {
         userGender = data.gender;
         nameDisplay.html(userName);
         userHP = data.stats.HP;
-        $('#hpBar').css("width", String(userHP) + '%');
+        console.log(userHP);
+        $('.progressWrap:first').css("width", String(userHP) + '%');
 
         var refreshInterval = 1; //in minutes
         console.log("getting steps");
@@ -62,6 +66,18 @@ $(document).ready(function() {
         $.get("/getStats", {userID: userID}).done(function(data){
             displayStats(data);
         });
+
+        //$.get("/getSteps", {userID: userID}).done(function(data){
+        //    displaySteps(data);
+        //});
+        //testing
+        displaySteps(8012);
+
+        //$.get("/getSleep", {userID: userID}).done(function(data){
+        //    displaySleep(data);
+        //});
+        displaySleep(4036);
+
     });
 
     setInterval(function() {
@@ -72,7 +88,9 @@ $(document).ready(function() {
             $.get("/attacked", {userID: userID}).done(function(data){
                 var hpLeft = data.HP;
                 var isDead = data.isDead;
-                $('#hpBar').css("width", String(hpLeft) + '%');
+                if(hpLeft == undefined)
+                    return;
+                $('.progressWrap:first').css("width", String(hpLeft) + '%');
                 console.log(hpLeft);
                 console.log(isDead);
             });
@@ -191,6 +209,97 @@ function displayStats(statsData) {
     atkDisplay.html(statsData["Atk"]);
     defDisplay.html(statsData["Def"]);
 }
+
+function displaySteps(stepsData) {
+    console.log(stepsData);
+    var chart = $('<div class="chart"></div>');
+
+    var canvas = $('<canvas id="stepsChart" class="pie"></canvas>');
+    var legend = $('<div id="stepsLegend"></div>');
+
+    chart.append(canvas);
+    chart.append(legend);
+    stepsDisplay.append(chart);
+    //context
+    var ctxPTD = $('#stepsChart').get(0).getContext("2d");
+
+    var config = {
+        type: 'doughnut',
+        data: {
+            label: [
+                "Steps today",
+                "Steps to go"
+            ],
+            datasets: [{
+                data: [
+                    stepsData,
+                    10000-stepsData
+                ],
+                backgroundColor: [
+                    "#46BFBD",
+                    "#4D5360",
+                ],
+            }],
+            labels: [
+                "Green",
+                "Dark Grey"
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    };
+
+    var propertyTypes = new Chart(ctxPTD, config);
+    $('#stepsLegend').html(propertyTypes.generateLegend());
+
+}
+
+function displaySleep(sleepData) {
+    console.log(sleepData);
+
+    var chart = $('<div class="chart"></div>');
+
+    var canvas = $('<canvas id="sleepChart" class="pie"></canvas>');
+    var legend = $('<div id="sleepLegend"></div>');
+
+    chart.append(canvas);
+    chart.append(legend);
+    stepsDisplay.append(chart);
+    //context
+    var ctxPTD = $('#sleepChart').get(0).getContext("2d");
+
+    var config = {
+        type: 'doughnut',
+        data: {
+            label: [
+                "Sleep time",
+                "Sleep target"
+            ],
+            datasets: [{
+                data: [
+                    sleepData,
+                    10000-sleepData
+                ],
+                backgroundColor: [
+                    "#46BFBD",
+                    "#4D5360",
+                ],
+            }],
+            labels: [
+                "Blue",
+                "Dark Grey"
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    };
+
+    var propertyTypes = new Chart(ctxPTD, config);
+    $('#sleepLegend').html(propertyTypes.generateLegend());
+}
+
 
 function getCallback(local_userID) {
     return function(){

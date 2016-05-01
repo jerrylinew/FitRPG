@@ -9,7 +9,7 @@ var port = process.env.PORT || 8080;
 var url = require('url');
 var FitbitApiClient = require("fitbit-node");
 var redirectURL = "http://fitrpg.herokuapp.com/dashboard";
-var apiClient = new FitbitApiClient("227LR8", "0c5043e5c97351930aa2a3431cb79266");
+var apiClient = new FitbitApiClient("227LQ8", "423b0bc800fe693e1f425a80f363e65a");
 var bodyParser = require('body-parser');
 app.use(express.static('public'));
 
@@ -126,6 +126,16 @@ app.get('/getStats', function(req, res) {
     res.send(users[userID]["stats"]);
 });
 
+app.get('/getSteps', function(req, res){
+    var userID = req.query.userID;
+    res.send(users[userID]["dailyAwarded"]);
+});
+
+app.get('/getSleep', function(req, res){
+    var userID = req.query.userID;
+    res.send(users[userID]);
+});
+
 app.get('/purchase', function(req, res){
     var purchasedItem = req.query.item;
     var userID = req.query.userID;
@@ -155,6 +165,12 @@ app.get('/attacked', function(req, res){
     var userID = req.query.userID;
     var data = {};
 
+    if(userID == undefined) {
+        res.send(data);
+        return;
+    }
+    console.log(users);
+    console.log(userID);
     users[userID]["stats"]["HP"] -= monsterData[users[userID]["currentLevel"]]["attack"];
 
     if(users[userID]["stats"]["HP"] <= 0){

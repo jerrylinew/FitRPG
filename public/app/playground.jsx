@@ -36,8 +36,8 @@ var getVal = function(d) {
   return d.val;
 };
 
-class Game extends React.Component{
-  render(){
+class Game extends React.Component {
+  render () {
     return (
       <div className="row">
         <div className="col-md-12 col-xs-12" id="game">
@@ -65,15 +65,18 @@ export class Playground extends React.Component {
         <Row style={{"height":"20px"}}></Row>
         <Row>
           <Col style={{textAlign:"center"}} md={3}>
-            <PieChart width={250} height={250} innerRadius={20} title="Step" data={stepData} chartSeries={stepChartSeries} name={getKey} value={getVal} />
-            <PieChart width={250} height={250} innerRadius={20} title="Sleep" data={sleepData} chartSeries={sleepChartSeries} name={getKey} value={getVal} />
+            <div id="stepState" />
+            <div id="sleepState" />
+
+            {/* <PieChart width={250} height={250} innerRadius={20} title="Step" data={stepData} chartSeries={stepChartSeries} name={getKey} value={getVal} /> */}
+            {/* <PieChart width={250} height={250} innerRadius={20} title="Sleep" data={sleepData} chartSeries={sleepChartSeries} name={getKey} value={getVal} /> */}
           </Col>
 
           <Col md={6}>
             <Game/>
           </Col>
 
-          <Col md={3}>
+          <Col style={{}} md={3}>
             <Panel>Shop</Panel>
             <ShopItem/>
 
