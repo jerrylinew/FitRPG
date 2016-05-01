@@ -27,9 +27,9 @@ var monsterData = [
 
 var shopData = {
     Sword: {
-        name: "Sword",
+        name: "Dagger",
         price: "300",
-        image: "images/Sword.png",
+        image: "images/Dagger.png",
         stat: "Atk",
         effect: 3
     },

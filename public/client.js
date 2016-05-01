@@ -160,6 +160,9 @@ function displayShop(shopData) {
         shopDisplay.append(shopObjectDetail);
         shopDisplay.append("<br>");
     }
+
+    shopDisplay.css()
+
     $('.purchaseButton').on("click", function() {
         var item = $(this).attr('name');
 
