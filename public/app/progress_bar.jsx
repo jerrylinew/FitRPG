@@ -16,7 +16,7 @@ export class ProgressBar extends React.Component {
        */
        var wrapStyle = {
          background: this.props.color || 'blue',
-         transition: 'width 1s',
+         transition: 'width 700ms cubic-bezier(0.47, 0, 0.745, 0.715)',
          width: this.props.progress * 100 + '%'
        };
        return (

@@ -9,17 +9,16 @@ import { Playground } from './playground.jsx'
 class App extends React.Component {
     constructor(props){
       super(props);
-      this.styles = {
-        hpColor:"#FEFCD7" /*Orange*/,
-        expColor:"#F0E68C" /*Khaki*/
-      };
 
       /* Load game data */
-      var game = this.props.data.game;
-      console.log(game);
+      var profile = this.props.data.profile;
+      console.log(profile);
       this.state = {
-        hp: game.hp.slice(),
-        exp: game.exp.slice()
+        hp: profile.hp.slice(),
+        exp: profile.exp.slice(),
+        offense: profile.offense,
+        defense: profile.defense,
+        coins: profile.coins,
       };
     }
 
@@ -33,27 +32,29 @@ class App extends React.Component {
     }
 
     render () {
-        var hpPercentage = this.state.hp[0] / this.state.hp[1];
-        var expPercentage = this.state.exp[0] / this.state.exp[1];
-        console.log(hpPercentage, expPercentage);
         return (
             <div>
-                {/* <p> Hello React! </p> */}
-                <Header/>
+                <Header data={this.props.data} mutable={this.state}/>
+                <Button onClick={this.attack.bind(this)} />
                 <Playground/>
-                <Button onClick={this.attack.bind(this)}> Click Me To Attack </Button>
-                <ProgressBar color={this.styles.hpColor} progress={hpPercentage}/>
-                <ProgressBar color={this.styles.expColor} progress={expPercentage}/>
             </div>
         );
     }
 }
 
 var data = {
-  game: {
+  username: "colinxy",
+  profile: {
     hp: [50, 100],
-    exp: [5000, 8000]
-  }
+    exp: [5000, 8000],
+    lvl: 3,
+    offense: 10,
+    defense: 20,
+    coins: 177,
+  },
+  expList: [100, 300, 500, 1000, 2000, 4000, 8000],
+  step: 1000,
+  sleep: 7.5
 }
 
 render(<App data={data}/>, document.getElementById('app'));
