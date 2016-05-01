@@ -70,6 +70,12 @@ $(document).ready(function() {
         $('#bulletImage').animate({
             left: '-=460'
         }, 1000, function(){
+            $.get("/attacked", {userID: userID}).done(function(data){
+                var hpLeft = data.HP;
+                var isDead = data.isDead;
+                console.log(hpLeft);
+                console.log(isDead);
+            });
             var bulletImage = $('#bulletImage');
             bulletImage.fadeOut(250, function(){
                 bulletImage.css({"left": "50"});
