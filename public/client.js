@@ -129,6 +129,11 @@ $(document).ready(function() {
                             text: "You dropped 20% of your gold :(\nKeep on exercising to get stronger!",
                             imageUrl: "images/death.png"
                         });
+
+                        setTimeout(function(){
+                            $('.progressWrap:first').css("width", '100%');
+                        }, 1500);
+
                         coinsDisplay.html(data.coinsLeft);
                         $('#game').animate({
                             "opacity": "0"

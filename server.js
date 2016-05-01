@@ -201,6 +201,8 @@ app.get('/attacked', function(req, res){
         data["isDead"] = false;
 
     data["HP"] = users[userID]["stats"]["HP"];
+    if(data["isDead"])
+        users[userID]["stats"]["HP"] = users[userID]["maxUserHP"];
     res.send(data);
 });
 
