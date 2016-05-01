@@ -260,7 +260,7 @@ function displaySteps(stepsData) {
     //context
     var ctxPTD = $('#stepsChart').get(0).getContext("2d");
     ctxPTD.canvas.height = 250;
-    ctxPTD.canvas["margin-bottom"] = "100px";
+    ctxPTD.canvas["margin-bottom"] = "150px";
 
     var config = {
         type: 'doughnut',
