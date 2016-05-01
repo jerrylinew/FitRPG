@@ -182,7 +182,7 @@ $(document).ready(function() {
                     });
 
                     console.log(data.exp);
-                    $('.progressWrap:last').css("width", String(data.exp) + '%');
+                    $('.progressWrap:eq(1)').css("width", String(data.exp) + '%');
                     if(data.levelUp){
                         swal({
                             title: "Level up!",
