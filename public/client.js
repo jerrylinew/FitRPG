@@ -107,7 +107,7 @@ function displayShop(shopData) {
 }
 
 function displayStats(statsData) {
-
+    console.log(statsData);
     for (var index in statsData) {
         var statsObject = statsData[index];
         var statsObjectDiv = $('<div class="statsObject"></div>');
