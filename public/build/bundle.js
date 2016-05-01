@@ -41075,8 +41075,27 @@
 	  return ShopItem;
 	}(_react2.default.Component);
 	
-	var Playground = exports.Playground = function (_React$Component3) {
-	  _inherits(Playground, _React$Component3);
+	var Stat = function (_React$Component3) {
+	  _inherits(Stat, _React$Component3);
+	
+	  function Stat() {
+	    _classCallCheck(this, Stat);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Stat).apply(this, arguments));
+	  }
+	
+	  _createClass(Stat, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement('div', { id: 'statsContainer' });
+	    }
+	  }]);
+	
+	  return Stat;
+	}(_react2.default.Component);
+	
+	var Playground = exports.Playground = function (_React$Component4) {
+	  _inherits(Playground, _React$Component4);
 	
 	  function Playground() {
 	    _classCallCheck(this, Playground);
@@ -41113,7 +41132,8 @@
 	              null,
 	              'Shop'
 	            ),
-	            _react2.default.createElement(ShopItem, null)
+	            _react2.default.createElement(ShopItem, null),
+	            _react2.default.createElement(Stat, null)
 	          )
 	        )
 	      );
