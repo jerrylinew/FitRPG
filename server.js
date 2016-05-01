@@ -80,6 +80,13 @@ app.get('/getdata', function(req, res){
         user["refreshToken"] = result.refresh_token;
         user["coins"] = 0;
         user["currentLevel"] = 0;
+        user["monsterStats"] = {
+            HP: 100,
+            Atk: 10,
+            Exp: 50,
+            Level: 0
+        };
+
         user["stats"] = {
             HP: 100,
             Atk: 5,

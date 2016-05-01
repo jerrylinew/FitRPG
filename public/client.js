@@ -8,7 +8,8 @@ var userName;
 var userGender;
 var userCoins;
 var userHP;
-var monsterHealth = 100;
+var monsterData;
+var maxMonsterHP;
 
 var nameDisplay = $('#nameDisplay');
 var coinsDisplay = $('#coinsDisplay');
@@ -57,6 +58,10 @@ $(document).ready(function() {
         userGender = data.gender;
         nameDisplay.html(userName);
         userHP = data.stats.HP;
+        monsterData = data.monsterStats;
+        maxMonsterHP = monsterData['HP'];
+        adjustHPBar(100);
+
         console.log(userHP);
         $('.progressWrap:first').css("width", String(userHP) + '%');
 
