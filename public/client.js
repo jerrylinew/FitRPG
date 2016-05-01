@@ -12,6 +12,7 @@ var stepDisplay = $('#stepDisplay');
 var greetingDisplay = $('#greetingDisplay');
 var coinsDisplay = $('#coinsDisplay');
 var shopDisplay = $('#shopContainer');
+var gameDisplay = $('#game');
 var inventoryDisplay = $('#inventoryContainer');
 var statsDisplay = $('#statsContainer');
 
@@ -61,6 +62,35 @@ $(document).ready(function() {
 
         $.get("/getStats", {userID: userID}).done(function(data){
             displayStats(data);
+        });
+    });
+
+    setInterval(function() {
+        gameDisplay.append('<img id="bulletImage" src="images/bullet.png" alt="bullet"/>');
+        $('#bulletImage').animate({
+            left: '-=460'
+        }, 1000, function(){
+            var bulletImage = $('#bulletImage');
+            bulletImage.fadeOut(250, function(){
+                bulletImage.css({"left": "50"});
+            });
+            setTimeout(function(){
+                bulletImage.remove();
+            }, 300);
+        });
+    }, 4000);
+
+    $("#attackBtn").on('click', function(e){
+        e.preventDefault();
+        $(this).attr('disabled', true);
+        $('#userImage').animate({
+            left: '+=460'
+        }, 1000, function(){
+            $('#userImage').animate({
+                left: '-=460'
+            }, 1000, function(){
+                $('#attackBtn').removeAttr('disabled');
+            });
         });
     });
 });
