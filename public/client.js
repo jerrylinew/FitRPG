@@ -103,14 +103,14 @@ $(document).ready(function() {
 
 
 function displayShop(shopData) {
-
+    $('#btnPopover').popover({trigger: "hover"});
     for (var index in shopData) {
         var shopObject = shopData[index];
         var shopObjectDiv = $('<div class="shopObject"></div>');
         shopObjectDiv.css("width", "280px");
         shopObjectDiv.css("height", "40px");
 
-        var shopObjectDetails = $('<a id="btn' + shopObject["name"] + '" href="#"></a>');
+        var shopObjectDetails = $('<a id="btnPopover" href="#"></a>');
         shopObjectDetails.attr("data-content", shopObject["stat"] + ": " + shopObject["effect"]);
         shopObjectDetails.attr("rel", "popover");
         shopObjectDetails.attr("data-placement", "top");
@@ -179,7 +179,6 @@ function displayShop(shopData) {
             });
         });
     });
-    $('#btn' + shopObject["name"]).popover({trigger: "hover"});
 }
 
 function displayStats(statsData) {
