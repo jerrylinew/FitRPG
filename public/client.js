@@ -75,17 +75,20 @@ function displayShop(shopData) {
         shopObjectDiv.css("height", "40px");
 
         var shopObjectDetails = $('<div class="shopObjectDetails"></div>');
+        shopObjectDetails.css("background", "url(" + shopObject["image"] + ") no-repeat");
+        shopObjectDetails.css("background-position", "95% 50%");
         shopObjectDetails.css("width", "200px");
         shopObjectDetails.css("height", "40px");
         shopObjectDetails.css("float", "left");
         shopObjectDetails.css("line-height", "40px");
         shopObjectDetails.css("text-align", "center");
+        shopObjectDetails.css("font-size", "18px");
         shopObjectDetails.css("border", "1px solid #6C6C6C");
         shopObjectDetails.css("border-left", "none");
         shopObjectDetails.css("background-color", "lightskyblue");
         shopObjectDetails.html(shopObject["name"]);
 
-        var purchaseButton = $('<button class="purchaseButton" style="background: url(images/coin.jpg)"></button>');
+        var purchaseButton = $('<button class="purchaseButton"></button>');
         purchaseButton.css("background", "url(images/coin.jpg) no-repeat");
         purchaseButton.css("background-size", "contain");
         purchaseButton.css("width", "70px");
