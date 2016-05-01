@@ -21,6 +21,7 @@ class App extends React.Component {
         hp: game.hp.slice(),
         exp: game.exp.slice()
       };
+
     }
 
     attack(event, damage) {
