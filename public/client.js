@@ -103,7 +103,7 @@ $(document).ready(function() {
 
 
 function displayShop(shopData) {
-
+    $('#btnPopover').popover({trigger: "hover"});
     for (var index in shopData) {
         var shopObject = shopData[index];
         var shopObjectDiv = $('<div class="shopObject"></div>');
@@ -179,7 +179,6 @@ function displayShop(shopData) {
             });
         });
     });
-    $('#btnPopover').popover({trigger: "hover"});
 }
 
 function displayStats(statsData) {
