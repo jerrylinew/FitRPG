@@ -228,12 +228,16 @@ function displaySteps(stepsData) {
     var ctxPTD = $('#stepsChart').get(0).getContext("2d");
 
     var config = {
-        type: 'pie',
+        type: 'doughnut',
         data: {
             datasets: [{
                 data: [
                     stepsData,
                     10000-stepsData
+                ],
+                label: [
+                    "Steps today",
+                    "Steps to go"
                 ],
                 backgroundColor: [
                     "#46BFBD",
