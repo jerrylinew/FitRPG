@@ -24,7 +24,7 @@ var monsterData = [
         experience: "70"
     }
 ];
-
+//
 var shopData = {
     Dagger: {
         name: "Dagger",
