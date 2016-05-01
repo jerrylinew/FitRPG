@@ -11,6 +11,7 @@ var userHP;
 var monsterData;
 var maxMonsterHP;
 var maxUserHP;
+var bulletRefreshID;
 
 var nameDisplay = $('#nameDisplay');
 var coinsDisplay = $('#coinsDisplay');
@@ -107,7 +108,7 @@ $(document).ready(function() {
         });
 
 
-        setInterval(function() {
+        bulletRefreshID = setInterval(function() {
             gameDisplay.append('<img id="bulletImage" src="images/bullet.png" alt="bullet"/>');
             $('#bulletImage').animate({
                 left: '-=440'
@@ -118,14 +119,14 @@ $(document).ready(function() {
                     console.log(hpLeft);
                     if(hpLeft == undefined)
                         return;
-                    $('.progressWrap:first').css("width", String(Math.round(userHP / maxUserHP * 100)) + '%');
+                    $('.progressWrap:first').css("width", String(Math.round(hpLeft / maxUserHP * 100)) + '%');
                 });
                 var bulletImage = $('#bulletImage');
                 bulletImage.fadeOut(250, function(){
                     bulletImage.css({"left": "50"});
                 });
                 setTimeout(function(){
-                    bulletImage.remove();
+                    $("[id=bulletImage]").remove();
                 }, 300);
             });
         }, 4000);
@@ -142,6 +143,7 @@ $(document).ready(function() {
                 adjustHPBar(hpLeft / maxMonsterHP);
 
                 if(data.monsterDead){
+                    clearInterval(bulletRefreshID);
                     hpLeft = 0;
                     $('#game').animate({
                         "opacity": "0"
@@ -150,7 +152,8 @@ $(document).ready(function() {
                         $('#startBattle').fadeIn(1000);
                     });
 
-                    $('.progressWrap:last').css("width", String(data.exp) + '%');
+                    console.log(data.exp);
+                    $('.statsbar-wrapper:last-child div:last-child').css("width", String(data.exp) + '%');
                     if(data.levelUp){
                         swal({
                             title: "Level up!",
