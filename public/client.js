@@ -110,9 +110,9 @@ function displayShop(shopData) {
         shopObjectDiv.css("width", "280px");
         shopObjectDiv.css("height", "40px");
 
-        var shopObjectDetails = $('<div class="popover"></div>');
+        var shopObjectDetails = $('<div class="shopObjectDetail"></div>');
         var popover = $('<div class="webui-popover-content">' + shopObject["stats"] + ': ' + '</div>');
-        $('.popover').webuiPopover({trigger:'hover'});
+        $('.shopObjectDetail').webuiPopover({trigger:'hover'});
         shopObjectDetails.css("background", "url(" + shopObject["image"] + ") no-repeat");
         shopObjectDetails.css("background-size", "contain");
         shopObjectDetails.css("background-position", "90% 50%");
