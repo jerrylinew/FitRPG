@@ -173,8 +173,9 @@ body{
 
 #attackBtn{
   margin: 400px auto auto auto;
-  position: relative;
-  left: 170px;
+  position: absolute;
+  left: 40%;
+  display: none;
 }
 
 button:focus{

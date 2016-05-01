@@ -96,6 +96,7 @@ $(document).ready(function() {
         $(this).fadeOut('1000', function(){
             console.log("fading in");
             $('#game').css('opacity', '1');
+            $('#attackBtn').show();
         });
 
 

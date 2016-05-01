@@ -49,8 +49,8 @@ class Game extends React.Component {
           </div>
           <img id="enemyImage" src="images/enemy.gif" alt="enemy"/>
           <img id="userImage" src="images/warrior.gif" alt="warrior"/>
-          <button id="attackBtn" type="button" className="btn btn-primary btn-lg">Attack!</button>
         </div>
+        <button id="attackBtn" type="button" className="btn btn-primary btn-lg">Attack!</button>
       </div>
     );
   }

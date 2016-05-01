@@ -24,7 +24,7 @@ export class ProgressBar extends React.Component {
        };
        var boxStyle = {
          height: height
-       }
+       };
        return (
          <div className="progress" style={boxStyle}>
            <div className="progressWrap" style={wrapStyle}/>

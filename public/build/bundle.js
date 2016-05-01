@@ -149,12 +149,12 @@
 	var data = {
 	  username: "colinxy",
 	  profile: {
-	    hp: [50, 100],
-	    exp: [5000, 8000],
+	    hp: [100, 100],
+	    exp: [0, 8000],
 	    lvl: 3,
 	    offense: 10,
 	    defense: 20,
-	    coins: 177
+	    coins: 0
 	  },
 	  expList: [100, 300, 500, 1000, 2000, 4000, 8000],
 	  step: 1000,
@@ -41134,12 +41134,12 @@
 	            _react2.default.createElement(_progress_bar.ProgressBar, { color: 'red', progress: '1.0', shape: 'thin' })
 	          ),
 	          _react2.default.createElement('img', { id: 'enemyImage', src: 'images/enemy.gif', alt: 'enemy' }),
-	          _react2.default.createElement('img', { id: 'userImage', src: 'images/warrior.gif', alt: 'warrior' }),
-	          _react2.default.createElement(
-	            'button',
-	            { id: 'attackBtn', type: 'button', className: 'btn btn-primary btn-lg' },
-	            'Attack!'
-	          )
+	          _react2.default.createElement('img', { id: 'userImage', src: 'images/warrior.gif', alt: 'warrior' })
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { id: 'attackBtn', type: 'button', className: 'btn btn-primary btn-lg' },
+	          'Attack!'
 	        )
 	      );
 	    }
