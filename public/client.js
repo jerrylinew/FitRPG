@@ -262,8 +262,12 @@ function displaySteps(stepsData) {
         },
         options: {
             responsive: true,
-            labels: {
-                fontSize: "18px"
+            legend: {
+                display: true,
+                labels: {
+                    fontSize: 18
+
+                }
             }
         }
     };
@@ -307,8 +311,12 @@ function displaySleep(sleepData) {
         },
         options: {
             responsive: true,
-            labels: {
-                fontSize: "18px"
+            legend: {
+                display: true,
+                labels: {
+                    fontSize: 18
+
+                }
             }
         }
     };
