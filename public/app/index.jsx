@@ -66,7 +66,7 @@ var data = {
   username: "colinxy",
   profile: {
     hp: [100, 100],
-    exp: [0, 8000],
+    exp: [0, 100],
     lvl: 3,
     offense: 10,
     defense: 20,
