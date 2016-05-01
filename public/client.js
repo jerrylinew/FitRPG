@@ -60,7 +60,7 @@ $(document).ready(function() {
         userHP = data.stats.HP;
         monsterData = data.monsterStats;
         maxMonsterHP = monsterData['HP'];
-        adjustHPBar(100);
+        adjustHPBar(1);
 
         console.log(userHP);
         $('.progressWrap:first').css("width", String(userHP) + '%');
@@ -136,7 +136,7 @@ $(document).ready(function() {
         }, 1000, function(){
             $.get("/attackMonster", {userID: userID}).done(function(data){
                 var hpLeft = data.HP;
-                adjustHPBar(hpLeft);
+                adjustHPBar(hpLeft / maxMonsterHP);
 
                 if(hpLeft <= 0){
                     hpLeft = 0;
@@ -281,8 +281,8 @@ function displaySteps(stepsData) {
                 ],
                 backgroundColor: [
                     "#46BFBD",
-                    "#4D5360",
-                ],
+                    "#4D5360"
+                ]
             }]
         },
         options: {
@@ -329,8 +329,8 @@ function displaySleep(sleepData) {
                 ],
                 backgroundColor: [
                     "#36A2EB",
-                    "#4D5360",
-                ],
+                    "#4D5360"
+                ]
             }]
         },
         options: {
