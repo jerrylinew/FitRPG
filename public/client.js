@@ -109,7 +109,7 @@ $(document).ready(function() {
                     var isDead = data.isDead;
                     if(hpLeft == undefined)
                         return;
-                    $('.progressWrap:first-child').css("width", String(hpLeft) + '%');
+                    $('.progressWrap:first').css("width", String(hpLeft) + '%');
                 });
                 var bulletImage = $('#bulletImage');
                 bulletImage.fadeOut(250, function(){
