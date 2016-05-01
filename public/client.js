@@ -226,7 +226,7 @@ function displaySteps(stepsData) {
     var config = {
         type: 'doughnut',
         data: {
-            label: [
+            labels: [
                 "Steps today",
                 "Steps to go"
             ],
@@ -268,7 +268,7 @@ function displaySleep(sleepData) {
     var config = {
         type: 'doughnut',
         data: {
-            label: [
+            labels: [
                 "Sleep time",
                 "Sleep target"
             ],
