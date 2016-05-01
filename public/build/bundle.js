@@ -41023,8 +41023,41 @@
 	  return d.val;
 	};
 	
-	var Playground = exports.Playground = function (_React$Component) {
-	  _inherits(Playground, _React$Component);
+	var Game = function (_React$Component) {
+	  _inherits(Game, _React$Component);
+	
+	  function Game() {
+	    _classCallCheck(this, Game);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Game).apply(this, arguments));
+	  }
+	
+	  _createClass(Game, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'row' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col-md-12 col-xs-12', id: 'game' },
+	          _react2.default.createElement('img', { id: 'enemyImage', src: 'images/enemy.gif', alt: 'enemy' }),
+	          _react2.default.createElement('img', { id: 'userImage', src: 'images/warrior.gif', alt: 'warrior' }),
+	          _react2.default.createElement(
+	            'button',
+	            { id: 'attackBtn', type: 'button', className: 'btn btn-primary btn-large' },
+	            'Attack!'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Game;
+	}(_react2.default.Component);
+	
+	var Playground = exports.Playground = function (_React$Component2) {
+	  _inherits(Playground, _React$Component2);
 	
 	  function Playground() {
 	    _classCallCheck(this, Playground);
@@ -41048,7 +41081,11 @@
 	            _react2.default.createElement(_reactD3Basic.PieChart, { width: 250, height: 250, innerRadius: 20, title: 'Step', data: stepData, chartSeries: stepChartSeries, name: getKey, value: getVal }),
 	            _react2.default.createElement(_reactD3Basic.PieChart, { width: 250, height: 250, innerRadius: 20, title: 'Sleep', data: sleepData, chartSeries: sleepChartSeries, name: getKey, value: getVal })
 	          ),
-	          _react2.default.createElement(_reactBootstrap.Col, { md: 7 }),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { md: 7 },
+	            _react2.default.createElement(Game, null)
+	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
 	            { md: 2 },

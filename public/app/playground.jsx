@@ -36,6 +36,19 @@ var getVal = function(d) {
   return d.val;
 };
 
+class Game extends React.Component{
+  render(){
+    return (
+      <div className="row">
+        <div className="col-md-12 col-xs-12" id="game">
+          <img id="enemyImage" src="images/enemy.gif" alt="enemy"/>
+          <img id="userImage" src="images/warrior.gif" alt="warrior"/>
+          <button id="attackBtn" type="button" className="btn btn-primary btn-large">Attack!</button>
+        </div>
+      </div>
+    );
+  }
+}
 
 export class Playground extends React.Component {
   render () {
@@ -49,6 +62,7 @@ export class Playground extends React.Component {
           </Col>
 
           <Col md={7}>
+            <Game/>
           </Col>
 
           <Col md={2}>
