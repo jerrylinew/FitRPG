@@ -8,8 +8,7 @@ var userName;
 var userGender;
 var userCoins;
 
-var stepDisplay = $('#stepDisplay');
-var greetingDisplay = $('#greetingDisplay');
+var nameDisplay = $('#nameDisplay');
 var coinsDisplay = $('#coinsDisplay');
 var shopDisplay = $('#shopContainer');
 var gameDisplay = $('#game');
@@ -38,8 +37,7 @@ $(document).ready(function() {
         userID = data.userID;
         userName = data.name;
         userGender = data.gender;
-        greetingDisplay.html("Hi " + userName);
-        greetingDisplay.css('font-size', '150px');
+        nameDisplay.html(userName);
 
         var refreshInterval = 1; //in minutes
         console.log("getting steps");
@@ -48,10 +46,7 @@ $(document).ready(function() {
             userCoins = data["coins"];
             var daySteps = data["daySteps"];
 
-            stepDisplay.html(daySteps);
-            stepDisplay.css('font-size', '300px');
             coinsDisplay.html(userCoins); //to change
-            coinsDisplay.css('font-size', '300px');
         });
 
         setInterval(getCallback(userID), 1000 * 60 * refreshInterval);
@@ -111,24 +106,20 @@ function displayShop(shopData) {
         shopObjectDiv.css("width", "280px");
         shopObjectDiv.css("height", "40px");
 
-        var shopObjectDetails = $('<div class="shopObjectDetail"></div>');
-        shopObjectDetails.css("background", "url(" + shopObject["image"] + ") no-repeat");
-        shopObjectDetails.css("background-size", "contain");
-        shopObjectDetails.css("background-position", "90% 50%");
-        shopObjectDetails.css("width", "200px");
-        shopObjectDetails.css("height", "40px");
-        shopObjectDetails.css("float", "left");
-        shopObjectDetails.css("line-height", "40px");
-        shopObjectDetails.css("text-align", "center");
-        shopObjectDetails.css("font-size", "18px");
-        shopObjectDetails.css("border", "1px solid #6C6C6C");
-        shopObjectDetails.css("border-left", "none");
-        shopObjectDetails.css("background-color", "lightskyblue");
-
-        var objectText = $('<div>' + shopObject["name"] + '</div>');
-        objectText.css("width", "150px");
-        objectText.css("text-align", "center");
-        shopObjectDetails.append(objectText);
+        var shopObjectName = $('<div class="shopObjectName"></div>');
+        shopObjectName.css("background", "url(" + shopObject["image"] + ") no-repeat");
+        shopObjectName.css("background-size", "contain");
+        shopObjectName.css("background-position", "90% 50%");
+        shopObjectName.css("width", "200px");
+        shopObjectName.css("height", "40px");
+        shopObjectName.css("float", "left");
+        shopObjectName.css("line-height", "40px");
+        shopObjectName.css("text-align", "center");
+        shopObjectName.css("font-size", "18px");
+        shopObjectName.css("border", "1px solid #6C6C6C");
+        shopObjectName.css("border-left", "none");
+        shopObjectName.css("background-color", "lightskyblue");
+        shopObjectName.append(objectText);
 
         var purchaseButton = $('<button class="purchaseButton"></button>');
         purchaseButton.css("background", "url(images/coin.png) no-repeat");
@@ -140,23 +131,24 @@ function displayShop(shopData) {
         purchaseButton.css("font-size", "16px");
         purchaseButton.html(shopObject["price"]);
 
-        //var keyDict = {   // key to display, and show/hide boolean
-        //    name: {k: "", toDisplay: true, size: "20px"},
-        //    price: {k: "Price: ", toDisplay: true, size: "14px"},
-        //    stat: {k: "Stat: ", toDisplay: true, size: "14px"},
-        //    effect: {k: "Effect: +", toDisplay: true, size: "14px"},
-        //    image: {k: "", toDisplay: false, size: "20px"}
-        //};
-
         for (var key in shopObject) {
             shopObjectDiv.attr(key, shopObject[key]);
-            shopObjectDetails.attr(key, shopObject[key]);
+            shopObjectName.attr(key, shopObject[key]);
             purchaseButton.attr(key, shopObject[key]);
         }
 
-
         shopObjectDiv.append(purchaseButton);
         shopObjectDiv.append(shopObjectDetails);
+
+        var shopObjectDetail = $('<div class="shopObjectDetail"></div>');
+        shopObjectDetail.css("width", "280px");
+        shopObjectDetail.css("height", "40px");
+        shopObjectDetail.css("text-align", "center");
+        shopObjectDetail.css("font-size", "16px");
+        shopObjectDetail.html(shopObject["stat"] + ": +" + shopObject["effect"]);
+
+
+
 
         shopDisplay.append(shopObjectDiv);
         shopDisplay.append("<br>");
@@ -190,12 +182,8 @@ function getCallback(local_userID) {
     return function(){
         $.get("/refreshdata", {userID: local_userID}).done(function (data) {
             userCoins = data["coins"];
-            var daySteps = data["daySteps"];
 
-            stepDisplay.html(data["daySteps"]);
-            stepDisplay.css('font-size', '300px');
             coinsDisplay.html(userCoins); //to change
-            coinsDisplay.css('font-size', '300px');
         });
     }
 }
