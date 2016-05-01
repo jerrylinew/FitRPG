@@ -6,12 +6,12 @@ class InfoBar extends React.Component {
   render (){
     return(
       <Row className="infobar">
-        <Col lg={1} sm={1} xs={1}></Col>
-        <Col lg={2} sm={2} xs={4} className="infobar-logo-wrapper">
+        <Col lg={3} sm={3} xs={5} className="infobar-logo-wrapper">
           <span> {"FitRPG"} </span>
         </Col>
         <Col lg={6} sm={5} xs={0}> </Col>
         <Col lg={3} sm={4} xs={7} className="infobar-icon-wrapper">
+
           <span className="infobar-box infobar-clickable">
             <Glyphicon glyph="off" className="infobar-icon "/>
           </span>
@@ -53,11 +53,30 @@ class StatsBar extends React.Component{
     var hpPerc = hp[0] / hp[1],
         expPerc = exp[0] / exp[1];
     return (
-      <div className="statsbar-wrapper">
-        <ProgressBar id="hpBar" color={this.styles.hpColor}
-          progress={hpPerc}></ProgressBar>
-        <ProgressBar id="expBar" color={this.styles.expColor}
-          progress={expPerc}></ProgressBar>
+      <div>
+
+        <div className="statsCol">
+          <div className="fa fa-heart statsbar-first-elem" aria-hidden="true"></div>
+          <div className="statsbar-second-elem">
+            <ProgressBar id="hpBar" color={this.styles.hpColor}
+            progress={hpPerc}></ProgressBar>
+          </div>
+          <div id="HPDisplay" className="statsbar-last-elem">
+            70/100
+          </div>
+        </div>
+
+        <div className="statsCol">
+          <div className="fa fa-cubes statsbar-first-elem" aria-hidden="true"></div>
+          <div className="statsbar-second-elem">
+            <ProgressBar id="expBar" color={this.styles.expColor}
+            progress={expPerc}></ProgressBar>
+          </div>
+          <div id="EXPDisplay" className="statsbar-last-elem">
+            5000/8000
+          </div>
+        </div>
+
       </div>
     );
   }

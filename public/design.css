@@ -35,10 +35,12 @@ body{
   width: 100%;
   z-index: 998;
   background-color: #f4f7f7;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #a94442;
+  margin-left: 0;
   font-size: 1.5rem;
   line-height: 200%;
   font-family: Lato, sans-serif;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQIW2NkYGCQBOLnQAwGjDAGNgGwSgwVAE+2AgXahLM7AAAAAElFTkSuQmCC) repeat;
 }
 
 .infologo{
@@ -46,6 +48,7 @@ body{
   font-weight: 400px;
   color: grey;
   text-align:left;
+
 }
 
 .infobar-icon{
@@ -65,7 +68,6 @@ body{
 .infobar-coin-box{
   border-bottom: 5px solid #F0E688;
   float:right;
-
 }
 
 .infobar-username{
@@ -85,8 +87,9 @@ body{
   margin-top: 10px;
   margin-bottom: 4px;
   font-size: 2.5rem;
-  text-align:left;
-  color: #444;
+  font-family: Iceland;
+  text-align: center;
+  color: #333;
   font-weight: 300;
   text-decoration: underline;
 }
@@ -98,6 +101,7 @@ body{
   display: table-cell;
   vertical-align: middle;
 }
+
 
 .infobar-clickable:hover{
   background-color: #ccc;
@@ -112,23 +116,57 @@ body{
   font-family: 'Open Sans', sans-serif;
   font-weight:300;
 }
-.statsRow div{
+.statsRow>div{
   margin-top: 25px;
   border-right:2px solid #eee;
   color: #eff;
   font-size: 3rem;
   text-align: center;
 }
-.statsRow div:last-child{
-  margin-top: 0;
+.statsRow>div:last-child{
+  margin-top: 20px;
   border-right: none;
   font-size: 1rem;
+}
+.statsbar-wrapper{
+  margin-top: 25px !important;
 }
 
 
 .offdefSpan{
   margin-left:10px;
   font-size:3.7rem;
+}
+
+.statsCol  {
+  display: flex;
+  height: 42px;
+}
+
+.statsbar-first-elem{
+  width: 10px;
+  font-size: 1.618rem;
+}
+
+.statsbar-second-elem{
+  flex-grow:1;
+}
+
+.statsbar-last-elem{
+  position: absolute;
+  right: 6.7%;
+  text-align: right;
+  z-index:999;
+  font-size: 1.5em;
+  font-family: lato, sans-serif;
+  font-weight: 500;
+
+  color: black;
+  /*#eff;
+  text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;*/
+}
+.shopLabel{
+
 }
 
 /* Game CSS */

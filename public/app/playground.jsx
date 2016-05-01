@@ -81,7 +81,7 @@ export class Playground extends React.Component {
           </Col>
 
           <Col style={{}} md={3}>
-            <Panel>Shop</Panel>
+            <Panel className="shopLabel">Shop</Panel>
             <ShopItem/>
 
           </Col>
