@@ -13,8 +13,9 @@ var greetingDisplay = $('#greetingDisplay');
 var coinsDisplay = $('#coinsDisplay');
 var shopDisplay = $('#shopContainer');
 var gameDisplay = $('#game');
-var inventoryDisplay = $('#inventoryContainer');
-var statsDisplay = $('#statsContainer');
+var atkDisplay = $('#atkDisplay');
+var defDisplay = $('#defDisplay');
+
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -110,9 +111,7 @@ function displayShop(shopData) {
         shopObjectDiv.css("width", "280px");
         shopObjectDiv.css("height", "40px");
 
-        var shopObjectDetails = $('<div id="obj"' + shopObject["name"] + '></div>');
-        var popover = $('<div class="webui-popover-content">' + shopObject["stats"] + ': ' + '</div>');
-        $('#obj' + shopObject["name"]).webuiPopover({trigger:'hover'});
+        var shopObjectDetails = $('<div class="shopObjectDetail"></div>');
         shopObjectDetails.css("background", "url(" + shopObject["image"] + ") no-repeat");
         shopObjectDetails.css("background-size", "contain");
         shopObjectDetails.css("background-position", "90% 50%");
@@ -130,7 +129,6 @@ function displayShop(shopData) {
         objectText.css("width", "150px");
         objectText.css("text-align", "center");
         shopObjectDetails.append(objectText);
-        shopObjectDetails.append(popover);
 
         var purchaseButton = $('<button class="purchaseButton"></button>');
         purchaseButton.css("background", "url(images/coin.png) no-repeat");
@@ -182,27 +180,26 @@ function displayShop(shopData) {
 }
 
 function displayStats(statsData) {
-    statsDisplay.html("");
     console.log(statsData);
 
-    var statsObject = statsData;
-    var statsObjectDiv = $('<div class="statsObject"></div>');
+    atkDisplay.html(statsData["Atk"]);
+    defDisplay.html(statsData["Def"]);
 
-    var keyDict = {   // key to display, and show/hide boolean
-        HP: {k: "HP: ", toDisplay: true, size: "20px"},
-        Atk: {k: "Atk: ", toDisplay: true, size: "14px"},
-        Def: {k: "Def: ", toDisplay: true, size: "14px"}
-    };
-
-    for (var key in statsObject) {
-        if (keyDict[key]["toDisplay"]) {
-            statsObjectDiv.append(keyDict[key]["k"] + statsObject[key] + "<br>");
-        }
-        statsObjectDiv.attr(key, statsObject[key]);
-    }
-
-    statsDisplay.append(statsObjectDiv);
-    statsDisplay.append("<br>");
+    //var keyDict = {   // key to display, and show/hide boolean
+    //    HP: {k: "HP: ", toDisplay: true, size: "20px"},
+    //    Atk: {k: "Atk: ", toDisplay: true, size: "14px"},
+    //    Def: {k: "Def: ", toDisplay: true, size: "14px"}
+    //};
+    //
+    //for (var key in statsObject) {
+    //    if (keyDict[key]["toDisplay"]) {
+    //        statsObjectDiv.append(keyDict[key]["k"] + statsObject[key] + "<br>");
+    //    }
+    //    statsObjectDiv.attr(key, statsObject[key]);
+    //}
+    //
+    //statsDisplay.append(statsObjectDiv);
+    //statsDisplay.append("<br>");
 }
 
 function getCallback(local_userID) {
