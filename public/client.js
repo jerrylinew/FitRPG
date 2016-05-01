@@ -77,7 +77,7 @@ function displayShop(shopData) {
             name: {k: "", toDisplay: true, size: "20px"},
             price: {k: "Price: ", toDisplay: true, size: "14px"},
             stat: {k: "Stat: ", toDisplay: true, size: "14px"},
-            effect: {k: "Effect: ", toDisplay: true, size: "14px"},
+            effect: {k: "Effect: +", toDisplay: true, size: "14px"},
             image: {k: "", toDisplay: false, size: "20px"}
         };
 

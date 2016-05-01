@@ -22,14 +22,14 @@ var shopData = {
         price: "30",
         image: "/img/sword.jpg",
         stat: "Atk",
-        effect: "+3"
+        effect: 3
     },
     Armor: {
         name: "Armor",
         price: "45",
         image: "/img/Armor.jpg",
         stat: "Def",
-        effect: "+5"
+        effect: 5
     }
 };
 
