@@ -9,6 +9,7 @@
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.3.0",
     "chart.js": "^2.0.2",
+    "jQuery": "^1.7.4",
     "jquery": "^2.2.3",
     "react": "^15.0.2",
     "react-bootstrap": "^0.29.3",

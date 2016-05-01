@@ -135,6 +135,9 @@ body{
 
 #game{
   height: 500px;
+  position: relative;
+  z-index: -1;
+  opacity: 0;
 }
 
 
@@ -174,10 +177,17 @@ body{
   left: 170px;
 }
 
-#attackBtn:focus{
-  outline: none;
+button:focus{
+  outline: none !important;
 }
 
 #game img{
   position: relative;
+}
+
+#startBattle{
+  position: absolute;
+  left: 40%;
+  top: 45%;
+  transform: scale(2,2);
 }

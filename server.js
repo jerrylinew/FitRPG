@@ -174,6 +174,13 @@ app.get('/attacked', function(req, res){
         res.send(data);
         return;
     }
+
+    var damage = monsterData[users[userID]["currentLevel"]]["attack"];
+    damage -= users[userID]["stats"]["Def"];
+
+    if(damage <= 0)
+        damage = 1;
+
     users[userID]["stats"]["HP"] -= monsterData[users[userID]["currentLevel"]]["attack"];
 
     if(users[userID]["stats"]["HP"] <= 0){
@@ -185,6 +192,14 @@ app.get('/attacked', function(req, res){
 
     data["HP"] = users[userID]["stats"]["HP"];
     res.send(data);
+});
+
+app.get('/attackMonster', function(req, res){
+    var currentMonsterHealth = req.query.monsterHealth;
+    var userID = req.query.userID;
+
+
+    data = {};
 });
 
 app.listen(port, function(){
