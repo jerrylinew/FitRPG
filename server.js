@@ -65,11 +65,9 @@ app.get('/', function(req, res){
 
 app.get('/getdata', function(req, res){
     var code = req.query.code;
-    console.log(code);
     var user = {};
 
     apiClient.getAccessToken(code, redirectURL).then(function(result){
-        console.log(result);
         user["userID"] = result.user_id;
         user["accessToken"] = result.access_token;
         user["refreshToken"] = result.refresh_token;
@@ -169,8 +167,6 @@ app.get('/attacked', function(req, res){
         res.send(data);
         return;
     }
-    console.log(users);
-    console.log(userID);
     users[userID]["stats"]["HP"] -= monsterData[users[userID]["currentLevel"]]["attack"];
 
     if(users[userID]["stats"]["HP"] <= 0){

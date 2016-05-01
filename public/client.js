@@ -183,7 +183,7 @@ function displayShop(shopData) {
         shopDisplay.append("<br>");
     }
 
-    shopDisplay.css()
+    shopDisplay.css();
 
     $('.purchaseButton').on("click", function() {
         var item = $(this).attr('name');
