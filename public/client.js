@@ -239,7 +239,7 @@ function displaySteps(stepsData) {
             }]
         },
         options: {
-            responsive: true,
+            responsive: true
         }
     };
 
@@ -279,7 +279,7 @@ function displaySleep(sleepData) {
             }]
         },
         options: {
-            responsive: true,
+            responsive: true
         }
     };
 
