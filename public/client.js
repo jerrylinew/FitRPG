@@ -65,7 +65,7 @@ $(document).ready(function() {
         adjustHPBar(1);
 
         console.log(userHP);
-        $('.progressWrap:first').css("width", String((userHP / maxUserrHP) * 100) + '%');
+        $('.progressWrap:first').css("width", String((userHP / maxUserHP) * 100) + '%');
 
         var refreshInterval = 1; //in minutes
         console.log("getting steps");
