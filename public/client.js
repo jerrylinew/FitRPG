@@ -100,6 +100,7 @@ $(document).ready(function() {
 
     $("#startBattle").on('click', function(e){
         e.preventDefault();
+        $('#enemyImage').hide();
 
         $(this).fadeOut('1000', function(){
             console.log("fading in");
@@ -112,6 +113,7 @@ $(document).ready(function() {
                 monsterData = data.monsterData;
                 var imageFile = data.image;
                 $('#enemyImage').attr('src', "images/" + imageFile);
+                $('#enemyImage').show();
                 maxMonsterHP = monsterData['HP'];
                 adjustHPBar(1);
             });
