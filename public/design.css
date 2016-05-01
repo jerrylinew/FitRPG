@@ -2,7 +2,9 @@
 
 
 /* Progress bar */
-
+.body{
+  font-family: lato, verdana, sans-serif;
+}
 .progress{
   height: 10px;
   border-radius: 3px;
@@ -14,6 +16,109 @@
   height: 10px;
   border-radius: 3px;
 }
+
+/* Info Bar */
+.infobar{
+  top: 0;
+  padding: 0px, -15px, 0px, 20px;
+  width: 100%;
+  z-index: 998;
+  background-color: #f4f7f7;
+  border-bottom: 1px solid #ccc;
+  font-size: 1.5rem;
+  line-height: 200%;
+  font-family: Lato, sans-serif;
+}
+
+.infologo{
+  font-size: 2rem;
+  font-weight: 400px;
+}
+
+.infobar-icon{
+
+}
+
+.infobar-box{
+  font-size: 2rem;
+  border: 1px solid gray;
+  border-radius: 2px;
+  width: 30px;
+  float:right;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.infobar-coin-box{
+  border-bottom: 5px solid #F0E688;
+  float:right;
+
+}
+
+.infobar-username{
+  color: black;
+  font-size: 1.8rem;
+  padding-right: 10px;
+}
+.infobar-coin-count{
+  font-weight: 200;
+  font-size: 1.5rem;
+  font-family: futura;
+  color: brown;
+  padding-left: 3px;
+}
+
+.infobar-logo-wrapper{
+  margin-top: 10px;
+  margin-bottom: 4px;
+  font-size: 2.5rem;
+  text-align:left;
+  color: #444;
+  font-weight: 300;
+  text-decoration: underline;
+}
+
+.infobar-icon-wrapper{
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 4px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.infobar-clickable:hover{
+  background-color: #ccc;
+}
+
+/* Status Bar */
+
+.statsRow{
+  border-radius: 0;
+  height: 100px;
+  background-color: rgb(57, 64, 107);
+  font-family: 'Open Sans', sans-serif;
+  font-weight:300;
+}
+.statsRow div{
+  margin-top: 25px;
+  border-right:2px solid #eee;
+  color: #eff;
+  font-size: 3rem;
+  text-align: center;
+}
+.statsRow div:last-child{
+  margin-top: 0;
+  border-right: none;
+  font-size: 1rem;
+}
+
+
+.offdefSpan{
+  margin-left:10px;
+  font-size:3.7rem;
+}
+
+/* Game CSS */
 
 #game{
   border: 1px solid black;
