@@ -53,6 +53,13 @@ var shopData = {
         image: "images/Shuriken.png",
         stat: "Atk",
         effect: 15
+    },
+    Helmet: {
+        name: "Helmet",
+        price: "2500",
+        image: "images/Helmet.png",
+        stat: "Def",
+        effect: 32
     }
 };
 
