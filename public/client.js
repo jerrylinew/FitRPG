@@ -15,7 +15,8 @@ var shopDisplay = $('#shopContainer');
 var gameDisplay = $('#game');
 var atkDisplay = $('#atkDisplay');
 var defDisplay = $('#defDisplay');
-
+var stepsDisplay = $('#stepState');
+var sleepDisplay = $('#sleepState');
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -63,6 +64,15 @@ $(document).ready(function() {
         $.get("/getStats", {userID: userID}).done(function(data){
             displayStats(data);
         });
+
+        $.get("/getSteps", {userID: userID}).done(function(data){
+            displaySteps(data);
+        });
+
+        $.get("/getSleep", {userID: userID}).done(function(data){
+            displaySleep(data);
+        });
+
     });
 
     setInterval(function() {
@@ -192,6 +202,49 @@ function displayStats(statsData) {
     atkDisplay.html(statsData["Atk"]);
     defDisplay.html(statsData["Def"]);
 }
+
+function displaySteps(stepsData) {
+    console.log(stepsData);
+    var chart = $('<div class="chart"></div>');
+
+    var canvas = $('<canvas id="stepsChart" class="pie"></canvas>');
+    var legend = $('<div id="stepsLegend"></div>');
+
+    var options = {
+        responsive: true,
+        scaleBeginAtZero: true,
+        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+    }
+
+    //context
+    var ctxPTD = $('#stepsChart').get(0).getContext("2d");
+    //data
+    var dataPTD = [
+        {
+            label: "Steps today",
+            color: "#5093ce",
+            highlight: "#78acd9",
+            value: stepsData
+        },
+        {
+            label: "Steps to go",
+            color: "#c7ccd1",
+            highlight: "#e3e6e8",
+            value: (10000-stepsData)
+        }
+    ];
+
+    var propertyTypes = new Chart(ctxPTD).Pie(dataPTD, options);
+    $('#stepsLegend').html(propertyTypes.generateLegend());
+
+    stepsDisplay.append(chart);
+
+}
+
+function displaySleep(sleepData) {
+    console.log(sleepData);
+}
+
 
 function getCallback(local_userID) {
     return function(){

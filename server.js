@@ -126,6 +126,16 @@ app.get('/getStats', function(req, res) {
     res.send(users[userID]["stats"]);
 });
 
+app.get('/getSteps', function(req, res){
+    var userID = req.query.userID;
+    res.send(users[userID]["dailyAwarded"]);
+});
+
+app.get('/getSleep', function(req, res){
+    var userID = req.query.userID;
+    res.send(users[userID]);
+});
+
 app.get('/purchase', function(req, res){
     var purchasedItem = req.query.item;
     var userID = req.query.userID;
