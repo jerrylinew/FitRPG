@@ -121,7 +121,8 @@ function displayShop(shopData) {
 function getCallback(local_userID) {
     return function(){
         $.get("/refreshdata", {userID: local_userID}).done(function (data) {
-            userCoins = data["daySteps"];
+            userCoins = data["coins"];
+            var daySteps = data["daySteps"];
 
             stepDisplay.html(data["daySteps"]);
             stepDisplay.css('font-size', '300px');
