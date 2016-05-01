@@ -16,6 +16,7 @@
     "react-d3-core": "^1.2.8",
     "react-d3-tooltip": "^1.4.10",
     "react-dom": "^15.0.2",
+    "redux": "^3.5.2",
     "webpack": "^1.13.0"
   },
   "devDependencies": {},

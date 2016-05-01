@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import { Header } from './header.jsx';
 import { ProgressBar } from './progress_bar.jsx';
 import { Playground } from './playground.jsx'
-
+import { createStore}  from 'redux';
 
 class App extends React.Component {
     constructor(props){
@@ -23,20 +23,23 @@ class App extends React.Component {
 
     }
 
-    loadData(data){
-      console.log("loadData called", data.profile.hp);
-      this.setState({
-        hp: data.profile.hp
-      });
-    }
-
     componentWillUnMount(){
 
     }
     componentDidMount(){
     //  setInterval(this.loadData, +this.props.pollInterval);
-      this.store = data;
-      this.attack;
+    //  this.props.handle.addListener(this.onChange);
+    }
+
+    onChange(data){
+      console.log("On change");
+      this.setState({
+        hp: data.profile.hp.slice(),
+        exp: data.profile.exp.slice(),
+        offense: data.profile.offense,
+        defense: data.profile.defense,
+        coins: data.profile.coins
+      });
     }
 
     attack(event, damage) {
@@ -74,18 +77,38 @@ var data = {
   sleep: 7.5
 }
 
+
 class Store{
   constructor(data){
-    this.data = data;
+    this.data = Object.assign({}, data);
+    this.dest = null;
   }
-  getData(){
-    return this.data;
+
+  addListener(func){
+    this.dest = func;
   }
-  setCallback(func){
-    this.callback = func;
+
+  makeChange(func){
+    func(this.data);
+    this.broadcastChange();
+  }
+
+  broadcastChange(){
+    this.dest(this.data);
   }
 }
 
+class Handle{
+  constructor(store){
+    this.store = store;
+  }
+  addListener(func){
+    this.store.addListener(func);
+  }
+}
 
-var app = <App data={data} />;
+var store = new Store(data);
+var handle = new Handle(store);
+
+var app = <App data={data} handle={handle}/>;
 ReactDOM.render(app, document.getElementById('app'));
