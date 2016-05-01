@@ -1,17 +1,18 @@
 import React from 'react';
 import { Button, ButtonToolbar, Navbar, Nav, NavItem, Col, Row, Grid, Glyphicon} from 'react-bootstrap';
 import { ProgressBar } from './progress_bar.jsx'
+import $ from 'jquery';
 
 class InfoBar extends React.Component {
   render (){
     return(
       <Row className="infobar">
         <Col lg={1} sm={1} xs={1}></Col>
-        <Col lg={2} sm={2} xs={11} className="infobar-logo-wrapper">
+        <Col lg={2} sm={2} xs={4} className="infobar-logo-wrapper">
           <span> {"FitRPG"} </span>
         </Col>
         <Col lg={6} sm={5} xs={0}> </Col>
-        <Col lg={3} sm={4} xs={12} className="infobar-icon-wrapper">
+        <Col lg={3} sm={4} xs={7} className="infobar-icon-wrapper">
           <span className="infobar-box infobar-clickable">
             <Glyphicon glyph="off" className="infobar-icon "/>
           </span>
@@ -54,8 +55,11 @@ class StatsBar extends React.Component{
         expPerc = exp[0] / exp[1];
     return (
       <div className="statsbar-wrapper">
+
+
         <ProgressBar color={this.styles.hpColor}
           progress={hpPerc}></ProgressBar>
+
         <ProgressBar color={this.styles.expColor}
           progress={expPerc}></ProgressBar>
       </div>
