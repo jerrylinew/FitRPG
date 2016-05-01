@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, ButtonToolbar, Navbar, Nav, NavItem, Col, Row, Grid, Glyphicon} from 'react-bootstrap';
 import { ProgressBar } from './progress_bar.jsx'
-import $ from 'jquery';
 
 class InfoBar extends React.Component {
   render (){

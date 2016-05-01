@@ -26,7 +26,7 @@ var monsterData = [
 ];
 
 var shopData = {
-    Sword: {
+    Dagger: {
         name: "Dagger",
         price: "300",
         image: "images/Dagger.png",
@@ -53,6 +53,13 @@ var shopData = {
         image: "images/Shuriken.png",
         stat: "Atk",
         effect: 15
+    },
+    Helmet: {
+        name: "Helmet",
+        price: "2500",
+        image: "images/Helmet.png",
+        stat: "Def",
+        effect: 32
     }
 };
 
@@ -116,22 +123,23 @@ app.get('/refreshdata', function(req, res){
 });
 
 app.get('/setupShop', function(req, res) {
-   res.send(shopData);
+   res.json(shopData);
 });
 
 app.get('/getStats', function(req, res) {
     var userID = req.query.userID;
-    res.send(users[userID]["stats"]);
+    res.json(users[userID]["stats"]);
 });
 
 app.get('/getSteps', function(req, res){
     var userID = req.query.userID;
-    res.send(users[userID]["dailyAwarded"]);
+    console.log(users[userID]["dailyAwarded"]);
+    res.json(users[userID]["dailyAwarded"]);
 });
 
 app.get('/getSleep', function(req, res){
     var userID = req.query.userID;
-    res.send(users[userID]);
+    res.json(users[userID]);
 });
 
 app.get('/purchase', function(req, res){

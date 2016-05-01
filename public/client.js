@@ -45,7 +45,6 @@ var adjustHPBar = function(val){
 };
 
 $(document).ready(function() {
-
     code = getParameterByName("code");
     console.log(code);
 
@@ -68,30 +67,27 @@ $(document).ready(function() {
             var daySteps = data["daySteps"];
 
             coinsDisplay.html(userCoins); //to change
+
+            $.get("/setupShop").done(function(data){
+                displayShop(data);
+            });
+
+            $.get("/getStats", {userID: userID}).done(function(data){
+                displayStats(data);
+            });
+
+            $.get("/getSteps", {userID: userID}).done(function(data){
+                console.log(data);
+                displaySteps(data);
+            });
+
+            //$.get("/getSleep", {userID: userID}).done(function(data){
+            //    displaySleep(data);
+            //});
+            displaySleep(4036);
         });
 
         setInterval(getCallback(userID), 1000 * 60 * refreshInterval);
-
-        //displayShop({Sword: {name: "Sword", price: 30, stat: "Atk", effect: 3}});
-        $.get("/setupShop").done(function(data){
-            displayShop(data);
-        });
-
-        $.get("/getStats", {userID: userID}).done(function(data){
-            displayStats(data);
-        });
-
-        //$.get("/getSteps", {userID: userID}).done(function(data){
-        //    displaySteps(data);
-        //});
-        //testing
-        displaySteps(8012);
-
-        //$.get("/getSleep", {userID: userID}).done(function(data){
-        //    displaySleep(data);
-        //});
-        displaySleep(4036);
-
     });
 
     setInterval(function() {
@@ -142,7 +138,7 @@ $(document).ready(function() {
 
 
 function displayShop(shopData) {
-
+    shopDisplay.html("");
     for (var index in shopData) {
         var shopObject = shopData[index];
         var shopObjectDiv = $('<div class="shopObject"></div>');
@@ -204,9 +200,9 @@ function displayShop(shopData) {
         shopDisplay.append("<br>");
     }
 
-    shopDisplay.css();
-
     $('.purchaseButton').on("click", function() {
+        console.log("shop button clicked");
+
         var item = $(this).attr('name');
 
         $.get("/purchase", {userID: userID, item: item}).done(function (data) {
@@ -233,6 +229,8 @@ function displayStats(statsData) {
 
 function displaySteps(stepsData) {
     console.log(stepsData);
+    stepsDisplay.html("");
+
     var chart = $('<div class="chart"></div>');
 
     var canvas = $('<canvas id="stepsChart" class="pie"></canvas>');
@@ -247,7 +245,7 @@ function displaySteps(stepsData) {
     var config = {
         type: 'doughnut',
         data: {
-            label: [
+            labels: [
                 "Steps today",
                 "Steps to go"
             ],
@@ -268,12 +266,11 @@ function displaySteps(stepsData) {
     };
 
     var propertyTypes = new Chart(ctxPTD, config);
-    $('#stepsLegend').html(propertyTypes.generateLegend());
-
 }
 
 function displaySleep(sleepData) {
     console.log(sleepData);
+    sleepDisplay.html("");
 
     var chart = $('<div class="chart"></div>');
 
@@ -282,21 +279,21 @@ function displaySleep(sleepData) {
 
     chart.append(canvas);
     chart.append(legend);
-    stepsDisplay.append(chart);
+    sleepDisplay.append(chart);
     //context
     var ctxPTD = $('#sleepChart').get(0).getContext("2d");
 
     var config = {
         type: 'doughnut',
         data: {
-            label: [
+            labels: [
                 "Sleep time",
-                "Sleep target"
+                "Sleep to go"
             ],
             datasets: [{
                 data: [
                     sleepData,
-                    10000-sleepData
+                    10000 - sleepData
                 ],
                 backgroundColor: [
                     "#36A2EB",
@@ -310,7 +307,6 @@ function displaySleep(sleepData) {
     };
 
     var propertyTypes = new Chart(ctxPTD, config);
-    $('#sleepLegend').html(propertyTypes.generateLegend());
 }
 
 
@@ -321,6 +317,24 @@ function getCallback(local_userID) {
             var daySteps = data["daySteps"];
 
             coinsDisplay.html(userCoins); //to change
+
+            $.get("/setupShop").done(function(data){
+                displayShop(data);
+            });
+
+            $.get("/getStats", {userID: userID}).done(function(data){
+                displayStats(data);
+            });
+
+            $.get("/getSteps", {userID: userID}).done(function(data){
+                console.log(data);
+                displaySteps(data);
+            });
+
+            //$.get("/getSleep", {userID: userID}).done(function(data){
+            //    displaySleep(data);
+            //});
+            displaySleep(4036);
         });
     }
 }
