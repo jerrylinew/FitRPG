@@ -72,6 +72,12 @@ function displayShop(shopData) {
         var shopObject = shopData[index];
         var shopObjectDiv = $('<div class="shopObject"></div>');
         var purchaseButton = $('<button class="purchaseButton" style="background: url(images/coin.jpg)">Buy</button>');
+        purchaseButton.css("background", "url(images/coin.jpg) no-repeat");
+        purchaseButton.css("background-size", "contain");
+        purchaseButton.css("width", "70px");
+        purchaseButton.css("height", "40px");
+        purchaseButton.css("text-align", "right");
+        purchaseButton.css("font-size", "18px");
 
         var keyDict = {   // key to display, and show/hide boolean
             name: {k: "", toDisplay: true, size: "20px"},
