@@ -31,7 +31,6 @@ function getParameterByName(name, url) {
 }
 
 $(document).ready(function() {
-
     code = getParameterByName("code");
     console.log(code);
 
@@ -67,11 +66,9 @@ $(document).ready(function() {
             displayStats(data);
         });
 
-        //$.get("/getSteps", {userID: userID}).done(function(data){
-        //    displaySteps(data);
-        //});
-        //testing
-        displaySteps(8012);
+        $.get("/getSteps", {userID: userID}).done(function(data){
+            displaySteps(data);
+        });
 
         //$.get("/getSleep", {userID: userID}).done(function(data){
         //    displaySleep(data);
@@ -242,13 +239,11 @@ function displaySteps(stepsData) {
             }]
         },
         options: {
-            responsive: true
+            responsive: true,
         }
     };
 
     var propertyTypes = new Chart(ctxPTD, config);
-    $('#stepsLegend').html(propertyTypes.generateLegend());
-
 }
 
 function displaySleep(sleepData) {
@@ -275,7 +270,7 @@ function displaySleep(sleepData) {
             datasets: [{
                 data: [
                     sleepData,
-                    10000-sleepData
+                    10000 - sleepData
                 ],
                 backgroundColor: [
                     "#36A2EB",
@@ -284,12 +279,11 @@ function displaySleep(sleepData) {
             }]
         },
         options: {
-            responsive: true
+            responsive: true,
         }
     };
 
     var propertyTypes = new Chart(ctxPTD, config);
-    $('#sleepLegend').html(propertyTypes.generateLegend());
 }
 
 
