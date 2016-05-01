@@ -40817,9 +40817,9 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'statsbar-wrapper' },
-	        _react2.default.createElement(_progress_bar.ProgressBar, { color: this.styles.hpColor,
+	        _react2.default.createElement(_progress_bar.ProgressBar, { id: 'hpBar', color: this.styles.hpColor,
 	          progress: hpPerc }),
-	        _react2.default.createElement(_progress_bar.ProgressBar, { color: this.styles.expColor,
+	        _react2.default.createElement(_progress_bar.ProgressBar, { id: 'expBar', color: this.styles.expColor,
 	          progress: expPerc })
 	      );
 	    }
@@ -41097,8 +41097,8 @@
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
 	            { style: { textAlign: "center" }, md: 3 },
-	            _react2.default.createElement(_reactD3Basic.PieChart, { width: 250, height: 250, innerRadius: 20, title: 'Step', data: stepData, chartSeries: stepChartSeries, name: getKey, value: getVal }),
-	            _react2.default.createElement(_reactD3Basic.PieChart, { width: 250, height: 250, innerRadius: 20, title: 'Sleep', data: sleepData, chartSeries: sleepChartSeries, name: getKey, value: getVal })
+	            _react2.default.createElement('div', { id: 'stepState' }),
+	            _react2.default.createElement('div', { id: 'sleepState' })
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
@@ -41107,7 +41107,7 @@
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
-	            { md: 3 },
+	            { style: {}, md: 3 },
 	            _react2.default.createElement(
 	              _reactBootstrap.Panel,
 	              null,
