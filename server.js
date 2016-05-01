@@ -80,10 +80,12 @@ app.get('/getdata', function(req, res){
         user["refreshToken"] = result.refresh_token;
         user["coins"] = 0;
         user["currentLevel"] = 0;
+        user["userExp"] = 0;
+        user["maxUserHP"] = 100;
         user["monsterStats"] = {
             HP: 100,
             Atk: 15,
-            Exp: 50,
+            Exp: 10,
             Level: 0
         };
 
@@ -207,14 +209,27 @@ app.get('/attackMonster', function(req, res){
     if(users[userID]["monsterStats"]["HP"] < 0)
         users[userID]["monsterStats"]["HP"] = 0;
 
-    data = {};
+    var data = {};
 
     data["HP"] = users[userID]["monsterStats"]["HP"];
 
     if(data["HP"] <= 0){
         data["monsterDead"] = true;
         nextLevel(userID);
-        data["exp"] = users[userID]["monsterStats"]["Exp"];
+        users[userID]["userExp"] += users[userID]["monsterStats"]["Exp"];
+        if(users[userID]["userExp"] >= 100){
+            users[userID]["userExp"] = users[userID]["userExp"] - 100;
+
+            data["levelUp"] = true;
+            users[userID]["maxUserHP"] += 20;
+            users[userID]["stats"]["HP"] = users[userID]["maxUserHP"];
+            users[userID]["stats"]["Atk"] += 5;
+            users[userID]["stats"]["Def"] += 5;
+        }
+        else
+            data["levelUp"] = false;
+
+        data["exp"] = users[userID]["userExp"];
     }
     else
         data["monsterDead"] = false;

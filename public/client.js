@@ -10,6 +10,7 @@ var userCoins;
 var userHP;
 var monsterData;
 var maxMonsterHP;
+var maxUserHP;
 
 var nameDisplay = $('#nameDisplay');
 var coinsDisplay = $('#coinsDisplay');
@@ -58,12 +59,13 @@ $(document).ready(function() {
         userGender = data.gender;
         nameDisplay.html(userName);
         userHP = data.stats.HP;
+        maxUserHP = data.maxUserHP;
         monsterData = data.monsterStats;
         maxMonsterHP = monsterData['HP'];
         adjustHPBar(1);
 
         console.log(userHP);
-        $('.progressWrap:first').css("width", String(userHP) + '%');
+        $('.progressWrap:first').css("width", String((userHP / maxUserrHP) * 100) + '%');
 
         var refreshInterval = 1; //in minutes
         console.log("getting steps");
@@ -115,7 +117,7 @@ $(document).ready(function() {
                     var isDead = data.isDead;
                     if(hpLeft == undefined)
                         return;
-                    $('.progressWrap:first').css("width", String(hpLeft) + '%');
+                    $('.progressWrap:first').css("width", String((userHP / maxUserHP) * 100) + '%');
                 });
                 var bulletImage = $('#bulletImage');
                 bulletImage.fadeOut(250, function(){
@@ -138,12 +140,21 @@ $(document).ready(function() {
                 var hpLeft = data.HP;
                 adjustHPBar(hpLeft / maxMonsterHP);
 
-                if(hpLeft <= 0){
+                if(data.monsterDead){
                     hpLeft = 0;
-                    $('#game').fadeOut(1000);
+                    $('#game').fadeOut(1000, function(){
+                        $('#startBattle').fadeIn(1000);
+                    });
+                    $('.progressWrap:last').css("width", String(data.exp) + '%');
+                    if(data.levelUp){
+                        swal({
+                            title: "Level up!",
+                            text: "Your stats have increased!",
+                            imageUrl: "images/weight.png"
+                        });
+                    }
                 }
 
-                $('#startBattle').fadeIn(1000);
             });
             $('#userImage').animate({
                 left: '-=450'
