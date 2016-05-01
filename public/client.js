@@ -184,6 +184,7 @@ $(document).ready(function() {
                         });
                         displayStats(data.stats);
                         maxUserHP = data.maxUserHP;
+                        $('.progressWrap:first').css("width", '100%');
                     }
                 }
 
