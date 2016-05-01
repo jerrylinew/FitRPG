@@ -71,32 +71,44 @@ function displayShop(shopData) {
     for (var index in shopData) {
         var shopObject = shopData[index];
         var shopObjectDiv = $('<div class="shopObject"></div>');
-        var purchaseButton = $('<button class="purchaseButton" style="background: url(images/coin.jpg)">Buy</button>');
+        shopObjectDiv.css("width", "270px");
+        shopObjectDiv.css("height", "40px");
+
+        var shopObjectDetails = $('<div class="shopObjectDetails"></div>');
+        shopObjectDetails.css("width", "200px");
+        shopObjectDetails.css("height", "40px");
+        shopObjectDetails.css("float", "left");
+        shopObjectDetails.html(shopObject["name"]);
+
+        var purchaseButton = $('<button class="purchaseButton" style="background: url(images/coin.jpg)"></button>');
         purchaseButton.css("background", "url(images/coin.jpg) no-repeat");
         purchaseButton.css("background-size", "contain");
         purchaseButton.css("width", "70px");
         purchaseButton.css("height", "40px");
+        purchaseButton.css("float", "left");
         purchaseButton.css("text-align", "right");
         purchaseButton.css("font-size", "18px");
+        purchasButton.html(shopObject["price"]);
 
-        var keyDict = {   // key to display, and show/hide boolean
-            name: {k: "", toDisplay: true, size: "20px"},
-            price: {k: "Price: ", toDisplay: true, size: "14px"},
-            stat: {k: "Stat: ", toDisplay: true, size: "14px"},
-            effect: {k: "Effect: +", toDisplay: true, size: "14px"},
-            image: {k: "", toDisplay: false, size: "20px"}
-        };
+        //var keyDict = {   // key to display, and show/hide boolean
+        //    name: {k: "", toDisplay: true, size: "20px"},
+        //    price: {k: "Price: ", toDisplay: true, size: "14px"},
+        //    stat: {k: "Stat: ", toDisplay: true, size: "14px"},
+        //    effect: {k: "Effect: +", toDisplay: true, size: "14px"},
+        //    image: {k: "", toDisplay: false, size: "20px"}
+        //};
 
         for (var key in shopObject) {
-            if (keyDict[key]["toDisplay"]) {
-                shopObjectDiv.append(keyDict[key]["k"] + shopObject[key] + "<br>");
-            }
             shopObjectDiv.attr(key, shopObject[key]);
+            shopObjectDetails.attr(key, shopObject[key]);
             purchaseButton.attr(key, shopObject[key]);
         }
 
+
+        shopObjectDiv.append(purchaseButton);
+        shopObjectDiv.append(shopObjectDetails);
+
         shopDisplay.append(shopObjectDiv);
-        shopDisplay.append(purchaseButton);
         shopDisplay.append("<br><br>");
     }
     $('.purchaseButton').on("click", function() {
