@@ -8,6 +8,7 @@ var userName;
 var userGender;
 var userCoins;
 var userHP;
+var monsterHealth = 100;
 
 var nameDisplay = $('#nameDisplay');
 var coinsDisplay = $('#coinsDisplay');
@@ -89,38 +90,56 @@ $(document).ready(function() {
         setInterval(getCallback(userID), 1000 * 60 * refreshInterval);
     });
 
-    setInterval(function() {
-        gameDisplay.append('<img id="bulletImage" src="images/bullet.png" alt="bullet"/>');
-        $('#bulletImage').animate({
-            left: '-=460'
-        }, 1000, function(){
-            $.get("/attacked", {userID: userID}).done(function(data){
-                var hpLeft = data.HP;
-                var isDead = data.isDead;
-                if(hpLeft == undefined)
-                    return;
-                $('.progressWrap:first').css("width", String(hpLeft) + '%');
-                console.log(hpLeft);
-                console.log(isDead);
-            });
-            var bulletImage = $('#bulletImage');
-            bulletImage.fadeOut(250, function(){
-                bulletImage.css({"left": "50"});
-            });
-            setTimeout(function(){
-                bulletImage.remove();
-            }, 300);
+    $("#startBattle").on('click', function(e){
+        e.preventDefault();
+
+        $(this).fadeOut('1000', function(){
+            console.log("fading in");
+            $('#game').css('opacity', '1');
         });
-    }, 4000);
+
+
+        setInterval(function() {
+            gameDisplay.append('<img id="bulletImage" src="images/bullet.png" alt="bullet"/>');
+            $('#bulletImage').animate({
+                left: '-=440'
+            }, 1000, function(){
+                $.get("/attacked", {userID: userID}).done(function(data){
+                    var hpLeft = data.HP;
+                    var isDead = data.isDead;
+                    if(hpLeft == undefined)
+                        return;
+                    $('.progressWrap:first-child').css("width", String(hpLeft) + '%');
+                });
+                var bulletImage = $('#bulletImage');
+                bulletImage.fadeOut(250, function(){
+                    bulletImage.css({"left": "50"});
+                });
+                setTimeout(function(){
+                    bulletImage.remove();
+                }, 300);
+            });
+        }, 4000);
+    });
 
     $("#attackBtn").on('click', function(e){
         e.preventDefault();
         $(this).attr('disabled', true);
         $('#userImage').animate({
-            left: '+=460'
+            left: '+=450'
         }, 1000, function(){
+            $.get("/attackMonster", {userID: userID, monsterHealth: monsterHealth}).done(function(data){
+                var hpLeft = data.HP;
+
+                if(hpLeft <= 0){
+                    hpLeft = 0;
+                    $('#game').fadeOut(500);
+                }
+
+                console.log("monster hp left: " + String(hpLeft));
+            });
             $('#userImage').animate({
-                left: '-=460'
+                left: '-=450'
             }, 1000, function(){
                 $('#attackBtn').removeAttr('disabled');
             });

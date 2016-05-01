@@ -40,13 +40,16 @@ class Game extends React.Component {
   render () {
     return (
       <div className="row">
+        <button className="btn btn-primary btn-lg" id="startBattle">
+            Enter the arena!
+        </button>
         <div className="col-md-12 col-xs-12" id="game">
           <div id="enemyHPWrapper" style={{position:"absolute", display:"none"}}>
             <ProgressBar color="red" progress="1.0" shape="thin"/>
           </div>
           <img id="enemyImage" src="images/enemy.gif" alt="enemy"/>
           <img id="userImage" src="images/warrior.gif" alt="warrior"/>
-          <button id="attackBtn" type="button" className="btn btn-primary btn-large">Attack!</button>
+          <button id="attackBtn" type="button" className="btn btn-primary btn-lg">Attack!</button>
         </div>
       </div>
     );
