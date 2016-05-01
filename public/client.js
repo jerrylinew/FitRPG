@@ -221,6 +221,7 @@ function displaySteps(stepsData) {
 
     var config = {
         type: 'doughnut',
+        circumference: 4*Math.PI,
         data: {
             labels: [
                 "Steps today",
@@ -261,10 +262,11 @@ function displaySleep(sleepData) {
 
     var config = {
         type: 'doughnut',
+        circumference: 4*Math.PI,
         data: {
             labels: [
                 "Sleep time",
-                "Sleep target"
+                "Sleep to go"
             ],
             datasets: [{
                 data: [
