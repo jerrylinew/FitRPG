@@ -142,6 +142,8 @@ $(document).ready(function() {
                     hpLeft = 0;
                     $('#game').fadeOut(1000);
                 }
+
+                $('#startBattle').fadeIn(1000);
             });
             $('#userImage').animate({
                 left: '-=450'

@@ -8,7 +8,7 @@ var app = express();
 var port = process.env.PORT || 8080;
 var url = require('url');
 var FitbitApiClient = require("fitbit-node");
-var redirectURL = "http://fitrpg.herokuapp.com/dashboard";
+var redirectURL = "http://fitrpg2.herokuapp.com/dashboard";
 var apiClient = new FitbitApiClient("227LR8", "0c5043e5c97351930aa2a3431cb79266");
 var bodyParser = require('body-parser');
 app.use(express.static('public'));
@@ -214,6 +214,7 @@ app.get('/attackMonster', function(req, res){
     if(data["HP"] <= 0){
         data["monsterDead"] = true;
         nextLevel(userID);
+        data["exp"] = users[userID]["monsterStats"]["Exp"];
     }
     else
         data["monsterDead"] = false;
