@@ -112,7 +112,6 @@ function displayShop(shopData) {
 
         var shopObjectDetails = $('<div class="popover"></div>');
         var popover = $('<div class="webui-popover-content">' + shopObject["stats"] + ': ' + '</div>');
-        shopObjectDetails.append(popover);
         $('.popover').webuiPopover({trigger:'hover'});
         shopObjectDetails.css("background", "url(" + shopObject["image"] + ") no-repeat");
         shopObjectDetails.css("background-size", "contain");
@@ -131,6 +130,7 @@ function displayShop(shopData) {
         objectText.css("width", "150px");
         objectText.css("text-align", "center");
         shopObjectDetails.append(objectText);
+        shopObjectDetails.append(popover);
 
         var purchaseButton = $('<button class="purchaseButton"></button>');
         purchaseButton.css("background", "url(images/coin.png) no-repeat");
