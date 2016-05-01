@@ -88,7 +88,7 @@ function displayShop(shopData) {
         purchaseButton.css("float", "left");
         purchaseButton.css("text-align", "right");
         purchaseButton.css("font-size", "18px");
-        purchasButton.html(shopObject["price"]);
+        purchaseButton.html(shopObject["price"]);
 
         //var keyDict = {   // key to display, and show/hide boolean
         //    name: {k: "", toDisplay: true, size: "20px"},
