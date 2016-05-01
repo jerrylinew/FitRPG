@@ -19,17 +19,31 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 var shopData = {
     Sword: {
         name: "Sword",
-        price: "30",
+        price: "300",
         image: "images/Sword.png",
         stat: "Atk",
         effect: 3
     },
     Armor: {
         name: "Armor",
-        price: "45",
+        price: "450",
         image: "images/Armor.png",
         stat: "Def",
         effect: 5
+    },
+    Potion: {
+        name: "Potion",
+        price: "600",
+        image: "images/Potion.png",
+        stat: "HP",
+        effect: 10
+    },
+    Shuriken: {
+        name: "Shuriken",
+        price: "1200",
+        image: "images/Shuriken.png",
+        stat: "Atk",
+        effect: 15
     }
 };
 
