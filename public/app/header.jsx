@@ -54,9 +54,9 @@ class StatsBar extends React.Component{
         expPerc = exp[0] / exp[1];
     return (
       <div className="statsbar-wrapper">
-        <ProgressBar color={this.styles.hpColor}
+        <ProgressBar color={this.styles.hpColor} id="hpBar"
           progress={hpPerc}></ProgressBar>
-        <ProgressBar color={this.styles.expColor}
+        <ProgressBar color={this.styles.expColor} id="expBar"
           progress={expPerc}></ProgressBar>
       </div>
     );
