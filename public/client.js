@@ -105,7 +105,11 @@ $(document).ready(function() {
             console.log("fading in");
             $('#game').css('opacity', '1');
             $('#attackBtn').show();
-            adjustHPBar();
+            $.get('/getMonsterInfo', {userID: userID}, function(data){
+                monsterData = data.monsterData;
+                maxMonsterHP = monsterData['HP'];
+                $('.progressWrap:first').css("width", "100" + '%');
+            });
         });
 
 

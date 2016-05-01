@@ -206,6 +206,8 @@ app.get('/attacked', function(req, res){
     res.send(data);
 });
 
+app.get('/getInfo')
+
 app.get('/attackMonster', function(req, res){
     var userID = req.query.userID;
     users[userID]["monsterStats"]["HP"] -= users[userID]["stats"]["Atk"];
