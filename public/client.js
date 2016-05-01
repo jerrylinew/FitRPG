@@ -103,17 +103,17 @@ $(document).ready(function() {
 
 
 function displayShop(shopData) {
-    $('#btnPopover').popover({trigger: "hover"});
+
     for (var index in shopData) {
         var shopObject = shopData[index];
         var shopObjectDiv = $('<div class="shopObject"></div>');
         shopObjectDiv.css("width", "280px");
         shopObjectDiv.css("height", "40px");
 
-        var shopObjectDetails = $('<a id="btnPopover" href="#"></a>');
-        shopObjectDetails.attr("data-content", shopObject["stat"] + ": " + shopObject["effect"]);
-        shopObjectDetails.attr("rel", "popover");
-        shopObjectDetails.attr("data-placement", "top");
+        var shopObjectDetails = $('<div class="popover"></div>');
+        var popover = $('<div class="webui-popover-content">' + shopObject["stats"] + ': ' + '</div>');
+        shopObjectDetails.append(popover);
+        $('.popover').webuiPopover({trigger:'hover'});
         shopObjectDetails.css("background", "url(" + shopObject["image"] + ") no-repeat");
         shopObjectDetails.css("background-size", "contain");
         shopObjectDetails.css("background-position", "90% 50%");
