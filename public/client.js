@@ -307,7 +307,7 @@ function displaySleep(sleepData) {
     chart.append(legend);
     sleepDisplay.append(chart);
     //context
-    var ctxPT   D = $('#sleepChart').get(0).getContext("2d");
+    var ctxPTD = $('#sleepChart').get(0).getContext("2d");
     ctxPTD.canvas.height = 250;
 
     var config = {
