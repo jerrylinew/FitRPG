@@ -250,7 +250,7 @@ app.get('/attackMonster', function(req, res){
     else
         data["monsterDead"] = false;
 
-    res.send(data);
+    res.json(data);
 });
 
 function nextLevel(userID){
