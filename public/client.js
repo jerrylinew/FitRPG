@@ -108,6 +108,11 @@ $(document).ready(function() {
             $('#game').css('background-image', 'url(./assets/waterfall.gif)');
             $('#game').css('background-repeat', 'repeat-x');
             adjustHPBar();
+            $.get('/getMonsterInfo', {userID: userID}, function(data){
+                monsterData = data.monsterData;
+                maxMonsterHP = monsterData['HP'];
+                adjustHPBar(1);
+            });
         });
 
 
@@ -186,6 +191,7 @@ $(document).ready(function() {
                         });
                         displayStats(data.stats);
                         maxUserHP = data.maxUserHP;
+                        $('.progressWrap:first').css("width", '100%');
                     }
                 }
 
