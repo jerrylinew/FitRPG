@@ -70,6 +70,12 @@ $(document).ready(function() {
         $('#bulletImage').animate({
             left: '-=460'
         }, 1000, function(){
+            $.get("/attacked", {userID: userID}).done(function(data){
+                var hpLeft = data.HP;
+                var isDead = data.isDead;
+                console.log(hpLeft);
+                console.log(isDead);
+            });
             var bulletImage = $('#bulletImage');
             bulletImage.fadeOut(250, function(){
                 bulletImage.css({"left": "50"});
@@ -104,7 +110,10 @@ function displayShop(shopData) {
         shopObjectDiv.css("width", "280px");
         shopObjectDiv.css("height", "40px");
 
-        var shopObjectDetails = $('<div class="shopObjectDetails"></div>');
+        var shopObjectDetails = $('<a id="btn' + shopObject["name"] + '" href="#"></a>');
+        shopObjectDetails.attr("data-content", shopObject["stat"] + ": " + shopObject["effect"]);
+        shopObjectDetails.attr("rel", "popover");
+        shopObjectDetails.attr("data-placement", "top");
         shopObjectDetails.css("background", "url(" + shopObject["image"] + ") no-repeat");
         shopObjectDetails.css("background-size", "contain");
         shopObjectDetails.css("background-position", "90% 50%");
@@ -152,7 +161,7 @@ function displayShop(shopData) {
         shopObjectDiv.append(shopObjectDetails);
 
         shopDisplay.append(shopObjectDiv);
-        shopDisplay.append("<br><br>");
+        shopDisplay.append("<br>");
     }
     $('.purchaseButton').on("click", function() {
         var item = $(this).attr('name');
@@ -170,6 +179,7 @@ function displayShop(shopData) {
             });
         });
     });
+    $('#btn' + shopObject["name"]).popover({trigger: "hover"});
 }
 
 function displayStats(statsData) {
