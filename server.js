@@ -82,7 +82,7 @@ app.get('/getdata', function(req, res){
         user["currentLevel"] = 0;
         user["monsterStats"] = {
             HP: 100,
-            Atk: 10,
+            Atk: 15,
             Exp: 50,
             Level: 0
         };
@@ -182,13 +182,12 @@ app.get('/attacked', function(req, res){
         return;
     }
 
-    var damage = monsterData[users[userID]["currentLevel"]]["attack"];
-    damage -= users[userID]["stats"]["Def"];
+    var damage = users[userID]["monsterStats"]["Atk"] - users[userID]["stats"]["Def"];
 
     if(damage <= 0)
         damage = 1;
 
-    users[userID]["stats"]["HP"] -= monsterData[users[userID]["currentLevel"]]["attack"];
+    users[userID]["stats"]["HP"] -= damage;
 
     if(users[userID]["stats"]["HP"] <= 0){
         users[userID]["stats"]["HP"] = 0;
@@ -202,12 +201,32 @@ app.get('/attacked', function(req, res){
 });
 
 app.get('/attackMonster', function(req, res){
-    var currentMonsterHealth = req.query.monsterHealth;
     var userID = req.query.userID;
+    users[userID]["monsterStats"]["HP"] -= users[userID]["stats"]["Atk"];
 
+    if(users[userID]["monsterStats"]["HP"] < 0)
+        users[userID]["monsterStats"]["HP"] = 0;
 
     data = {};
+
+    data["HP"] = users[userID]["monsterStats"]["HP"];
+
+    if(data["HP"] <= 0){
+        data["monsterDead"] = true;
+        nextLevel(userID);
+    }
+    else
+        data["monsterDead"] = false;
+
+    res.send(data);
 });
+
+function nextLevel(userID){
+    users[userID]["monsterStats"]["HP"] += 50;
+    users[userID]["monsterStats"]["Atk"] += 5;
+    users[userID]["monsterStats"]["Exp"] += 20;
+    users[userID]["monsterStats"]["Level"] += 1;
+}
 
 app.listen(port, function(){
     console.log('App listening on port 8080!');

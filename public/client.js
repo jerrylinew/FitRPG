@@ -134,15 +134,14 @@ $(document).ready(function() {
         $('#userImage').animate({
             left: '+=450'
         }, 1000, function(){
-            $.get("/attackMonster", {userID: userID, monsterHealth: monsterHealth}).done(function(data){
+            $.get("/attackMonster", {userID: userID}).done(function(data){
                 var hpLeft = data.HP;
+                adjustHPBar(hpLeft);
 
                 if(hpLeft <= 0){
                     hpLeft = 0;
-                    $('#game').fadeOut(500);
+                    $('#game').fadeOut(1000);
                 }
-
-                console.log("monster hp left: " + String(hpLeft));
             });
             $('#userImage').animate({
                 left: '-=450'
