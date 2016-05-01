@@ -184,22 +184,6 @@ function displayStats(statsData) {
 
     atkDisplay.html(statsData["Atk"]);
     defDisplay.html(statsData["Def"]);
-
-    //var keyDict = {   // key to display, and show/hide boolean
-    //    HP: {k: "HP: ", toDisplay: true, size: "20px"},
-    //    Atk: {k: "Atk: ", toDisplay: true, size: "14px"},
-    //    Def: {k: "Def: ", toDisplay: true, size: "14px"}
-    //};
-    //
-    //for (var key in statsObject) {
-    //    if (keyDict[key]["toDisplay"]) {
-    //        statsObjectDiv.append(keyDict[key]["k"] + statsObject[key] + "<br>");
-    //    }
-    //    statsObjectDiv.attr(key, statsObject[key]);
-    //}
-    //
-    //statsDisplay.append(statsObjectDiv);
-    //statsDisplay.append("<br>");
 }
 
 function getCallback(local_userID) {

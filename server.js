@@ -39,21 +39,21 @@ var shopData = {
         image: "images/Armor.png",
         stat: "Def",
         effect: 5
-    }//,
-    //Potion: {
-    //    name: "Potion",
-    //    price: "600",
-    //    image: "images/Potion.png",
-    //    stat: "HP",
-    //    effect: 10
-    //},
-    //Shuriken: {
-    //    name: "Shuriken",
-    //    price: "1200",
-    //    image: "images/Shuriken.png",
-    //    stat: "Atk",
-    //    effect: 15
-    //}
+    },
+    Potion: {
+        name: "Potion",
+        price: "600",
+        image: "images/Potion.png",
+        stat: "HP",
+        effect: 10
+    },
+    Shuriken: {
+        name: "Shuriken",
+        price: "1200",
+        image: "images/Shuriken.png",
+        stat: "Atk",
+        effect: 15
+    }
 };
 
 var users = {};
