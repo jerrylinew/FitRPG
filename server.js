@@ -203,7 +203,6 @@ app.get('/attacked', function(req, res){
 
     if(users[userID]["stats"]["HP"] <= 0){
         users[userID]["stats"]["HP"] = 0;
-        users[userID]["monsterData"]["HP"]
         data["isDead"] = true;
         users[userID]["coins"] = Math.round(users[userID]["coins"] * 0.8);
         data["coinsLeft"] = users[userID]["coins"];
