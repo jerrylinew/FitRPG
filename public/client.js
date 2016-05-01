@@ -115,6 +115,7 @@ $(document).ready(function() {
                 $.get("/attacked", {userID: userID}).done(function(data){
                     var hpLeft = data.HP;
                     var isDead = data.isDead;
+                    console.log(hpLeft);
                     if(hpLeft == undefined)
                         return;
                     $('.progressWrap:first').css("width", String(Math.round(userHP / maxUserHP * 100)) + '%');
@@ -142,10 +143,13 @@ $(document).ready(function() {
 
                 if(data.monsterDead){
                     hpLeft = 0;
-                    $('#game').fadeOut(1000, function(){
+                    $('#game').animate({
+                        "opacity": "0"
+                    }, 1000, function(){
                         $('#attackBtn').hide();
                         $('#startBattle').fadeIn(1000);
                     });
+
                     $('.progressWrap:last').css("width", String(data.exp) + '%');
                     if(data.levelUp){
                         swal({
