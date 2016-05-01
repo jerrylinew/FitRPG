@@ -106,6 +106,7 @@ function displayShop(shopData) {
 
         var shopObjectDetails = $('<div class="shopObjectDetails"></div>');
         shopObjectDetails.css("background", "url(" + shopObject["image"] + ") no-repeat");
+        shopObjectDetails.css("background-size", "contain");
         shopObjectDetails.css("background-position", "95% 50%");
         shopObjectDetails.css("width", "200px");
         shopObjectDetails.css("height", "40px");
@@ -119,7 +120,7 @@ function displayShop(shopData) {
         shopObjectDetails.html(shopObject["name"]);
 
         var purchaseButton = $('<button class="purchaseButton"></button>');
-        purchaseButton.css("background", "url(images/coin.jpg) no-repeat");
+        purchaseButton.css("background", "url(images/coin.png) no-repeat");
         purchaseButton.css("background-size", "contain");
         purchaseButton.css("width", "70px");
         purchaseButton.css("height", "40px");
