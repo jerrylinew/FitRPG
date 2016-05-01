@@ -239,11 +239,7 @@ function displaySteps(stepsData) {
                     "#46BFBD",
                     "#4D5360",
                 ],
-            }],
-            labels: [
-                "Green",
-                "Dark Grey"
-            ]
+            }]
         },
         options: {
             responsive: true
@@ -282,14 +278,10 @@ function displaySleep(sleepData) {
                     10000-sleepData
                 ],
                 backgroundColor: [
-                    "#46BFBD",
+                    "#36A2EB",
                     "#4D5360",
                 ],
-            }],
-            labels: [
-                "Blue",
-                "Dark Grey"
-            ]
+            }]
         },
         options: {
             responsive: true
