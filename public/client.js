@@ -242,7 +242,8 @@ function displaySteps(stepsData) {
             }]
         },
         options: {
-            responsive: true
+            responsive: true,
+            legend: false
         }
     };
 
@@ -284,7 +285,8 @@ function displaySleep(sleepData) {
             }]
         },
         options: {
-            responsive: true
+            responsive: true,
+            legend: false
         }
     };
 
@@ -303,4 +305,3 @@ function getCallback(local_userID) {
         });
     }
 }
-
