@@ -221,6 +221,9 @@ function displaySteps(stepsData) {
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
     }
 
+    chart.append(canvas);
+    chart.append(legend);
+    stepsDisplay.append(chart);
     //context
     var ctxPTD = $('#stepsChart').get(0).getContext("2d");
     //data
@@ -241,8 +244,6 @@ function displaySteps(stepsData) {
 
     var propertyTypes = new Chart(ctxPTD).Pie(dataPTD, options);
     $('#stepsLegend').html(propertyTypes.generateLegend());
-
-    stepsDisplay.append(chart);
 
 }
 
