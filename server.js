@@ -134,7 +134,7 @@ app.get('/getStats', function(req, res) {
 app.get('/getSteps', function(req, res){
     var userID = req.query.userID;
     console.log(users[userID]["dailyAwarded"]);
-    res.send(users[userID]["dailyAwarded"]);
+    res.send(351);
 });
 
 app.get('/getSleep', function(req, res){
