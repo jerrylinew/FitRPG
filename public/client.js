@@ -53,28 +53,28 @@ $(document).ready(function() {
             var daySteps = data["daySteps"];
 
             coinsDisplay.html(userCoins); //to change
+
+            //displayShop({Sword: {name: "Sword", price: 30, stat: "Atk", effect: 3}});
+            $.get("/setupShop").done(function(data){
+                displayShop(data);
+            });
+
+            $.get("/getStats", {userID: userID}).done(function(data){
+                displayStats(data);
+            });
+
+            $.get("/getSteps", {userID: userID}).done(function(data){
+                console.log(data);
+                displaySteps(data);
+            });
+
+            //$.get("/getSleep", {userID: userID}).done(function(data){
+            //    displaySleep(data);
+            //});
+            displaySleep(4036);
         });
 
         setInterval(getCallback(userID), 1000 * 60 * refreshInterval);
-
-        //displayShop({Sword: {name: "Sword", price: 30, stat: "Atk", effect: 3}});
-        $.get("/setupShop").done(function(data){
-            displayShop(data);
-        });
-
-        $.get("/getStats", {userID: userID}).done(function(data){
-            displayStats(data);
-        });
-
-        $.get("/getSteps", {userID: userID}).done(function(data){
-            displaySteps(data);
-        });
-
-        //$.get("/getSleep", {userID: userID}).done(function(data){
-        //    displaySleep(data);
-        //});
-        displaySleep(4036);
-
     });
 
     setInterval(function() {
@@ -179,7 +179,7 @@ function displayShop(shopData) {
         shopDisplay.append(shopObjectDetail);
         shopDisplay.append("<br>");
     }
-//
+
     $('.purchaseButton').on("click", function() {
         console.log("shop button clicked");
 
