@@ -54,7 +54,7 @@ $(document).ready(function() {
 
         setInterval(getCallback(userID), 1000 * 60 * refreshInterval);
 
-
+        //displayShop({Sword: {name: "Sword", price: 30, stat: "Atk", effect: 3}});
         $.get("/setupShop").done(function(data){
             displayShop(data);
         });
@@ -71,7 +71,7 @@ function displayShop(shopData) {
     for (var index in shopData) {
         var shopObject = shopData[index];
         var shopObjectDiv = $('<div class="shopObject"></div>');
-        var purchaseButton = $('<button class="purchaseButton">Buy</button>');
+        var purchaseButton = $('<button class="purchaseButton" style="background: url(images/coin.jpg)">Buy</button>');
 
         var keyDict = {   // key to display, and show/hide boolean
             name: {k: "", toDisplay: true, size: "20px"},
