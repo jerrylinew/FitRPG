@@ -179,7 +179,7 @@ function displayShop(shopData) {
         shopDisplay.append(shopObjectDetail);
         shopDisplay.append("<br>");
     }
-
+//
     $('.purchaseButton').on("click", function() {
         console.log("shop button clicked");
 
