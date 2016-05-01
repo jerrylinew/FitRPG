@@ -65,7 +65,7 @@ $(document).ready(function() {
         adjustHPBar(1);
 
         console.log(userHP);
-        $('.progressWrap:first').css("width", String((userHP / maxUserHP) * 100) + '%');
+        $('.progressWrap:first').css("width", String(Math.round(userHP / maxUserHP * 100)) + '%');
 
         var refreshInterval = 1; //in minutes
         console.log("getting steps");
@@ -117,7 +117,7 @@ $(document).ready(function() {
                     var isDead = data.isDead;
                     if(hpLeft == undefined)
                         return;
-                    $('.progressWrap:first').css("width", String((userHP / maxUserHP) * 100) + '%');
+                    $('.progressWrap:first').css("width", String(Math.round(userHP / maxUserHP * 100)) + '%');
                 });
                 var bulletImage = $('#bulletImage');
                 bulletImage.fadeOut(250, function(){
@@ -143,6 +143,7 @@ $(document).ready(function() {
                 if(data.monsterDead){
                     hpLeft = 0;
                     $('#game').fadeOut(1000, function(){
+                        $('#attackBtn').hide();
                         $('#startBattle').fadeIn(1000);
                     });
                     $('.progressWrap:last').css("width", String(data.exp) + '%');
