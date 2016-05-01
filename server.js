@@ -223,8 +223,8 @@ app.get('/attackMonster', function(req, res){
             data["levelUp"] = true;
             users[userID]["maxUserHP"] += 20;
             users[userID]["stats"]["HP"] = users[userID]["maxUserHP"];
-            users[userID]["stats"]["Atk"] += 5;
-            users[userID]["stats"]["Def"] += 5;
+            users[userID]["stats"]["Atk"] += 2;
+            users[userID]["stats"]["Def"] += 2;
         }
         else
             data["levelUp"] = false;
