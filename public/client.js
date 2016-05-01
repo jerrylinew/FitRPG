@@ -144,6 +144,7 @@ $(document).ready(function() {
 
                         setTimeout(function(){
                             $('.progressWrap:first').css("width", '100%');
+                            $('#HPDisplay').html("100/100");
                         }, 1500);
 
                         coinsDisplay.html(data.coinsLeft);
