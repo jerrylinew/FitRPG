@@ -101,7 +101,7 @@ function displayShop(shopData) {
     for (var index in shopData) {
         var shopObject = shopData[index];
         var shopObjectDiv = $('<div class="shopObject"></div>');
-        shopObjectDiv.css("width", "270px");
+        shopObjectDiv.css("width", "280px");
         shopObjectDiv.css("height", "40px");
 
         var shopObjectDetails = $('<div class="shopObjectDetails"></div>');
@@ -126,11 +126,11 @@ function displayShop(shopData) {
         var purchaseButton = $('<button class="purchaseButton"></button>');
         purchaseButton.css("background", "url(images/coin.png) no-repeat");
         purchaseButton.css("background-size", "contain");
-        purchaseButton.css("width", "70px");
+        purchaseButton.css("width", "80px");
         purchaseButton.css("height", "40px");
         purchaseButton.css("float", "left");
         purchaseButton.css("text-align", "right");
-        purchaseButton.css("font-size", "18px");
+        purchaseButton.css("font-size", "16px");
         purchaseButton.html(shopObject["price"]);
 
         //var keyDict = {   // key to display, and show/hide boolean
