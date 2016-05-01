@@ -50,12 +50,20 @@ class Game extends React.Component{
   }
 }
 
+class ShopItem extends React.Component {
+  render () {
+    return (
+      <div id="shopContainer"></div>
+    );
+  }
+}
+
 export class Playground extends React.Component {
   render () {
     return (
-      <Grid>
+      <Grid style={{"width":"97%", marginLeft:"20px", marginRight:"20px"}}>
         <Row style={{"height":"20px"}}></Row>
-        <Row style={{"width":"97%", marginLeft:"20px", marginRight:"20px"}}>
+        <Row>
           <Col style={{textAlign:"center"}} md={3}>
             <PieChart width={250} height={250} innerRadius={20} title="Step" data={stepData} chartSeries={stepChartSeries} name={getKey} value={getVal} />
             <PieChart width={250} height={250} innerRadius={20} title="Sleep" data={sleepData} chartSeries={sleepChartSeries} name={getKey} value={getVal} />
@@ -67,17 +75,7 @@ export class Playground extends React.Component {
 
           <Col md={3}>
             <Panel>Shop</Panel>
-            <ListGroup>
-              <ListGroupItem>
-                Item 1
-              </ListGroupItem>
-              <ListGroupItem>
-                Item 2
-              </ListGroupItem>
-              <ListGroupItem>
-                Item 3
-              </ListGroupItem>
-            </ListGroup>
+            <ShopItem/>
 
           </Col>
         </Row>

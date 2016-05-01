@@ -41056,8 +41056,27 @@
 	  return Game;
 	}(_react2.default.Component);
 	
-	var Playground = exports.Playground = function (_React$Component2) {
-	  _inherits(Playground, _React$Component2);
+	var ShopItem = function (_React$Component2) {
+	  _inherits(ShopItem, _React$Component2);
+	
+	  function ShopItem() {
+	    _classCallCheck(this, ShopItem);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ShopItem).apply(this, arguments));
+	  }
+	
+	  _createClass(ShopItem, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement('div', { id: 'shopContainer' });
+	    }
+	  }]);
+	
+	  return ShopItem;
+	}(_react2.default.Component);
+	
+	var Playground = exports.Playground = function (_React$Component3) {
+	  _inherits(Playground, _React$Component3);
 	
 	  function Playground() {
 	    _classCallCheck(this, Playground);
@@ -41070,49 +41089,31 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        _reactBootstrap.Grid,
-	        null,
+	        { style: { "width": "97%", marginLeft: "20px", marginRight: "20px" } },
 	        _react2.default.createElement(_reactBootstrap.Row, { style: { "height": "20px" } }),
 	        _react2.default.createElement(
 	          _reactBootstrap.Row,
 	          null,
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
-	            { md: 3 },
+	            { style: { textAlign: "center" }, md: 3 },
 	            _react2.default.createElement(_reactD3Basic.PieChart, { width: 250, height: 250, innerRadius: 20, title: 'Step', data: stepData, chartSeries: stepChartSeries, name: getKey, value: getVal }),
 	            _react2.default.createElement(_reactD3Basic.PieChart, { width: 250, height: 250, innerRadius: 20, title: 'Sleep', data: sleepData, chartSeries: sleepChartSeries, name: getKey, value: getVal })
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
-	            { md: 7 },
+	            { md: 6 },
 	            _react2.default.createElement(Game, null)
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
-	            { md: 2 },
+	            { md: 3 },
 	            _react2.default.createElement(
 	              _reactBootstrap.Panel,
 	              null,
 	              'Shop'
 	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.ListGroup,
-	              null,
-	              _react2.default.createElement(
-	                _reactBootstrap.ListGroupItem,
-	                null,
-	                'Item 1'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.ListGroupItem,
-	                null,
-	                'Item 2'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.ListGroupItem,
-	                null,
-	                'Item 3'
-	              )
-	            )
+	            _react2.default.createElement(ShopItem, null)
 	          )
 	        )
 	      );
