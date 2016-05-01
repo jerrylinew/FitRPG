@@ -112,6 +112,7 @@ function displayShop(shopData) {
 }
 
 function displayStats(statsData) {
+    statsDisplay.html("");
     console.log(statsData);
 
     var statsObject = statsData;
