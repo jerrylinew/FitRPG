@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { Button } from 'react-bootstrap';
 import { Header } from './header.jsx';
 import { ProgressBar } from './progress_bar.jsx';
@@ -21,6 +21,22 @@ class App extends React.Component {
         coins: profile.coins,
       };
 
+    }
+
+    loadData(data){
+      console.log("loadData called", data.profile.hp);
+      this.setState({
+        hp: data.profile.hp
+      });
+    }
+
+    componentWillUnMount(){
+
+    }
+    componentDidMount(){
+    //  setInterval(this.loadData, +this.props.pollInterval);
+      this.store = data;
+      this.attack;
     }
 
     attack(event, damage) {
@@ -58,4 +74,18 @@ var data = {
   sleep: 7.5
 }
 
-render(<App data={data}/>, document.getElementById('app'));
+class Store{
+  constructor(data){
+    this.data = data;
+  }
+  getData(){
+    return this.data;
+  }
+  setCallback(func){
+    this.callback = func;
+  }
+}
+
+
+var app = <App data={data} />;
+ReactDOM.render(app, document.getElementById('app'));

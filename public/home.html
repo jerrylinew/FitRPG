@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>React using NPM, Babel6 and Webpack</title>
+    <title>FitRPG</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
@@ -12,9 +12,30 @@
   <body>
     <div id="app"></div>
 
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6" id="game">
+        <img id="enemyImage" src="images/enemy.gif" alt="enemy"/>
+        <img id="userImage" src="images/warrior.gif" alt="warrior"/>
+        <button id="attackBtn" type="button" class="btn btn-primary btn-large">Attack!</button>
+      </div>
+      <div class="col-md-3">
+        <h1>Shop</h1>
+        <div id="shopContainer">
+        </div>
+          <h1>Stats</h1>
+          <div id="statsContainer">
+          </div>
+      </div>
+
+    </div>
+
+
     <script src="./build/bundle.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="./build/bundle.js" type="text/javascript"></script>
     <script src="client.js" type="text/javascript"></script>
+
   </body>
 </html>

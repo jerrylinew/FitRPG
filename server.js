@@ -27,9 +27,9 @@ var monsterData = [
 
 var shopData = {
     Sword: {
-        name: "Sword",
+        name: "Dagger",
         price: "300",
-        image: "images/Sword.png",
+        image: "images/Dagger.png",
         stat: "Atk",
         effect: 3
     },
@@ -124,6 +124,16 @@ app.get('/setupShop', function(req, res) {
 app.get('/getStats', function(req, res) {
     var userID = req.query.userID;
     res.send(users[userID]["stats"]);
+});
+
+app.get('/getSteps', function(req, res){
+    var userID = req.query.userID;
+    res.send(users[userID]["dailyAwarded"]);
+});
+
+app.get('/getSleep', function(req, res){
+    var userID = req.query.userID;
+    res.send(users[userID]);
 });
 
 app.get('/purchase', function(req, res){

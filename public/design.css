@@ -2,19 +2,29 @@
 
 
 /* Progress bar */
-.body{
+body{
   font-family: lato, verdana, sans-serif;
 }
 .progress{
-  height: 10px;
+  height: 15px;
   border-radius: 3px;
   margin-left: 20px;
   margin-right: 20px;
 }
 
 .progressWrap{
-  height: 10px;
+  height: 15px;
   border-radius: 3px;
+  background: #eff;
+}
+
+.progressFraction{
+  margin-top: 0;
+  color: #222 !important;
+  font-size: 1em !important;
+  font-family: lato;
+  float: left;
+  margin-left: 50%;
 }
 
 /* Info Bar */
@@ -33,6 +43,8 @@
 .infologo{
   font-size: 2rem;
   font-weight: 400px;
+  color: grey;
+  text-align:left;
 }
 
 .infobar-icon{

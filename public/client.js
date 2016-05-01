@@ -7,6 +7,7 @@ var userID;
 var userName;
 var userGender;
 var userCoins;
+var userHP;
 
 var nameDisplay = $('#nameDisplay');
 var coinsDisplay = $('#coinsDisplay');
@@ -14,7 +15,8 @@ var shopDisplay = $('#shopContainer');
 var gameDisplay = $('#game');
 var atkDisplay = $('#atkDisplay');
 var defDisplay = $('#defDisplay');
-
+var stepsDisplay = $('#stepState');
+var sleepDisplay = $('#sleepState');
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -23,6 +25,8 @@ function getParameterByName(name, url) {
         results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return '';
+    console.log(name)
+    console.log(results);
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
@@ -38,6 +42,9 @@ $(document).ready(function() {
         userName = data.name;
         userGender = data.gender;
         nameDisplay.html(userName);
+        userHP = data.stats.HP;
+        console.log(userHP);
+        $('#hpBar').css("width", String(userHP) + '%');
 
         var refreshInterval = 1; //in minutes
         console.log("getting steps");
@@ -59,6 +66,15 @@ $(document).ready(function() {
         $.get("/getStats", {userID: userID}).done(function(data){
             displayStats(data);
         });
+
+        $.get("/getSteps", {userID: userID}).done(function(data){
+            displaySteps(data);
+        });
+
+        $.get("/getSleep", {userID: userID}).done(function(data){
+            displaySleep(data);
+        });
+
     });
 
     setInterval(function() {
@@ -69,6 +85,7 @@ $(document).ready(function() {
             $.get("/attacked", {userID: userID}).done(function(data){
                 var hpLeft = data.HP;
                 var isDead = data.isDead;
+                $('#hpBar').css("width", String(hpLeft) + '%');
                 console.log(hpLeft);
                 console.log(isDead);
             });
@@ -128,7 +145,8 @@ function displayShop(shopData) {
 
         var purchaseButton = $('<button class="purchaseButton"></button>');
         purchaseButton.css("background", "url(images/coin.png) no-repeat");
-        purchaseButton.css("background-size", "contain");
+        purchaseButton.css("background-size", "40%");
+        purchaseButton.css("background-position", "5% 50%");
         purchaseButton.css("width", "80px");
         purchaseButton.css("height", "40px");
         purchaseButton.css("float", "left");
@@ -147,15 +165,21 @@ function displayShop(shopData) {
 
         var shopObjectDetail = $('<div class="shopObjectDetail"></div>');
         shopObjectDetail.css("width", "280px");
-        shopObjectDetail.css("height", "40px");
+        shopObjectDetail.css("height", "35px");
         shopObjectDetail.css("text-align", "center");
         shopObjectDetail.css("font-size", "16px");
+        shopObjectDetail.css("border", "2px solid #C0C0C0");
+        shopObjectDetail.css("border-top", "none");
+        shopObjectDetail.css("line-height", "35px");
         shopObjectDetail.html(shopObject["stat"] + ": +" + shopObject["effect"]);
 
         shopDisplay.append(shopObjectDiv);
         shopDisplay.append(shopObjectDetail);
         shopDisplay.append("<br>");
     }
+
+    shopDisplay.css()
+
     $('.purchaseButton').on("click", function() {
         var item = $(this).attr('name');
 
@@ -181,10 +205,54 @@ function displayStats(statsData) {
     defDisplay.html(statsData["Def"]);
 }
 
+function displaySteps(stepsData) {
+    console.log(stepsData);
+    var chart = $('<div class="chart"></div>');
+
+    var canvas = $('<canvas id="stepsChart" class="pie"></canvas>');
+    var legend = $('<div id="stepsLegend"></div>');
+
+    var options = {
+        responsive: true,
+        scaleBeginAtZero: true,
+        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+    }
+
+    //context
+    var ctxPTD = $('#stepsChart').get(0).getContext("2d");
+    //data
+    var dataPTD = [
+        {
+            label: "Steps today",
+            color: "#5093ce",
+            highlight: "#78acd9",
+            value: stepsData
+        },
+        {
+            label: "Steps to go",
+            color: "#c7ccd1",
+            highlight: "#e3e6e8",
+            value: (10000-stepsData)
+        }
+    ];
+
+    var propertyTypes = new Chart(ctxPTD).Pie(dataPTD, options);
+    $('#stepsLegend').html(propertyTypes.generateLegend());
+
+    stepsDisplay.append(chart);
+
+}
+
+function displaySleep(sleepData) {
+    console.log(sleepData);
+}
+
+
 function getCallback(local_userID) {
     return function(){
         $.get("/refreshdata", {userID: local_userID}).done(function (data) {
             userCoins = data["coins"];
+            var daySteps = data["daySteps"];
 
             coinsDisplay.html(userCoins); //to change
         });
