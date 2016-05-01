@@ -1,7 +1,7 @@
 "use strict";
 
 import React from 'react';
-import { Grid, Row, Col, Table, ListGroup, ListGroupItem, Jumbotron } from 'react-bootstrap';
+import { Grid, Row, Col, Table, ListGroup, ListGroupItem, Panel } from 'react-bootstrap';
 import { PieChart } from 'react-d3-basic';
 
 
@@ -41,55 +41,32 @@ export class Playground extends React.Component {
   render () {
     return (
       <Grid>
-          <Row>
-              <Col md={3}>
-                  <Jumbotron style={{"textAlign":"center", "height":"100"}}>
-                      <span>Stat</span>
-                  </Jumbotron>
+        <Row style={{"height":"20px"}}></Row>
+        <Row>
+          <Col md={3}>
+            <PieChart width={250} height={250} innerRadius={20} title="Step" data={stepData} chartSeries={stepChartSeries} name={getKey} value={getVal} />
+            <PieChart width={250} height={250} innerRadius={20} title="Sleep" data={sleepData} chartSeries={sleepChartSeries} name={getKey} value={getVal} />
+          </Col>
 
-                  <Table striped bordered condensed hover>
-                      <tbody>
-                          <tr>
-                              <th>Step</th>
-                              <th>1000 steps</th>
-                              <th>10000 steps</th>
-                          </tr>
-                          <tr>
-                              <th>Sleep</th>
-                              <th>7 hours of sound sleep</th>
-                              <th>2 hours of unsound sleep</th>
-                          </tr>
-                      </tbody>
-                  </Table>
+          <Col md={7}>
+          </Col>
 
-                  <PieChart width={300} height={300} innerRadius={30} title="Step" data={stepData} chartSeries={stepChartSeries} name={getKey} value={getVal} />
-                  <PieChart width={300} height={300} innerRadius={30} title="Sleep" data={sleepData} chartSeries={sleepChartSeries} name={getKey} value={getVal} />
-              </Col>
+          <Col md={2}>
+            <Panel>Shop</Panel>
+            <ListGroup>
+              <ListGroupItem>
+                Item 1
+              </ListGroupItem>
+              <ListGroupItem>
+                Item 2
+              </ListGroupItem>
+              <ListGroupItem>
+                Item 3
+              </ListGroupItem>
+            </ListGroup>
 
-              <Col md={6}>
-                  <Jumbotron style={{"textAlign":"center", "height":"100"}}>
-                      <span>dummy</span>
-                  </Jumbotron>
-              </Col>
-
-              <Col md={3}>
-                  <Jumbotron style={{"textAlign":"center", "height":"100"}}>
-                      <span>Shop</span>
-                  </Jumbotron>
-                  <ListGroup>
-                      <ListGroupItem>
-                          Item 1
-                      </ListGroupItem>
-                      <ListGroupItem>
-                          Item 2
-                      </ListGroupItem>
-                      <ListGroupItem>
-                          Item 3
-                      </ListGroupItem>
-                  </ListGroup>
-
-              </Col>
-          </Row>
+          </Col>
+        </Row>
       </Grid>
     );
   }
