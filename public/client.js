@@ -105,6 +105,8 @@ $(document).ready(function() {
             console.log("fading in");
             $('#game').css('opacity', '1');
             $('#attackBtn').show();
+            $('#game').css('background-image', 'url(./assets/waterfall.gif)');
+            $('#game').css('background-repeat', 'repeat-x');
             adjustHPBar();
         });
 

@@ -31,12 +31,11 @@ body{
 /* Info Bar */
 .infobar{
   top: 0;
-  padding: 0px, -15px, 0px, 20px;
   width: 100%;
   z-index: 998;
   background-color: #f4f7f7;
   border-bottom: 1px solid #a94442;
-  margin-left: 0;
+  margin-left: 15px;
   font-size: 1.5rem;
   line-height: 200%;
   font-family: Lato, sans-serif;
@@ -87,8 +86,7 @@ body{
   margin-top: 10px;
   margin-bottom: 4px;
   font-size: 2.5rem;
-  font-family: Iceland;
-  text-align: center;
+  text-align: left;
   color: #333;
   font-weight: 300;
   text-decoration: underline;
