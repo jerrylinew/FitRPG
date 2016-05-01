@@ -83,8 +83,10 @@ export class Playground extends React.Component {
             <Game/>
           </Col>
 
-          <Col style={{}} md={3}>
-            <Panel>Shop</Panel>
+          <Col style={{"textAlign":"center"}} md={3}>
+            <Panel style={{"fontSize":"25px", "fontWeight":"400", "boxShadow":"1px 1px 3px 1px #aaa", "background":"repeating-linear-gradient(to right, #f6ba52, #f6ba52 10px, #ffd180 10px, #ffd180 20px)"}}>
+              <span>Shop</span>
+            </Panel>
             <ShopItem/>
 
           </Col>
