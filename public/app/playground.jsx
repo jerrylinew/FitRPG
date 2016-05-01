@@ -87,7 +87,9 @@ export class Playground extends React.Component {
             <Panel style={{"fontSize":"25px", "fontWeight":"400", "boxShadow":"1px 1px 3px 1px #aaa", "background":"repeating-linear-gradient(to right, #f6ba52, #f6ba52 10px, #ffd180 10px, #ffd180 20px)"}}>
               <span>Shop</span>
             </Panel>
-            <ShopItem/>
+            <div>
+              <div id="shopContainer" style={{"margin":"0 auto"}} />
+            </div>
 
           </Col>
         </Row>

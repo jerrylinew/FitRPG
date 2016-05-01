@@ -41210,7 +41210,11 @@
 	                'Shop'
 	              )
 	            ),
-	            _react2.default.createElement(ShopItem, null)
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement('div', { id: 'shopContainer', style: { "margin": "0 auto" } })
+	            )
 	          )
 	        )
 	      );
