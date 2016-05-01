@@ -128,7 +128,8 @@ function displayShop(shopData) {
 
         var purchaseButton = $('<button class="purchaseButton"></button>');
         purchaseButton.css("background", "url(images/coin.png) no-repeat");
-        purchaseButton.css("background-size", "contain");
+        purchaseButton.css("background-size", "40%");
+        purchaseButton.css("background-position", "5% 50%");
         purchaseButton.css("width", "80px");
         purchaseButton.css("height", "40px");
         purchaseButton.css("float", "left");
@@ -147,9 +148,12 @@ function displayShop(shopData) {
 
         var shopObjectDetail = $('<div class="shopObjectDetail"></div>');
         shopObjectDetail.css("width", "280px");
-        shopObjectDetail.css("height", "40px");
+        shopObjectDetail.css("height", "35px");
         shopObjectDetail.css("text-align", "center");
         shopObjectDetail.css("font-size", "16px");
+        shopObjectDetail.css("border", "2px solid #C0C0C0");
+        shopObjectDetail.css("border-top", "none");
+        shopObjectDetail.css("line-heignt", "35px");
         shopObjectDetail.html(shopObject["stat"] + ": +" + shopObject["effect"]);
 
         shopDisplay.append(shopObjectDiv);
@@ -185,6 +189,7 @@ function getCallback(local_userID) {
     return function(){
         $.get("/refreshdata", {userID: local_userID}).done(function (data) {
             userCoins = data["coins"];
+            var daySteps = data["daySteps"];
 
             coinsDisplay.html(userCoins); //to change
         });
