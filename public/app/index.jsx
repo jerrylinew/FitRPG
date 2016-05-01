@@ -88,4 +88,4 @@ class Store{
 
 
 var app = <App data={data} />;
-var ReactDOM.render(app, document.getElementById('app'));
+ReactDOM.render(app, document.getElementById('app'));

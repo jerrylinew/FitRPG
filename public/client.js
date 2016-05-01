@@ -40,7 +40,7 @@ $(document).ready(function() {
         userGender = data.gender;
         nameDisplay.html(userName);
         userHP = data.stats.HP;
-        $('#hpBar').css("width", str(userHP) + '%');
+        $('#hpBar').css("width", String(userHP) + '%');
 
         var refreshInterval = 1; //in minutes
         console.log("getting steps");
@@ -72,7 +72,7 @@ $(document).ready(function() {
             $.get("/attacked", {userID: userID}).done(function(data){
                 var hpLeft = data.HP;
                 var isDead = data.isDead;
-                $('#hpBar').css("width", str(hpLeft) + '%');
+                $('#hpBar').css("width", String(hpLeft) + '%');
                 console.log(hpLeft);
                 console.log(isDead);
             });
