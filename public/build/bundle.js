@@ -40849,7 +40849,7 @@
 	          _react2.default.createElement('img', { src: './assets/off.png', style: { verticalAlign: "text-top", height: "40px" } }),
 	          _react2.default.createElement(
 	            'span',
-	            { className: 'offdefSpan' },
+	            { id: 'atkDisplay', className: 'offdefSpan' },
 	            this.props.data.offense,
 	            ' '
 	          )
@@ -40860,7 +40860,7 @@
 	          _react2.default.createElement('img', { src: './assets/def.png', style: { verticalAlign: "text-top", height: "40px" } }),
 	          _react2.default.createElement(
 	            'span',
-	            { className: 'offdefSpan' },
+	            { id: 'defDisplay', className: 'offdefSpan' },
 	            this.props.data.defense,
 	            ' '
 	          )
@@ -41075,27 +41075,8 @@
 	  return ShopItem;
 	}(_react2.default.Component);
 	
-	var Stat = function (_React$Component3) {
-	  _inherits(Stat, _React$Component3);
-	
-	  function Stat() {
-	    _classCallCheck(this, Stat);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Stat).apply(this, arguments));
-	  }
-	
-	  _createClass(Stat, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement('div', { id: 'statsContainer' });
-	    }
-	  }]);
-	
-	  return Stat;
-	}(_react2.default.Component);
-	
-	var Playground = exports.Playground = function (_React$Component4) {
-	  _inherits(Playground, _React$Component4);
+	var Playground = exports.Playground = function (_React$Component3) {
+	  _inherits(Playground, _React$Component3);
 	
 	  function Playground() {
 	    _classCallCheck(this, Playground);
@@ -41132,8 +41113,7 @@
 	              null,
 	              'Shop'
 	            ),
-	            _react2.default.createElement(ShopItem, null),
-	            _react2.default.createElement(Stat, null)
+	            _react2.default.createElement(ShopItem, null)
 	          )
 	        )
 	      );

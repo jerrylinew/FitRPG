@@ -61,8 +61,8 @@ class StatsBar extends React.Component{
       </div>
     );
   }
-
 }
+
 class Stats extends React.Component {
   constructor(props){
     super(props);
@@ -72,11 +72,11 @@ class Stats extends React.Component {
       <Row className="statsRow">
         <Col sm={2} xs={6}>
           <img src="./assets/off.png" style={{verticalAlign:"text-top", height: "40px"}}/>
-          <span className="offdefSpan">{this.props.data.offense} </span>
+          <span id="atkDisplay" className="offdefSpan">{this.props.data.offense} </span>
         </Col>
         <Col sm={2} xs={6}>
           <img src="./assets/def.png" style={{verticalAlign:"text-top", height: "40px"}}/>
-          <span className="offdefSpan">{this.props.data.defense} </span>
+          <span id="defDisplay" className="offdefSpan">{this.props.data.defense} </span>
 
         </Col>
         <Col sm={8} xs={12}>
