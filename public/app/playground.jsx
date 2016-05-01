@@ -67,8 +67,9 @@ export class Playground extends React.Component {
       <Grid style={{"width":"97%", marginLeft:"20px", marginRight:"20px"}}>
         <Row style={{"height":"20px"}}></Row>
         <Row>
-          <Col style={{textAlign:"center"}} md={3}>
+          <Col md={3}>
             <div id="stepState" />
+            <br/>
             <div id="sleepState" />
 
             {/* <PieChart width={250} height={250} innerRadius={20} title="Step" data={stepData} chartSeries={stepChartSeries} name={getKey} value={getVal} /> */}

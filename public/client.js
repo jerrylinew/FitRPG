@@ -77,7 +77,6 @@ $(document).ready(function() {
             });
 
             $.get("/getSteps", {userID: userID}).done(function(data){
-                console.log(data);
                 displaySteps(data);
             });
 
@@ -241,6 +240,7 @@ function displaySteps(stepsData) {
     stepsDisplay.append(chart);
     //context
     var ctxPTD = $('#stepsChart').get(0).getContext("2d");
+    ctxPTD.canvas.height = 250;
 
     var config = {
         type: 'doughnut',
@@ -261,7 +261,10 @@ function displaySteps(stepsData) {
             }]
         },
         options: {
-            responsive: true
+            responsive: true,
+            labels: {
+                fontSize: "18px"
+            }
         }
     };
 
@@ -282,6 +285,7 @@ function displaySleep(sleepData) {
     sleepDisplay.append(chart);
     //context
     var ctxPTD = $('#sleepChart').get(0).getContext("2d");
+    ctxPTD.canvas.height = 250;
 
     var config = {
         type: 'doughnut',
@@ -302,7 +306,10 @@ function displaySleep(sleepData) {
             }]
         },
         options: {
-            responsive: true
+            responsive: true,
+            labels: {
+                fontSize: "18px"
+            }
         }
     };
 
