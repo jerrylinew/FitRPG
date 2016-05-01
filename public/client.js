@@ -220,6 +220,7 @@ function displaySteps(stepsData) {
     stepsDisplay.append(chart);
     //context
     var ctxPTD = $('#stepsChart').get(0).getContext("2d");
+    ctxPTD.canvas.height = 300;
 
     var config = {
         type: 'doughnut',
