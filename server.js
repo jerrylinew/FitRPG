@@ -79,7 +79,7 @@ app.get('/getdata', function(req, res){
             HP: 100,
             Atk: 5,
             Def: 5
-        }
+        };
         user["dailyAwarded"] = 0;
 
         apiClient.get("/profile.json", result.access_token).then(function (results) {
