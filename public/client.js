@@ -108,26 +108,25 @@ function displayShop(shopData) {
 
 function displayStats(statsData) {
     console.log(statsData);
-    for (var index in statsData) {
-        var statsObject = statsData[index];
-        var statsObjectDiv = $('<div class="statsObject"></div>');
 
-        var keyDict = {   // key to display, and show/hide boolean
-            HP: {k: "HP: ", toDisplay: true, size: "20px"},
-            Atk: {k: "Atk: ", toDisplay: true, size: "14px"},
-            Def: {k: "Def: ", toDisplay: true, size: "14px"}
-        };
+    var statsObject = statsData;
+    var statsObjectDiv = $('<div class="statsObject"></div>');
 
-        for (var key in statsObject) {
-            if (keyDict[key]["toDisplay"]) {
-                statsObjectDiv.append(keyDict[key]["k"] + statsObject[key] + "<br>");
-            }
-            statsObjectDiv.attr(key, statsObject[key]);
+    var keyDict = {   // key to display, and show/hide boolean
+        HP: {k: "HP: ", toDisplay: true, size: "20px"},
+        Atk: {k: "Atk: ", toDisplay: true, size: "14px"},
+        Def: {k: "Def: ", toDisplay: true, size: "14px"}
+    };
+
+    for (var key in statsObject) {
+        if (keyDict[key]["toDisplay"]) {
+            statsObjectDiv.append(keyDict[key]["k"] + statsObject[key] + "<br>");
         }
-
-        statsDisplay.append(statsObjectDiv);
-        statsDisplay.append("<br>");
+        statsObjectDiv.attr(key, statsObject[key]);
     }
+
+    statsDisplay.append(statsObjectDiv);
+    statsDisplay.append("<br>");
 }
 
 function getCallback(local_userID) {
