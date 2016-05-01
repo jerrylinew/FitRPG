@@ -16,13 +16,14 @@ app.use(express.static('public'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-var monsterData = [
-    {
-        name: "Destructor",
-        health: "50",
-        attack: "5",
-        experience: "70"
-    }
+var monsterImages = [
+    "enemy.gif",
+    "light.png",
+    "earth.png",
+    "fire.png",
+    "shadow.png",
+    "water.png",
+    "grass.png"
 ];
 
 var shopData = {
@@ -114,6 +115,7 @@ app.get('/getMonsterInfo', function(req, res) {
     var userID = req.query.userID;
     var data = {};
     data['monsterData'] = users[userID]["monsterStats"];
+    data['image'] = monsterImages[users[userID]["monsterStats"]["Level"]];
     res.send(data);
 });
 
