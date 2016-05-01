@@ -123,12 +123,12 @@ app.get('/refreshdata', function(req, res){
 });
 
 app.get('/setupShop', function(req, res) {
-   res.send(shopData);
+   res.json(shopData);
 });
 
 app.get('/getStats', function(req, res) {
     var userID = req.query.userID;
-    res.send(users[userID]["stats"]);
+    res.json(users[userID]["stats"]);
 });
 
 app.get('/getSteps', function(req, res){
@@ -139,7 +139,7 @@ app.get('/getSteps', function(req, res){
 
 app.get('/getSleep', function(req, res){
     var userID = req.query.userID;
-    res.send(users[userID]);
+    res.json(users[userID]);
 });
 
 app.get('/purchase', function(req, res){

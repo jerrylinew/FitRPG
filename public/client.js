@@ -255,7 +255,7 @@ function displaySleep(sleepData) {
 
     chart.append(canvas);
     chart.append(legend);
-    stepsDisplay.append(chart);
+    sleepDisplay.append(chart);
     //context
     var ctxPTD = $('#sleepChart').get(0).getContext("2d");
 
