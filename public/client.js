@@ -53,15 +53,15 @@ $(document).ready(function() {
         });
 
         setInterval(getCallback(userID), 1000 * 60 * refreshInterval);
-    });
 
 
-    $.get("/setupShop").done(function(data){
-        displayShop(data);
-    });
+        $.get("/setupShop").done(function(data){
+            displayShop(data);
+        });
 
-    $.get("/setupStats").done(function(data){
-        displayStats(data);
+        $.get("/setupStats", {userID: userID}).done(function(data){
+            displayStats(data);
+        });
     });
 });
 
