@@ -50,6 +50,8 @@ app.get('/getdata', function(req, res){
         user["refreshToken"] = result.refresh_token;
         user["coins"] = 0;
         user["HP"] = 100;
+        user["Atk"] = 5;
+        user["Def"] = 5;
         user["dailyAwarded"] = 0;
 
         apiClient.get("/profile.json", result.access_token).then(function (results) {
@@ -85,6 +87,10 @@ app.get('/refreshdata', function(req, res){
 
         res.json(data);
     });
+});
+
+app.get('/setupShop', function(req, res) {
+   res.send(shopData);
 });
 
 app.get('/purchase', function(req, res){
