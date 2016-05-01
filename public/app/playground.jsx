@@ -3,7 +3,7 @@
 import React from 'react';
 import { Grid, Row, Col, Table, ListGroup, ListGroupItem, Panel } from 'react-bootstrap';
 import { PieChart } from 'react-d3-basic';
-
+import { ProgressBar} from './progress_bar.jsx'
 
 const ACHIEVED = "green";
 const UNACHIEVED = "grey";
@@ -41,6 +41,9 @@ class Game extends React.Component {
     return (
       <div className="row">
         <div className="col-md-12 col-xs-12" id="game">
+          <div id="enemyHPWrapper" style={{position:"absolute", display:"none"}}>
+            <ProgressBar color="red" progress="1.0" shape="thin"/>
+          </div>
           <img id="enemyImage" src="images/enemy.gif" alt="enemy"/>
           <img id="userImage" src="images/warrior.gif" alt="warrior"/>
           <button id="attackBtn" type="button" className="btn btn-primary btn-large">Attack!</button>
