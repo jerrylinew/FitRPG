@@ -138,7 +138,7 @@ function displayShop(shopData) {
         }
 
         shopObjectDiv.append(purchaseButton);
-        shopObjectDiv.append(shopObjectDetails);
+        shopObjectDiv.append(shopObjectName);
 
         var shopObjectDetail = $('<div class="shopObjectDetail"></div>');
         shopObjectDetail.css("width", "280px");
@@ -146,9 +146,6 @@ function displayShop(shopData) {
         shopObjectDetail.css("text-align", "center");
         shopObjectDetail.css("font-size", "16px");
         shopObjectDetail.html(shopObject["stat"] + ": +" + shopObject["effect"]);
-
-
-
 
         shopDisplay.append(shopObjectDiv);
         shopDisplay.append("<br>");
