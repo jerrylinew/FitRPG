@@ -217,7 +217,7 @@ function displaySteps(stepsData) {
 
     var options = {
         responsive: true,
-        scaleBeginAtZero: true,
+
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
     }
 
@@ -226,23 +226,31 @@ function displaySteps(stepsData) {
     stepsDisplay.append(chart);
     //context
     var ctxPTD = $('#stepsChart').get(0).getContext("2d");
-    //data
-    var dataPTD = [
-        {
-            label: "Steps today",
-            color: "#5093ce",
-            highlight: "#78acd9",
-            value: stepsData
-        },
-        {
-            label: "Steps to go",
-            color: "#c7ccd1",
-            highlight: "#e3e6e8",
-            value: (10000-stepsData)
-        }
-    ];
 
-    var propertyTypes = new Chart(ctxPTD).Pie(dataPTD, options);
+    var config = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [
+                    stepsData,
+                    10000-stepsData
+                ],
+                backgroundColor: [
+                    "#46BFBD",
+                    "#4D5360",
+                ],
+            }],
+            labels: [
+                "Green",
+                "Dark Grey"
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    };
+
+    var propertyTypes = new Chart(ctxPTD, config);
     $('#stepsLegend').html(propertyTypes.generateLegend());
 
 }
