@@ -119,7 +119,12 @@ function displayShop(shopData) {
         shopObjectName.css("border", "1px solid #6C6C6C");
         shopObjectName.css("border-left", "none");
         shopObjectName.css("background-color", "lightskyblue");
+
+        var objectText = $('<div>' + shopObject["name"] + '</div>');
+        objectText.css("width", "150px");
+        objectText.css("text-align", "center");
         shopObjectName.append(objectText);
+
 
         var purchaseButton = $('<button class="purchaseButton"></button>');
         purchaseButton.css("background", "url(images/coin.png) no-repeat");
@@ -148,6 +153,7 @@ function displayShop(shopData) {
         shopObjectDetail.html(shopObject["stat"] + ": +" + shopObject["effect"]);
 
         shopDisplay.append(shopObjectDiv);
+        shopDisplay.append(shopObjectDetail);
         shopDisplay.append("<br>");
     }
     $('.purchaseButton').on("click", function() {
