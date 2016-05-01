@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Grid, Row, Col, Table, ListGroup, ListGroupItem, Jumbotron } from 'react-bootstrap';
-import { PieTooltip } from 'react-d3-tooltip';
 import { PieChart } from 'react-d3-basic';
 
 
@@ -44,6 +43,10 @@ export class Playground extends React.Component {
       <Grid>
           <Row>
               <Col md={3}>
+                  <Jumbotron style={{"textAlign":"center", "height":"100"}}>
+                      <span>Stat</span>
+                  </Jumbotron>
+
                   <Table striped bordered condensed hover>
                       <tbody>
                           <tr>
@@ -64,14 +67,14 @@ export class Playground extends React.Component {
               </Col>
 
               <Col md={6}>
-                  <Jumbotron style={{"textAlign":"center"}}>
-                      <p>dummy</p>
+                  <Jumbotron style={{"textAlign":"center", "height":"100"}}>
+                      <span>dummy</span>
                   </Jumbotron>
               </Col>
 
               <Col md={3}>
-                  <Jumbotron style={{"textAlign":"center"}}>
-                      <p>Shop</p>
+                  <Jumbotron style={{"textAlign":"center", "height":"100"}}>
+                      <span>Shop</span>
                   </Jumbotron>
                   <ListGroup>
                       <ListGroupItem>
@@ -84,6 +87,7 @@ export class Playground extends React.Component {
                           Item 3
                       </ListGroupItem>
                   </ListGroup>
+
               </Col>
           </Row>
       </Grid>
