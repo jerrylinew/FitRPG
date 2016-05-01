@@ -110,6 +110,12 @@ app.get('/getdata', function(req, res){
     });
 });
 
+app.get('/getMonsterInfo', function(req, res) {
+    var userID = req.query.userID;
+    return users[userID]["monsterData"];
+});
+
+
 app.get('/refreshdata', function(req, res){
     var user_ID = req.query.userID;
     var currentUser = users[user_ID];
@@ -247,8 +253,8 @@ app.get('/attackMonster', function(req, res){
 
 function nextLevel(userID){
     users[userID]["monsterStats"]["HP"] += 50;
-    users[userID]["monsterStats"]["Atk"] += 5;
-    users[userID]["monsterStats"]["Exp"] += 20;
+    users[userID]["monsterStats"]["Atk"] += 10;
+    users[userID]["monsterStats"]["Exp"] += 5;
     users[userID]["monsterStats"]["Level"] += 1;
 }
 
