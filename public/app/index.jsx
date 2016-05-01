@@ -20,6 +20,7 @@ class App extends React.Component {
         defense: profile.defense,
         coins: profile.coins,
       };
+
     }
 
     attack(event, damage) {
