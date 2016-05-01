@@ -186,6 +186,7 @@ function displayShop(shopData) {
     shopDisplay.css();
 
     $('.purchaseButton').on("click", function() {
+        console.log("shop button clicked");
         var item = $(this).attr('name');
 
         $.get("/purchase", {userID: userID, item: item}).done(function (data) {
