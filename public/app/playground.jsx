@@ -58,14 +58,6 @@ class ShopItem extends React.Component {
   }
 }
 
-class Stat extends React.Component {
-  render () {
-    return (
-      <div id="statsContainer"></div>
-    );
-  }
-}
-
 export class Playground extends React.Component {
   render () {
     return (
@@ -84,7 +76,6 @@ export class Playground extends React.Component {
           <Col md={3}>
             <Panel>Shop</Panel>
             <ShopItem/>
-            <Stat/>
 
           </Col>
         </Row>
