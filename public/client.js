@@ -110,7 +110,7 @@ function displayShop(shopData) {
         shopObjectDiv.css("width", "280px");
         shopObjectDiv.css("height", "40px");
 
-        var shopObjectDetails = $('<a class=".popoverBtn" href="#"></a>');
+        var shopObjectDetails = $('<a id="btn' + shopObject["name"] + '" href="#"></a>');
         shopObjectDetails.attr("data-content", shopObject["stat"] + ": " + shopObject["effect"]);
         shopObjectDetails.attr("rel", "popover");
         shopObjectDetails.attr("data-placement", "top");
@@ -179,7 +179,7 @@ function displayShop(shopData) {
             });
         });
     });
-    $('.popoverBtn').popover({trigger: "hover"});
+    $('#btn' + shopObject["name"]).popover({trigger: "hover"});
 }
 
 function displayStats(statsData) {
