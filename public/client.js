@@ -63,7 +63,6 @@ $(document).ready(function() {
             });
 
             $.get("/getSteps", {userID: userID}).done(function(data){
-                console.log(data);
                 displaySteps(data);
             });
 
@@ -241,7 +240,10 @@ function displaySteps(stepsData) {
             }]
         },
         options: {
-            responsive: true
+            responsive: true,
+            labels: {
+                fontSize: "18px"
+            }
         }
     };
 
@@ -283,7 +285,10 @@ function displaySleep(sleepData) {
             }]
         },
         options: {
-            responsive: true
+            responsive: true,
+            labels: {
+                fontSize: "18px"
+            }
         }
     };
 
