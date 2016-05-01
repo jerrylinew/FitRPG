@@ -8,8 +8,8 @@ var app = express();
 var port = process.env.PORT || 8080;
 var url = require('url');
 var FitbitApiClient = require("fitbit-node");
-var redirectURL = "http://fitrpg.herokuapp.com/dashboard";
-var apiClient = new FitbitApiClient("227LQ8", "423b0bc800fe693e1f425a80f363e65a");
+var redirectURL = "http://fitrpg2.herokuapp.com/dashboard";
+var apiClient = new FitbitApiClient("227LR8", "0c5043e5c97351930aa2a3431cb79266");
 var bodyParser = require('body-parser');
 app.use(express.static('public'));
 
@@ -80,6 +80,15 @@ app.get('/getdata', function(req, res){
         user["refreshToken"] = result.refresh_token;
         user["coins"] = 0;
         user["currentLevel"] = 0;
+        user["userExp"] = 0;
+        user["maxUserHP"] = 100;
+        user["monsterStats"] = {
+            HP: 100,
+            Atk: 15,
+            Exp: 10,
+            Level: 0
+        };
+
         user["stats"] = {
             HP: 100,
             Atk: 5,
@@ -174,18 +183,72 @@ app.get('/attacked', function(req, res){
         res.send(data);
         return;
     }
-    users[userID]["stats"]["HP"] -= monsterData[users[userID]["currentLevel"]]["attack"];
+
+    var damage = users[userID]["monsterStats"]["Atk"] - users[userID]["stats"]["Def"];
+
+    if(damage <= 0)
+        damage = 1;
+
+    users[userID]["stats"]["HP"] -= damage;
 
     if(users[userID]["stats"]["HP"] <= 0){
         users[userID]["stats"]["HP"] = 0;
         data["isDead"] = true;
+        users[userID]["coins"] = Math.round(users[userID]["coins"] * 0.8);
+        data["coinsLeft"] = users[userID]["coins"];
     }
     else
         data["isDead"] = false;
 
     data["HP"] = users[userID]["stats"]["HP"];
+    if(data["isDead"])
+        users[userID]["stats"]["HP"] = users[userID]["maxUserHP"];
     res.send(data);
 });
+
+app.get('/attackMonster', function(req, res){
+    var userID = req.query.userID;
+    users[userID]["monsterStats"]["HP"] -= users[userID]["stats"]["Atk"];
+
+    if(users[userID]["monsterStats"]["HP"] < 0)
+        users[userID]["monsterStats"]["HP"] = 0;
+
+    var data = {};
+
+    data["HP"] = users[userID]["monsterStats"]["HP"];
+
+    if(data["HP"] <= 0){
+        data["monsterDead"] = true;
+        nextLevel(userID);
+        users[userID]["userExp"] += users[userID]["monsterStats"]["Exp"];
+        if(users[userID]["userExp"] >= 100){
+            users[userID]["userExp"] = users[userID]["userExp"] - 100;
+
+            data["levelUp"] = true;
+            users[userID]["maxUserHP"] += 20;
+            users[userID]["stats"]["HP"] = users[userID]["maxUserHP"];
+            users[userID]["stats"]["Atk"] += 2;
+            users[userID]["stats"]["Def"] += 2;
+            data["stats"] = users[userID]["stats"];
+            data["maxUserHP"] = users[userID]["maxUserHP"];
+        }
+        else
+            data["levelUp"] = false;
+
+        data["exp"] = users[userID]["userExp"];
+    }
+    else
+        data["monsterDead"] = false;
+
+    res.send(data);
+});
+
+function nextLevel(userID){
+    users[userID]["monsterStats"]["HP"] += 50;
+    users[userID]["monsterStats"]["Atk"] += 5;
+    users[userID]["monsterStats"]["Exp"] += 20;
+    users[userID]["monsterStats"]["Level"] += 1;
+}
 
 app.listen(port, function(){
     console.log('App listening on port 8080!');

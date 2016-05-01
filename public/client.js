@@ -8,6 +8,10 @@ var userName;
 var userGender;
 var userCoins;
 var userHP;
+var monsterData;
+var maxMonsterHP;
+var maxUserHP;
+var bulletRefreshID;
 
 var nameDisplay = $('#nameDisplay');
 var coinsDisplay = $('#coinsDisplay');
@@ -56,8 +60,13 @@ $(document).ready(function() {
         userGender = data.gender;
         nameDisplay.html(userName);
         userHP = data.stats.HP;
+        maxUserHP = data.maxUserHP;
+        monsterData = data.monsterStats;
+        maxMonsterHP = monsterData['HP'];
+        adjustHPBar(1);
+
         console.log(userHP);
-        $('.progressWrap:first').css("width", String(userHP) + '%');
+        $('.progressWrap:first').css("width", String(Math.round(userHP / maxUserHP * 100)) + '%');
 
         var refreshInterval = 1; //in minutes
         console.log("getting steps");
@@ -89,38 +98,98 @@ $(document).ready(function() {
         setInterval(getCallback(userID), 1000 * 60 * refreshInterval);
     });
 
-    setInterval(function() {
-        gameDisplay.append('<img id="bulletImage" src="images/bullet.png" alt="bullet"/>');
-        $('#bulletImage').animate({
-            left: '-=460'
-        }, 1000, function(){
-            $.get("/attacked", {userID: userID}).done(function(data){
-                var hpLeft = data.HP;
-                var isDead = data.isDead;
-                if(hpLeft == undefined)
-                    return;
-                $('.progressWrap:first').css("width", String(hpLeft) + '%');
-                console.log(hpLeft);
-                console.log(isDead);
-            });
-            var bulletImage = $('#bulletImage');
-            bulletImage.fadeOut(250, function(){
-                bulletImage.css({"left": "50"});
-            });
-            setTimeout(function(){
-                bulletImage.remove();
-            }, 300);
+    $("#startBattle").on('click', function(e){
+        e.preventDefault();
+
+        $(this).fadeOut('1000', function(){
+            console.log("fading in");
+            $('#game').css('opacity', '1');
+            $('#attackBtn').show();
+            adjustHPBar();
         });
-    }, 4000);
+
+
+        bulletRefreshID = setInterval(function() {
+            gameDisplay.append('<img id="bulletImage" src="images/bullet.png" alt="bullet"/>');
+            $('#bulletImage').animate({
+                left: '-=440'
+            }, 1000, function(){
+                $.get("/attacked", {userID: userID}).done(function(data){
+                    var hpLeft = data.HP;
+                    var isDead = data.isDead;
+                    console.log(hpLeft);
+                    if(hpLeft == undefined)
+                        return;
+                    $('.progressWrap:first').css("width", String(Math.round(hpLeft / maxUserHP * 100)) + '%');
+
+                    if(isDead){
+                        clearInterval(bulletRefreshID);
+                        swal({
+                            title: "You have died...",
+                            text: "You dropped 20% of your gold :(\nKeep on exercising to get stronger!",
+                            imageUrl: "images/death.png"
+                        });
+
+                        setTimeout(function(){
+                            $('.progressWrap:first').css("width", '100%');
+                        }, 1500);
+
+                        coinsDisplay.html(data.coinsLeft);
+                        $('#game').animate({
+                            "opacity": "0"
+                        }, 1000, function(){
+                            $('#attackBtn').hide();
+                            $('#startBattle').fadeIn(1000);
+                        });
+                    }
+                });
+                var bulletImage = $('#bulletImage');
+                bulletImage.fadeOut(250, function(){
+                    bulletImage.css({"left": "50"});
+                });
+                setTimeout(function(){
+                    $("[id=bulletImage]").remove();
+                }, 300);
+            });
+        }, 4000);
+    });
 
     $("#attackBtn").on('click', function(e){
         e.preventDefault();
         $(this).attr('disabled', true);
         $('#userImage').animate({
-            left: '+=460'
+            left: '+=450'
         }, 1000, function(){
+            $.get("/attackMonster", {userID: userID}).done(function(data){
+                var hpLeft = data.HP;
+                adjustHPBar(hpLeft / maxMonsterHP);
+
+                if(data.monsterDead){
+                    clearInterval(bulletRefreshID);
+                    hpLeft = 0;
+                    $('#game').animate({
+                        "opacity": "0"
+                    }, 1000, function(){
+                        $('#attackBtn').hide();
+                        $('#startBattle').fadeIn(1000);
+                    });
+
+                    console.log(data.exp);
+                    $('.statsbar-wrapper:last div:last').css("width", String(data.exp) + '%');
+                    if(data.levelUp){
+                        swal({
+                            title: "Level up!",
+                            text: "Your stats have increased and your health has been fully restored!",
+                            imageUrl: "images/weight.png"
+                        });
+                        displayStats(data.stats);
+                        maxUserHP = data.maxUserHP;
+                    }
+                }
+
+            });
             $('#userImage').animate({
-                left: '-=460'
+                left: '-=450'
             }, 1000, function(){
                 $('#attackBtn').removeAttr('disabled');
             });
@@ -241,6 +310,7 @@ function displaySteps(stepsData) {
     //context
     var ctxPTD = $('#stepsChart').get(0).getContext("2d");
     ctxPTD.canvas.height = 250;
+    ctxPTD.canvas["margin-bottom"] = "150px";
 
     var config = {
         type: 'doughnut',
@@ -256,8 +326,8 @@ function displaySteps(stepsData) {
                 ],
                 backgroundColor: [
                     "#46BFBD",
-                    "#4D5360",
-                ],
+                    "#4D5360"
+                ]
             }]
         },
         options: {
@@ -266,7 +336,6 @@ function displaySteps(stepsData) {
                 display: true,
                 labels: {
                     fontSize: 18
-
                 }
             }
         }
@@ -305,8 +374,8 @@ function displaySleep(sleepData) {
                 ],
                 backgroundColor: [
                     "#36A2EB",
-                    "#4D5360",
-                ],
+                    "#4D5360"
+                ]
             }]
         },
         options: {

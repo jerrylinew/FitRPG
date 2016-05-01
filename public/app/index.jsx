@@ -65,17 +65,17 @@ class App extends React.Component {
 var data = {
   username: "colinxy",
   profile: {
-    hp: [50, 100],
-    exp: [5000, 8000],
+    hp: [100, 100],
+    exp: [0, 8000],
     lvl: 3,
     offense: 10,
     defense: 20,
-    coins: 177,
+    coins: 0
   },
   expList: [100, 300, 500, 1000, 2000, 4000, 8000],
   step: 1000,
   sleep: 7.5
-}
+};
 
 
 class Store{
