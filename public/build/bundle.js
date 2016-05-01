@@ -41213,7 +41213,7 @@
 	            _react2.default.createElement(
 	              'div',
 	              null,
-	              _react2.default.createElement('div', { id: 'shopContainer', style: { "margin": "0 auto" } })
+	              _react2.default.createElement('div', { id: 'shopContainer', style: { "display": "inline-block" } })
 	            )
 	          )
 	        )

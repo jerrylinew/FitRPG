@@ -88,7 +88,7 @@ export class Playground extends React.Component {
               <span>Shop</span>
             </Panel>
             <div>
-              <div id="shopContainer" style={{"margin":"0 auto"}} />
+              <div id="shopContainer" style={{"display":"inline-block"}} />
             </div>
 
           </Col>
