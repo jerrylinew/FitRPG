@@ -128,6 +128,7 @@ $(document).ready(function() {
                     if(hpLeft == undefined)
                         return;
                     $('.progressWrap:first').css("width", String(Math.round(hpLeft / maxUserHP * 100)) + '%');
+                    $('#HPDisplay').html(String(hpLeft) + "/" + String(maxUserHP));
 
                     if(isDead){
                         clearInterval(bulletRefreshID);
@@ -182,7 +183,9 @@ $(document).ready(function() {
                     });
 
                     console.log(data.exp);
-                    $('.statsbar-wrapper:last div:last').css("width", String(data.exp) + '%');
+                    $('.progressWrap:eq(1)').css("width", String(data.exp) + '%');
+                    $("#EXPDisplay").html(String(data.exp) + "/" + String(100));
+
                     if(data.levelUp){
                         swal({
                             title: "Level up!",
