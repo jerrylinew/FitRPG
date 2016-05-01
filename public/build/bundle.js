@@ -40755,13 +40755,13 @@
 	            { className: 'infobar-coin-box' },
 	            _react2.default.createElement(
 	              'span',
-	              { className: 'infobar-username' },
+	              { id: 'nameDisplay', className: 'infobar-username' },
 	              this.props.username
 	            ),
 	            _react2.default.createElement('img', { src: './assets/gold.png', style: { verticalAlign: "text-top", height: "16px" } }),
 	            _react2.default.createElement(
 	              'span',
-	              { className: 'infobar-coin-count' },
+	              { id: 'coinsDisplay', className: 'infobar-coin-count' },
 	              this.props.coins
 	            )
 	          )

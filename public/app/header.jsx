@@ -19,11 +19,11 @@ class InfoBar extends React.Component {
               <Glyphicon glyph="cog" className="infobar-icon "/>
             </span>
             <span className="infobar-coin-box">
-              <span className="infobar-username">
+              <span id="nameDisplay" className="infobar-username">
                 {this.props.username }
               </span>
               <img src="./assets/gold.png" style={{verticalAlign:"text-top", height: "16px"}}/>
-              <span className="infobar-coin-count">
+              <span id="coinsDisplay" className="infobar-coin-count">
                 {this.props.coins}
               </span>
             </span>
