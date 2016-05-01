@@ -114,6 +114,7 @@ app.get('/getdata', function(req, res){
 app.get('/getMonsterInfo', function(req, res) {
     var userID = req.query.userID;
     var data = {};
+    users[userID]["monsterStats"]["HP"] = 100 + 50*users[userID]["monsterStats"]["Level"];
     data['monsterData'] = users[userID]["monsterStats"];
     data['image'] = monsterImages[users[userID]["monsterStats"]["Level"]];
     res.send(data);
