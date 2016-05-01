@@ -117,7 +117,7 @@ $(document).ready(function() {
 
 
 function displayShop(shopData) {
-
+    shopDisplay.html("");
     for (var index in shopData) {
         var shopObject = shopData[index];
         var shopObjectDiv = $('<div class="shopObject"></div>');
@@ -208,6 +208,8 @@ function displayStats(statsData) {
 
 function displaySteps(stepsData) {
     console.log(stepsData);
+    stepsDisplay.html("");
+
     var chart = $('<div class="chart"></div>');
 
     var canvas = $('<canvas id="stepsChart" class="pie"></canvas>');
@@ -247,6 +249,7 @@ function displaySteps(stepsData) {
 
 function displaySleep(sleepData) {
     console.log(sleepData);
+    sleepDisplay.html("");
 
     var chart = $('<div class="chart"></div>');
 
@@ -264,7 +267,7 @@ function displaySleep(sleepData) {
         data: {
             labels: [
                 "Sleep time",
-                "Sleep target"
+                "Sleep to go"
             ],
             datasets: [{
                 data: [
