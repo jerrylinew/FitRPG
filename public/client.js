@@ -220,6 +220,7 @@ function displaySteps(stepsData) {
     stepsDisplay.append(chart);
     //context
     var ctxPTD = $('#stepsChart').get(0).getContext("2d");
+    ctxPTD.canvas.height = 250;
 
     var config = {
         type: 'doughnut',
@@ -261,6 +262,7 @@ function displaySleep(sleepData) {
     sleepDisplay.append(chart);
     //context
     var ctxPTD = $('#sleepChart').get(0).getContext("2d");
+    ctxPTD.canvas.height = 250;
 
     var config = {
         type: 'doughnut',
