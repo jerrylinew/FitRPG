@@ -62,9 +62,9 @@ $(document).ready(function() {
                 displayStats(data);
             });
 
-            $.get("/getSteps", {userID: userID}).done(function(mydata){
-                console.log(mydata);
-                displaySteps(mydata);
+            $.get("/getSteps", {userID: userID}).done(function(data){
+                console.log(data);
+                displaySteps(data);
             });
 
             //$.get("/getSleep", {userID: userID}).done(function(data){
