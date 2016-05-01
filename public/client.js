@@ -85,6 +85,8 @@ $(document).ready(function() {
             $.get("/attacked", {userID: userID}).done(function(data){
                 var hpLeft = data.HP;
                 var isDead = data.isDead;
+                if(hpLeft == undefined)
+                    return;
                 $('#hpBar').css("width", String(hpLeft) + '%');
                 console.log(hpLeft);
                 console.log(isDead);

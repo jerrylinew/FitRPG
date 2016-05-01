@@ -165,6 +165,11 @@ app.get('/attacked', function(req, res){
     var userID = req.query.userID;
     var data = {};
 
+    if(userID == undefined) {
+        res.send(data);
+        return;
+    }
+
     users[userID]["stats"]["HP"] -= monsterData[users[userID]["currentLevel"]]["attack"];
 
     if(users[userID]["stats"]["HP"] <= 0){
