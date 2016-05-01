@@ -194,6 +194,8 @@ app.get('/attacked', function(req, res){
     if(users[userID]["stats"]["HP"] <= 0){
         users[userID]["stats"]["HP"] = 0;
         data["isDead"] = true;
+        users[userID]["coins"] = Math.round(users[userID]["coins"] * 0.8);
+        data["coinsLeft"] = users[userID]["coins"];
     }
     else
         data["isDead"] = false;
@@ -225,6 +227,8 @@ app.get('/attackMonster', function(req, res){
             users[userID]["stats"]["HP"] = users[userID]["maxUserHP"];
             users[userID]["stats"]["Atk"] += 2;
             users[userID]["stats"]["Def"] += 2;
+            data["stats"] = users[userID]["stats"];
+            data["maxUserHP"] = users[userID]["maxUserHP"];
         }
         else
             data["levelUp"] = false;

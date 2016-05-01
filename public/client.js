@@ -105,6 +105,7 @@ $(document).ready(function() {
             console.log("fading in");
             $('#game').css('opacity', '1');
             $('#attackBtn').show();
+            adjustHPBar();
         });
 
 
@@ -120,6 +121,22 @@ $(document).ready(function() {
                     if(hpLeft == undefined)
                         return;
                     $('.progressWrap:first').css("width", String(Math.round(hpLeft / maxUserHP * 100)) + '%');
+
+                    if(isDead){
+                        clearInterval(bulletRefreshID);
+                        swal({
+                            title: "You have died...",
+                            text: "You dropped 20% of your gold :(\nKeep on exercising to get stronger!",
+                            imageUrl: "images/death.png"
+                        });
+                        coinsDisplay.html(data.coinsLeft);
+                        $('#game').animate({
+                            "opacity": "0"
+                        }, 1000, function(){
+                            $('#attackBtn').hide();
+                            $('#startBattle').fadeIn(1000);
+                        });
+                    }
                 });
                 var bulletImage = $('#bulletImage');
                 bulletImage.fadeOut(250, function(){
@@ -157,9 +174,11 @@ $(document).ready(function() {
                     if(data.levelUp){
                         swal({
                             title: "Level up!",
-                            text: "Your stats have increased!",
+                            text: "Your stats have increased and your health has been fully restored!",
                             imageUrl: "images/weight.png"
                         });
+                        displayStats(data.stats);
+                        maxUserHP = data.maxUserHP;
                     }
                 }
 
