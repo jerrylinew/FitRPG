@@ -86,7 +86,7 @@ app.get('/getdata', function(req, res){
         user["monsterStats"] = {
             HP: 100,
             Atk: 15,
-            Exp: 10,
+            Exp: 20,
             Level: 0
         };
 
@@ -260,7 +260,7 @@ app.get('/attackMonster', function(req, res){
 function nextLevel(userID){
     users[userID]["monsterStats"]["HP"] += 50;
     users[userID]["monsterStats"]["Atk"] += 10;
-    users[userID]["monsterStats"]["Exp"] += 5;
+    users[userID]["monsterStats"]["Exp"] += 20;
     users[userID]["monsterStats"]["Level"] += 1;
 }
 
